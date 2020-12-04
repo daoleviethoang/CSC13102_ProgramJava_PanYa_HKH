@@ -3,7 +3,7 @@ package PanyaCore;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONPropertyName;
+//import org.json.JSONPropertyName;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import org.json.simple.*;
 
 import org.json.simple.parser.*;
+
 public class Storage {
     int capacity = 0;
     List<Ingredient> list = new ArrayList<Ingredient>();
@@ -45,21 +46,20 @@ public class Storage {
     public void setList(List<Ingredient> list) {
         this.list = new ArrayList<>(list);
     }
-    public void readFile(String path)
-    {
+
+    public void readFile(String path) {
         JSONParser jsonParser = new JSONParser();
-         
-        try (FileReader reader = new FileReader(path))
-        {
-            //Read JSON file
+
+        try (FileReader reader = new FileReader(path)) {
+            // Read JSON file
             Object obj = jsonParser.parse(reader);
- 
+
             JSONArray ingredientList = (JSONArray) obj;
             System.out.println(ingredientList);
-             
-            //Iterate over employee array
-            ingredientList.forEach( emp -> parseIngredientObject( (JSONObject) emp ) );
- 
+
+            // Iterate over employee array
+            ingredientList.forEach(emp -> parseIngredientObject((JSONObject) emp));
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -68,29 +68,27 @@ public class Storage {
             e.printStackTrace();
         }
     }
- 
-    private void parseIngredientObject(JSONObject ingredient) 
-    {
-        
-        JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
-        
-        String id = (String) ingredientObject.get("id");    
-        String name = (String) ingredientObject.get("name");  
-        Double quantity = (Double) ingredientObject.get("quantity");  
-        String unit = (String) ingredientObject.get("unit"); 
-        BigDecimal price = (BigDecimal) ingredientObject.get("price"); 
 
-        String note = (String) ingredientObject.get("note"); 
-        Ingredient temp =  new Ingredient(id, name, quantity, unit, price, note);
+    private void parseIngredientObject(JSONObject ingredient) {
+
+        JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
+
+        String id = (String) ingredientObject.get("id");
+        String name = (String) ingredientObject.get("name");
+        Double quantity = (Double) ingredientObject.get("quantity");
+        String unit = (String) ingredientObject.get("unit");
+        BigDecimal price = (BigDecimal) ingredientObject.get("price");
+
+        String note = (String) ingredientObject.get("note");
+        Ingredient temp = new Ingredient(id, name, quantity, unit, price, note);
 
         list.add(temp);
         capacity++;
     }
-    public void writeFile(String path)
-    {
+
+    public void writeFile(String path) {
         JSONArray employeeList = new JSONArray();
-        for(int i = 0; i <capacity;i++)
-        {
+        for (int i = 0; i < capacity; i++) {
             JSONObject ingredientDetails = new JSONObject();
             ingredientDetails.put("id", list.get(0).id);
             ingredientDetails.put("name", list.get(0).name);
@@ -98,17 +96,17 @@ public class Storage {
             ingredientDetails.put("unit", list.get(0).unit);
             ingredientDetails.put("price", list.get(0).price.toString());
             ingredientDetails.put("note", list.get(0).note);
-            
-            JSONObject employeeObject = new JSONObject(); 
+
+            JSONObject employeeObject = new JSONObject();
             employeeObject.put("ingredient", ingredientDetails);
             employeeList.add(employeeObject);
         }
 
         try (FileWriter file = new FileWriter(path)) {
- 
+
             file.write(employeeList.toJSONString());
             file.flush();
- 
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,5 +18,35 @@
             "price": "20.0",
             "note": ""
         }
-    }   
+    }, 
+    {
+        "ingredient":{
+            "id": "ING-003",
+            "name": "Baking Powder",
+            "quantity": 20.0,
+            "unit": "kilograms",
+            "price": "20.0",
+            "note": ""
+        }
+    },
+    {
+        "ingredient":{
+            "id": "ING-004",
+            "name": "Sugar",
+            "quantity": 20.0,
+            "unit": "kilograms",
+            "price": "20.0",
+            "note": ""
+        }
+    },
+    {
+        "ingredient":{
+            "id": "ING-003",
+            "name": "Salt",
+            "quantity": 20.0,
+            "unit": "kilograms",
+            "price": "20.0",
+            "note": ""
+        }
+    }
 ]

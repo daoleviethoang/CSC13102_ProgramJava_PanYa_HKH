@@ -1,12 +1,14 @@
 package PanyaCore;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
+import org.json.simple.JSONObject;
 
 public class Ingredient {
     String id;
     String name;
-    double quantity;
+    BigDecimal quantity;
     String unit;
     BigDecimal price;
     String note;
@@ -14,19 +16,20 @@ public class Ingredient {
     Ingredient() {
         this.id = "";
         this.name = "";
-        this.quantity = 0;
+        this.quantity = BigDecimal.ZERO;
         this.unit = "";
         this.price = BigDecimal.ZERO;
         this.note = "";
     }
 
-    Ingredient(String id, String name, double quantity, String unit, BigDecimal p, String note) {
-        this.id = id;
-        this.name = name;
-        this.quantity = quantity;
-        this.unit = unit;
-        this.price = p;
-        this.note = note;
+    Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note) throws NullPointerException {
+
+        this.id = Objects.requireNonNull(id);
+        this.name = Objects.requireNonNull(name);
+        this.quantity = Objects.requireNonNull(quantity);
+        this.unit = Objects.requireNonNull(unit);
+        this.price = Objects.requireNonNull(price);
+        this.note = Objects.requireNonNull(note);
     }
 
     Ingredient(Ingredient i) {
@@ -54,12 +57,12 @@ public class Ingredient {
         return name;
     }
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
+    public BigDecimal getQuantity() {
+        return quantity;
     }
 
-    public double getQuantity() {
-        return quantity;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
     public void setUnit(String unit) {
@@ -85,5 +88,33 @@ public class Ingredient {
     public String getNote() {
         return note;
     }
-    
+
+    /**
+     * Trả về một object đọc được từ org.json.simple.JSONObject
+     * 
+     * @param ingredient object có các key có thể đọc được để tạo object Ingredient
+     * @return object Ingredient, trả về <code>null</code> nếu
+     *         <code>ingredient</code> không có key hợp lệ
+     * @see org.json.simple.JSONObject
+     */
+    static Ingredient parseIngredientObject(JSONObject ingredient) {
+        JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
+        if (ingredientObject == null) {
+            return null;
+        }
+
+        try {
+
+            var id = (String) ingredientObject.get("id");
+            var name = (String) ingredientObject.get("name");
+            var quantity = new BigDecimal((String) ingredientObject.get("quantity"));
+            var unit = (String) ingredientObject.get("unit");
+            var price = new BigDecimal((String) ingredientObject.get("price"));
+            var note = (String) ingredientObject.get("note");
+            return new Ingredient(id, name, quantity, unit, price, note);
+
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
 }

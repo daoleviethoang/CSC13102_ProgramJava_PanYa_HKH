@@ -1,15 +1,19 @@
-import PanyaUI.Theme;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 /**
  *
  * @author dqh
  */
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        var primary = Theme.hex2Rgb("#90a4ae");
-        var light = Theme.hex2Rgb("#c1d5e0");
-        var dark = Theme.hex2Rgb("#62757f");
-        new PanyaUI.TestMain(primary, light, dark).setVisible(true);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ignored) {
+
+        }
+
+        SwingUtilities.invokeLater(() -> new PanyaUI.TestMain().setVisible(true));
     }
 }

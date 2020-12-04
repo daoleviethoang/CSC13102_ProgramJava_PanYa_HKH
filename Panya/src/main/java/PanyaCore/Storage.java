@@ -3,15 +3,16 @@ package PanyaCore;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.json.JSONPropertyName;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.io.FileWriter;
-import org.json.simple.*;
-
-import org.json.simple.parser.*;
 
 public class Storage {
     int capacity = 0;
@@ -50,7 +51,7 @@ public class Storage {
     public void readFile(String path) {
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(path)) {
+        try (var reader = new FileReader(path)) {
             // Read JSON file
             Object obj = jsonParser.parse(reader);
 
@@ -66,7 +67,7 @@ public class Storage {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     private void parseIngredientObject(JSONObject ingredient) {
@@ -80,7 +81,7 @@ public class Storage {
         BigDecimal price = (BigDecimal) ingredientObject.get("price");
 
         String note = (String) ingredientObject.get("note");
-        Ingredient temp = new Ingredient(id, name, quantity, unit, price, note);
+        var temp = new Ingredient(id, name, quantity, unit, price, note);
 
         list.add(temp);
         capacity++;
@@ -90,19 +91,19 @@ public class Storage {
         JSONArray employeeList = new JSONArray();
         for (int i = 0; i < capacity; i++) {
             JSONObject ingredientDetails = new JSONObject();
-            ingredientDetails.put("id", list.get(0).id);
-            ingredientDetails.put("name", list.get(0).name);
-            ingredientDetails.put("quantity", list.get(0).quantity);
-            ingredientDetails.put("unit", list.get(0).unit);
-            ingredientDetails.put("price", list.get(0).price.toString());
-            ingredientDetails.put("note", list.get(0).note);
+            ingredientDetails.put("id", list.get(i).id);
+            ingredientDetails.put("name", list.get(i).name);
+            ingredientDetails.put("quantity", list.get(i).quantity);
+            ingredientDetails.put("unit", list.get(i).unit);
+            ingredientDetails.put("price", list.get(i).price.toString());
+            ingredientDetails.put("note", list.get(i).note);
 
             JSONObject employeeObject = new JSONObject();
             employeeObject.put("ingredient", ingredientDetails);
             employeeList.add(employeeObject);
         }
 
-        try (FileWriter file = new FileWriter(path)) {
+        try (var file = new FileWriter(path)) {
 
             file.write(employeeList.toJSONString());
             file.flush();
@@ -110,5 +111,10 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+    }
+
+    public static void main(String[] args) {
+    
     }
 }

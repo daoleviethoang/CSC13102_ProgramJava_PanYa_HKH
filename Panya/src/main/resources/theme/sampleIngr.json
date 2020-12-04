@@ -41,10 +41,20 @@
     },
     {
         "ingredient":{
-            "id": "ING-003",
+            "id": "ING-005",
             "name": "Salt",
             "quantity": 20.0,
             "unit": "kilograms",
+            "price": "20.0",
+            "note": ""
+        }
+    },
+    {
+        "ingredient":{
+            "id": "ING-006",
+            "name": "Oil",
+            "quantity": 20.0,
+            "unit": "Lits",
             "price": "20.0",
             "note": ""
         }

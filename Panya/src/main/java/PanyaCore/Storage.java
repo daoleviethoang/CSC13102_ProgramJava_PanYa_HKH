@@ -3,14 +3,20 @@ package PanyaCore;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+// import org.json.simple.JSONArray;
+// import org.json.simple.JSONObject;
+// import org.json.simple.parser.JSONParser;
+// import org.json.simple.parser.ParseException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.io.FileWriter;
 
 public class Storage {
@@ -53,18 +59,13 @@ public class Storage {
      * @return List<Ingredient>, trả về <code>null</code> nếu file có vấn đề
      */
     public static List<Ingredient> readIngredients(String path) {
-        JSONParser jsonParser = new JSONParser();
 
-        try (var reader = new FileReader(path)) {
-        
-            // Read JSON file
-            Object obj = jsonParser.parse(reader);
-            if (obj == null){
-                return null;
-            }
-
-            JSONArray ingredientList = (JSONArray) obj;
-            System.out.println(ingredientList.toJSONString());
+        try {
+            // Đọc toàn bộ các bytes trong một file, tạo String
+            var fileContent = new String(Files.readAllBytes(Path.of(path)));
+            var ingredientList = new JSONArray(fileContent);
+            
+            System.out.println(ingredientList.toString());
             
             List<Ingredient> ingredients = new ArrayList<>();
 
@@ -72,13 +73,7 @@ public class Storage {
             ingredientList.forEach(emp -> ingredients.add(Ingredient.parseIngredientObject((JSONObject) emp)));
 
             return ingredients;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (ParseException e) {
+        } catch (OutOfMemoryError | IOException | JSONException e) {
             e.printStackTrace();
             return null;
         }
@@ -91,14 +86,14 @@ public class Storage {
      * @return <code>true</code> nếu lưu file thành công, <code>false</code> cho các trường hợp khác
      */
     public static boolean writeIngredients(String path, List<Ingredient> list) {
-        JSONArray ingredientJSON = new JSONArray();
+        var ingredientJSON = new JSONArray();
 
         if (path == null || list == null){
             return false;
         }
 
         for (var ingredient : list) {
-            JSONObject ingredientDetails = new JSONObject();
+            var ingredientDetails = new JSONObject();
             ingredientDetails.put("id", ingredient.id);
             ingredientDetails.put("name", ingredient.name);
             ingredientDetails.put("quantity", ingredient.quantity.toString());
@@ -108,7 +103,7 @@ public class Storage {
     
             JSONObject ingredientJSONObj = new JSONObject();
             ingredientJSONObj.put("ingredient", ingredientDetails);
-            ingredientJSON.add(ingredientJSONObj);
+            ingredientJSON.put(ingredientJSONObj);
         }
 
         try (var file = new FileWriter(path)) {

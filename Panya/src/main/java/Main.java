@@ -14,6 +14,6 @@ public class Main {
 
         }
 
-        SwingUtilities.invokeLater(() -> new PanyaUI.TestMain().setVisible(true));
+        SwingUtilities.invokeLater(() -> new PanyaUI.TestMain("blue", true).setVisible(true));
     }
 }

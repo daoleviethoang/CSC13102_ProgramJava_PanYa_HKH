@@ -90,12 +90,12 @@ public class Storage {
         JSONArray employeeList = new JSONArray();
         for (int i = 0; i < capacity; i++) {
             JSONObject ingredientDetails = new JSONObject();
-            ingredientDetails.put("id", list.get(0).id);
-            ingredientDetails.put("name", list.get(0).name);
-            ingredientDetails.put("quantity", list.get(0).quantity);
-            ingredientDetails.put("unit", list.get(0).unit);
-            ingredientDetails.put("price", list.get(0).price.toString());
-            ingredientDetails.put("note", list.get(0).note);
+            ingredientDetails.put("id", list.get(i).id);
+            ingredientDetails.put("name", list.get(i).name);
+            ingredientDetails.put("quantity", list.get(i).quantity);
+            ingredientDetails.put("unit", list.get(i).unit);
+            ingredientDetails.put("price", list.get(i).price.toString());
+            ingredientDetails.put("note", list.get(i).note);
 
             JSONObject employeeObject = new JSONObject();
             employeeObject.put("ingredient", ingredientDetails);

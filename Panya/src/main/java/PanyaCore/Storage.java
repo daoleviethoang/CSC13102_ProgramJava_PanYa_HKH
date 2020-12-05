@@ -7,18 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-// import org.json.simple.JSONArray;
-// import org.json.simple.JSONObject;
-// import org.json.simple.parser.JSONParser;
-// import org.json.simple.parser.ParseException;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.FileWriter;
 
+/**
+ * Object Storage quản lý nhà kho trong phần mềm Pan-ya
+ */
 public class Storage {
     int capacity = 0;
     List<Ingredient> list = new ArrayList<Ingredient>();
@@ -27,9 +23,21 @@ public class Storage {
         this.capacity = 0;
     }
 
-    Storage(int cap, List<Ingredient> l) {
+    /**
+     * Constructor cho một object Storage
+     * 
+     * @param cap dung tích tối đa của nhà kho
+     * @param l   List<Ingredient> là một danh các nguyên liệu (Ingredient) hiện có
+     * @throws NullPointerException khi l <code>null</code>
+     * @see PanyaCore.Ingredient
+     */
+    Storage(int cap, List<Ingredient> l) throws NullPointerException {
         this.capacity = cap;
-        this.list = new ArrayList<>(l);
+        try {
+            this.list = new ArrayList<>(l);
+        } catch (NullPointerException e) {
+            throw e;
+        }
     }
 
     Storage(Storage s) {
@@ -54,9 +62,35 @@ public class Storage {
     }
 
     /**
-     * Đọc từ file ra một List<Ingredient>
-     * @param path Đường dẫn đến file json có định dạng để đọc ra một danh sách các Ingredient
+     * Đọc từ file ra một List<Ingredient> Định dạng json của file cần đọc có dạng
+     * sau:
+     * 
+     * <pre>
+     * [
+     *     {
+     *         "ingredient": {
+     *             "note": "value",
+     *             "unit": "value",
+     *             "quantity": "value",
+     *             "price": "value",
+     *             "name": "value",
+     *             "id": "value"
+     *         }
+     *     },
+     *     {
+     *         "ingredient": {}
+     *     }
+     *     ...
+     * ]
+     * </pre>
+     * 
+     * Trong đó, mỗi object nguyên liệu được parse ra từ static method
+     * {@link PanyaCore.Ingredient#parseIngredientObject(JSONObject)}
+     * 
+     * @param path Đường dẫn đến file json có định dạng để đọc ra một danh sách các
+     *             Ingredient
      * @return List<Ingredient>, trả về <code>null</code> nếu file có vấn đề
+     * @see PanyaCore.Ingredient#parseIngredientObject(JSONObject)
      */
     public static List<Ingredient> readIngredients(String path) {
 
@@ -64,12 +98,13 @@ public class Storage {
             // Đọc toàn bộ các bytes trong một file, tạo String
             var fileContent = new String(Files.readAllBytes(Path.of(path)));
             var ingredientList = new JSONArray(fileContent);
-            
-            System.out.println(ingredientList.toString());
-            
+
+            System.out.println(ingredientList.toString(4));
+
             List<Ingredient> ingredients = new ArrayList<>();
 
-            // Duyệt từng phần từ trong ingredientList, parse sang Ingredient, thêm vào danh sách ingredients
+            // Duyệt từng phần từ trong ingredientList, parse sang Ingredient, thêm vào danh
+            // sách ingredients
             ingredientList.forEach(emp -> ingredients.add(Ingredient.parseIngredientObject((JSONObject) emp)));
 
             return ingredients;
@@ -81,14 +116,16 @@ public class Storage {
 
     /**
      * Lưu List<Ingredient> sang file định dạng json
+     * 
      * @param path đường dẫn đến file
      * @param list danh sách các ingredients
-     * @return <code>true</code> nếu lưu file thành công, <code>false</code> cho các trường hợp khác
+     * @return <code>true</code> nếu lưu file thành công, <code>false</code> cho các
+     *         trường hợp khác
      */
     public static boolean writeIngredients(String path, List<Ingredient> list) {
         var ingredientJSON = new JSONArray();
 
-        if (path == null || list == null){
+        if (path == null || list == null) {
             return false;
         }
 
@@ -100,16 +137,14 @@ public class Storage {
             ingredientDetails.put("unit", ingredient.unit);
             ingredientDetails.put("price", ingredient.price.toString());
             ingredientDetails.put("note", ingredient.note);
-    
+
             JSONObject ingredientJSONObj = new JSONObject();
             ingredientJSONObj.put("ingredient", ingredientDetails);
             ingredientJSON.put(ingredientJSONObj);
         }
 
         try (var file = new FileWriter(path)) {
-            // Chữa cháy, thư viện Kiệt xài không có in đẹp
-            var temp = new org.json.JSONArray(ingredientJSON.toString());
-            file.write(temp.toString(4));
+            file.write(ingredientJSON.toString(4));
             file.flush();
 
         } catch (IOException e) {
@@ -122,10 +157,10 @@ public class Storage {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String path = "src/main/resources/sample-data/sampleIngr.json";
+        final String path = "Panya/src/main/resources/sample-data/sample-ingr.json";
         var ingredients = Storage.readIngredients(path);
 
-        final String w_path = "src/main/resources/sample-data/sampleIngr-out.json";
+        final String w_path = "Panya/src/main/resources/sample-data/sample-ingr-out.json";
         Storage.writeIngredients(w_path, ingredients);
     }
 }

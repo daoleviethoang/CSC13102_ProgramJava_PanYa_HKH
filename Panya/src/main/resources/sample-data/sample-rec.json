@@ -1,0 +1,22 @@
+[
+    {
+        "recipe": {
+            "id": "REP-001",
+            "name": "banh-mi",
+            "visibility": true,
+            "description": "banh mi recipe made by mom",
+            "note": "",
+            "productID": [
+                "PYC-001"
+            ],
+            "ingredients": [
+                {
+                    "id": "ING-001",
+                    "quantity": "9",
+                    "unit": "gram"
+                }
+            ]
+        }
+    }
+ ]
+ 

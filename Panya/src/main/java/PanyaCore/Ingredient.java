@@ -3,8 +3,8 @@ package PanyaCore;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class Ingredient {
     String id;
@@ -23,7 +23,8 @@ public class Ingredient {
         this.note = "";
     }
 
-    Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note) throws NullPointerException {
+    Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note)
+            throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
         this.name = Objects.requireNonNull(name);
@@ -91,21 +92,27 @@ public class Ingredient {
     }
 
     /**
-     * Trả về một object đọc được từ org.json.simple.JSONObject
-     * 
+     * Trả về một object đọc được từ {@link org.json.JSONObject}
+     * <pre>
+     * "ingredient": {
+     *     "note": "value",
+     *     "unit": "value",
+     *     "quantity": "value",
+     *     "price": "value",
+     *     "name": "value",
+     *     "id": "value"
+     * }
+     * </pre>
      * @param ingredient object có các key có thể đọc được để tạo object Ingredient
      * @return object Ingredient, trả về <code>null</code> nếu
      *         <code>ingredient</code> không có key hợp lệ
-     * @see org.json.simple.JSONObject
+     * @see org.json.JSONObject
      */
     static Ingredient parseIngredientObject(JSONObject ingredient) {
-        JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
-        if (ingredientObject == null) {
-            return null;
-        }
-
+        
         try {
-
+            
+            JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
             var id = (String) ingredientObject.get("id");
             var name = (String) ingredientObject.get("name");
             var quantity = new BigDecimal((String) ingredientObject.get("quantity"));
@@ -114,7 +121,7 @@ public class Ingredient {
             var note = (String) ingredientObject.get("note");
             return new Ingredient(id, name, quantity, unit, price, note);
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | JSONException e) {
             return null;
         }
     }

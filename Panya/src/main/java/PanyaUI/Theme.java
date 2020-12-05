@@ -22,10 +22,11 @@ public class Theme {
         THEME_NAMES = new String[] { "red", "pink", "purple", "deeppurple", "indigo", "blue", "lightblue", "cyan",
                 "green", "lightgreen", "lime", "yellow", "amber", "orange", "deeporange", "brown", "grey", "bluegrey" };
     }
-    
+
     /**
      * Get a java.awt.Color instance from a RGB str
      * https://stackoverflow.com/questions/4129666/how-to-convert-hex-to-rgb-using-java
+     * 
      * @param colorStr e.g. "#FFFFFF"
      * @return a java.awt.Color instance
      */
@@ -35,8 +36,8 @@ public class Theme {
     }
 
     /**
-     * Theme initialization
-     * Each Theme instance needs to be init colorPalette before using
+     * Theme initialization Each Theme instance needs to be init colorPalette before
+     * using
      */
     public Theme() {
         ClassLoader classLoader = this.getClass().getClassLoader();
@@ -50,8 +51,10 @@ public class Theme {
 
     /**
      * Get recommended text color to fit with the background.
+     * 
      * @param background background color
      * @return either java.awt.Color.BLACK or java.awt.Color.WHITE
+     * @see java.awt.Colorw
      */
     public static Color textColorFromBackgroundColor(Color background) {
         var red = background.getRed();
@@ -85,19 +88,23 @@ public class Theme {
     }
 
     /**
-     * Get a list of theme names that can be used to retrive the color from PanyaUI.Theme.getTheme
+     * Get a list of theme names that can be used to retrive the color from
+     * PanyaUI.Theme.getTheme
+     * 
      * @return an array of String, each element in the array is a theme name.
-     * @see PanyaUI.Theme
+     * @see PanyaUI.Theme#getTheme(String)
      */
-    public static String[] getThemeNames(){
+    public static String[] getThemeNames() {
         return Theme.THEME_NAMES.clone();
     }
 
     /**
-     * Get a random theme name that can be used to retrive the color from PanyaUI.Theme.getTheme
+     * Get a random theme name that can be used to retrive the color from
+     * PanyaUI.Theme.getTheme
+     * 
      * @return a String represents a theme name
      */
-    public static String getRandomThemeName(){
+    public static String getRandomThemeName() {
         int rnd = new Random().nextInt(Theme.THEME_NAMES.length);
         return Theme.THEME_NAMES[rnd];
     }

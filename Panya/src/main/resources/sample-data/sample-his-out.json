@@ -1,0 +1,17 @@
+[{"history": {
+    "date": "2020-05-12",
+    "products": [
+        {"product": {
+            "quantity": 10,
+            "price": "15.0",
+            "sellOff": "0.2",
+            "id": "PYC-001"
+        }},
+        {"product": {
+            "quantity": 5,
+            "price": "11.0",
+            "sellOff": "0.0",
+            "id": "PYC-002"
+        }}
+    ]
+}}]

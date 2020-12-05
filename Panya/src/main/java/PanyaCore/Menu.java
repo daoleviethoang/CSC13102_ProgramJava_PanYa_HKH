@@ -8,12 +8,12 @@ public class Menu {
     List<Product> products = new ArrayList<>();
     BigDecimal sellOff = BigDecimal.ZERO;
 
-    public Menu(List<Product> products, BigDecimal sellOff){
+    public Menu(List<Product> products, BigDecimal sellOff) {
         this.products = new ArrayList<>(products);
         this.sellOff = sellOff;
     }
 
-    public Menu(Menu m){
+    public Menu(Menu m) {
         this.products = new ArrayList<>(m.products);
         this.sellOff = m.sellOff;
     }

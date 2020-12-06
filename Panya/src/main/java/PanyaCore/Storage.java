@@ -157,10 +157,10 @@ public class Storage {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String path = "Panya/src/main/resources/sample-data/sample-ingr.json";
+        final String path = "src/main/resources/sample-data/sample-ingr.json";
         var ingredients = Storage.readIngredients(path);
 
-        final String w_path = "Panya/src/main/resources/sample-data/sample-ingr-out.json";
+        final String w_path = "src/main/resources/sample-data/sample-ingr-out.json";
         Storage.writeIngredients(w_path, ingredients);
     }
 }

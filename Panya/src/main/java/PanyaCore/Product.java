@@ -198,10 +198,10 @@ public class Product {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "Panya/src/main/resources/sample-data/sample-pdt.json";
+        final String INPUT = "src/main/resources/sample-data/sample-pdt.json";
         var products = Product.readProductList(INPUT);
 
-        final String OUTPUT = "Panya/src/main/resources/sample-data/sample-pdt-out.json";
+        final String OUTPUT = "src/main/resources/sample-data/sample-pdt-out.json";
         Product.saveProductList(OUTPUT, products);
     }
 

@@ -160,10 +160,10 @@ public class CustomProduct extends Product {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "Panya/src/main/resources/sample-data/sample-cpd.json";
+        final String INPUT = "src/main/resources/sample-data/sample-cpd.json";
         var products = CustomProduct.readCustomProductList(INPUT);
 
-        final String OUTPUT = "Panya/src/main/resources/sample-data/sample-cpd-out.json";
+        final String OUTPUT = "src/main/resources/sample-data/sample-cpd-out.json";
         CustomProduct.saveCustomProductList(OUTPUT, products);
     }
 }

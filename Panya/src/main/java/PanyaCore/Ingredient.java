@@ -27,11 +27,11 @@ public class Ingredient {
             throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
-        this.name = Objects.requireNonNull(name);
-        this.quantity = Objects.requireNonNull(quantity);
-        this.unit = Objects.requireNonNull(unit);
-        this.price = Objects.requireNonNull(price);
-        this.note = Objects.requireNonNull(note);
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.price = price;
+        this.note = note;
     }
 
     Ingredient(Ingredient i) {
@@ -93,6 +93,7 @@ public class Ingredient {
 
     /**
      * Trả về một object đọc được từ {@link org.json.JSONObject}
+     * 
      * <pre>
      * "ingredient": {
      *     "note": "value",
@@ -103,15 +104,16 @@ public class Ingredient {
      *     "id": "value"
      * }
      * </pre>
+     * 
      * @param ingredient object có các key có thể đọc được để tạo object Ingredient
      * @return object Ingredient, trả về <code>null</code> nếu
      *         <code>ingredient</code> không có key hợp lệ
      * @see org.json.JSONObject
      */
     static Ingredient parseIngredientObject(JSONObject ingredient) {
-        
+
         try {
-            
+
             JSONObject ingredientObject = (JSONObject) ingredient.get("ingredient");
             var id = (String) ingredientObject.get("id");
             var name = (String) ingredientObject.get("name");

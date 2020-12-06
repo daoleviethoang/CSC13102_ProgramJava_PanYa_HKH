@@ -1,0 +1,45 @@
+[
+    {
+        "menu": {
+            "products": [
+                {
+                    "product": {
+                        "id": "PYC-001",
+                        "name": "Donut",
+                        "price": "15.0",
+                        "quantity": 10,
+                        "sellOff": "0.2"
+                    }
+                },
+                {   "product": {
+                        "id": "PYC-002",
+                        "name": "Amandine",
+                        "price": "20.0",
+                        "quantity": 5,
+                        "sellOff": "0.0"
+                    }
+                },
+                {
+                    "product": {
+                        "id": "PYC-003",
+                        "name": "Babka",
+                        "price": "15.0",
+                        "quantity": "15",
+                        "sellOff": "0.2"
+                    }
+                },
+                {
+                    "product": {
+                        "id": "PYC-004",
+                        "name": "Wingko",
+                        "price": "20.0",
+                        "quantity": "10",
+                        "sellOff": "0.2"
+                    }
+                }
+            ],
+            "sellOf": "0.1"
+        }
+    }
+ ]
+ 

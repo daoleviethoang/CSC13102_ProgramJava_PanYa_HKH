@@ -150,10 +150,10 @@ public class History {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "src/main/resources/sample-data/sample-his.json";
+        final String INPUT = "Panya/src/main/resources/data/ManageData/HistoryFile.json";
         var history = History.readHistoryList(INPUT);
 
-        final String OUTPUT = "src/main/resources/sample-data/sample-his-out.json";
+        final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-HistoryFile.json";
         History.saveCustomProductList(OUTPUT, history);
     }
 }

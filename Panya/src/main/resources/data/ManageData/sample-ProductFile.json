@@ -1,0 +1,34 @@
+[
+    {"product": {
+        "note": "Fried dough confection or dessert food",
+        "quantity": 10,
+        "price": "15.0",
+        "sellOff": "0.2",
+        "name": "Donut",
+        "id": "PYC-001"
+    }},
+    {"product": {
+        "note": "",
+        "quantity": 5,
+        "price": "20.0",
+        "sellOff": "0.2",
+        "name": "Amandine",
+        "id": "PYC-002"
+    }},
+    {"product": {
+        "note": "",
+        "quantity": 15,
+        "price": "15.0",
+        "sellOff": "0.2",
+        "name": "Babka",
+        "id": "PYC-003"
+    }},
+    {"product": {
+        "note": "",
+        "quantity": 10,
+        "price": "20.0",
+        "sellOff": "0.2",
+        "name": "Wingko",
+        "id": "PYC-004"
+    }}
+]

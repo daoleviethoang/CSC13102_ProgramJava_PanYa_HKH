@@ -1,0 +1,24 @@
+[
+    {
+        "history": {
+            "products": [
+                {
+                    "product": {
+                        "id": "PYC-001",
+                        "quantity": 10,
+                        "price": "15.0",
+                        "sellOff": "0.2"
+                    }
+                },
+                {   "product": {
+                        "id": "PYC-002",
+                        "quantity": 5,
+                        "price": "20.0",
+                        "sellOff": "0.2"
+                    }
+                }
+            ],
+            "date": "2020-05-12"
+        }
+    }
+]

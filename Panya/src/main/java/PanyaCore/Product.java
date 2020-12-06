@@ -23,24 +23,24 @@ public class Product {
     protected BigDecimal sellOff;
     protected int quantity;
 
-    public Product(String name, String id, String note, BigDecimal price, BigDecimal sellOff, int quantity)
+    public Product(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note)
             throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
         this.name = name;
-        this.note = note;
         this.price = price;
-        this.sellOff = sellOff;
         this.quantity = quantity;
+        this.sellOff = sellOff;
+        this.note = note;
     }
 
     public Product(Product p) {
-        this.name = p.name;
         this.id = p.id;
-        this.note = p.note;
+        this.name = p.name;
         this.price = p.price;
-        this.sellOff = p.sellOff;
         this.quantity = p.quantity;
+        this.sellOff = p.sellOff;
+        this.note = p.note;
     }
 
     public String getName() {
@@ -176,7 +176,7 @@ public class Product {
 
             var note = productDetail.optString("note", null);
 
-            return new Product(name, id, note, price, sellOff, quantity);
+            return new Product(id, name, price, quantity, sellOff, note);
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
             return null;
@@ -198,10 +198,10 @@ public class Product {
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "src/main/resources/sample-data/sample-pdt.json";
+        final String INPUT = "Panya/src/main/resources/data/ManageData/ProductFile.json";
         var products = Product.readProductList(INPUT);
 
-        final String OUTPUT = "src/main/resources/sample-data/sample-pdt-out.json";
+        final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-ProductFile.json";
         Product.saveProductList(OUTPUT, products);
     }
 

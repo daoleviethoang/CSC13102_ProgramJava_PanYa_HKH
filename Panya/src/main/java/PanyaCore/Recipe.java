@@ -3,6 +3,11 @@ package PanyaCore;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
+import org.json.JSONPropertyName;
+
 public class Recipe {
     String id;
     String name;
@@ -64,9 +69,6 @@ public class Recipe {
         this.productId = new ArrayList<>(productId);
     }
 
-    public List<Ingredient> getIngredient() {
-        return ingredient;
-    }
 
     public void setIngredient(List<Ingredient> ingredient) {
         this.ingredient = new ArrayList<>(ingredient);
@@ -94,5 +96,41 @@ public class Recipe {
 
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
+    }
+    @JSONPropertyIgnore
+    public List<Ingredient> getIngredient() {
+        return ingredient;
+    }
+    @JSONPropertyName("ingredients")
+    public JSONArray getProductsJSONObject(){
+        var ingredientsJson = new JSONArray();
+        ingredient.forEach((obj)->{
+            var ingredientObj = new JSONObject(obj);
+            ingredientsJson.put(new JSONObject().put("ingredient", ingredientObj));
+        });
+
+        //var jsonObj = new JSONObject();
+        //jsonObj.put("products", productsJson);
+        return ingredientsJson;
+    }
+    public static History parseRecipeJSONObject(JSONObject recipeJsonObject) {
+        var recipeDetail = recipeJsonObject;
+        try {
+            recipeJsonObject = (JSONObject) recipeJsonObject.getJSONObject("recipe");
+
+            var id = recipeDetail.getString("id");
+            var name = recipeDetail.getString("name");
+            var visibility = recipeDetail.getBoolean("visibility");
+            var description = recipeDetail.getString("description");
+            var note = recipeDetail.getString("note");
+            var productId = JsonDataUtils.toObjectList(recipeDetail.getJSONArray("productID"), getProductId());
+            var products = JsonDataUtils.toObjectList(recipeDetail.getJSONArray("ingredients"), Ingredient::parseIngredientObject);
+
+            return new History(products);
+
+        } catch (NullPointerException | JSONException | DateTimeParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

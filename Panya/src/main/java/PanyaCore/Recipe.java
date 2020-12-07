@@ -1,9 +1,12 @@
 package PanyaCore;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONPropertyIgnore;
 import org.json.JSONPropertyName;
@@ -69,7 +72,6 @@ public class Recipe {
         this.productId = new ArrayList<>(productId);
     }
 
-
     public void setIngredient(List<Ingredient> ingredient) {
         this.ingredient = new ArrayList<>(ingredient);
     }
@@ -97,40 +99,59 @@ public class Recipe {
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
+
     @JSONPropertyIgnore
     public List<Ingredient> getIngredient() {
         return ingredient;
     }
-    @JSONPropertyName("ingredients")
-    public JSONArray getProductsJSONObject(){
-        var ingredientsJson = new JSONArray();
-        ingredient.forEach((obj)->{
-            var ingredientObj = new JSONObject(obj);
-            ingredientsJson.put(new JSONObject().put("ingredient", ingredientObj));
-        });
 
-        //var jsonObj = new JSONObject();
-        //jsonObj.put("products", productsJson);
+    @JSONPropertyName("ingredients")
+    public JSONArray getIngredientsJSONObject() {
+        var ingredientsJson = new JSONArray();
+        ingredient.forEach((obj) -> ingredientsJson.put(new JSONObject(obj)));
         return ingredientsJson;
     }
-    public static History parseRecipeJSONObject(JSONObject recipeJsonObject) {
-        var recipeDetail = recipeJsonObject;
-        try {
-            recipeJsonObject = (JSONObject) recipeJsonObject.getJSONObject("recipe");
 
+    public static Recipe parseRecipeJSONObject(JSONObject recipeJsonObject) {
+        var recipeDetail = (JSONObject) recipeJsonObject.getJSONObject("recipe");
+        try {
             var id = recipeDetail.getString("id");
             var name = recipeDetail.getString("name");
             var visibility = recipeDetail.getBoolean("visibility");
             var description = recipeDetail.getString("description");
             var note = recipeDetail.getString("note");
-            var productId = JsonDataUtils.toObjectList(recipeDetail.getJSONArray("productID"), getProductId());
-            var products = JsonDataUtils.toObjectList(recipeDetail.getJSONArray("ingredients"), Ingredient::parseIngredientObject);
 
-            return new History(products);
+            var productIdObj = recipeDetail.getJSONArray("productId").toList();
+            var productId = new ArrayList<String>(productIdObj.size());
+            for (var obj : productIdObj) {
+                productId.add(Objects.toString(obj));
+            }
+
+            var ingredients = JsonDataUtils.toObjectList(recipeDetail.getJSONArray("ingredients"),
+                    Ingredient::parseIngredientObject);
+            return new Recipe(id, name, productId, ingredients, description, note, visibility);
 
         } catch (NullPointerException | JSONException | DateTimeParseException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static List<Recipe> readRecipeList(String path) {
+        return JsonDataUtils.readObjectList(path, Recipe::parseRecipeJSONObject);
+    }
+
+    public static boolean saveRecipeList(String path, List<Recipe> recipes) {
+        return JsonDataUtils.saveObjectList(path, recipes, "recipe", JSONObject::new);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+        final String INPUT = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
+        var recipe = Recipe.readRecipeList(INPUT);
+
+        final String OUTPUT = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
+        Recipe.saveRecipeList(OUTPUT, recipe);
     }
 }

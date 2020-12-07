@@ -1,0 +1,13 @@
+[{"recipe": {
+    "note": "",
+    "productId": ["PYC-001"],
+    "visibility": true,
+    "name": "banh-mi",
+    "description": "banh mi recipe made by mom",
+    "ingredients": [{
+        "unit": "gram",
+        "quantity": "9",
+        "id": "ING-001"
+    }],
+    "id": "REP-001"
+}}]

@@ -17,7 +17,7 @@ public class CustomProduct extends Product {
     public CustomProduct(String name, String id, String note, BigDecimal price, BigDecimal sellOff, int quantity,
             BigDecimal customPrice, String customerName, String customerPhoneNumber) throws NullPointerException {
 
-        super(name, id, note, price, sellOff, quantity);
+        super(name, id, price, quantity, sellOff, note);
         this.customPrice = customPrice;
         this.customerName = customerName;
         this.customerPhoneNumber = customerPhoneNumber;

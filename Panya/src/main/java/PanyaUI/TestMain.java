@@ -34,7 +34,6 @@ public class TestMain extends javax.swing.JFrame {
         this.PRIDE = b;
         initTheme(themeName);
         highlightLabelColor(HomeLabel);
-
     }
 
     public TestMain(Color primary, Color light, Color dark){
@@ -545,8 +544,8 @@ public class TestMain extends javax.swing.JFrame {
     private void defaultLabelColor(JLabel lbl){
         lbl.setBackground(DEFAULT_LABEL_COLOR);
         lbl.setForeground(DEFAULT_TEXT_LABEL_COLOR);
-
     }
+
     /**
      * @param args the command line arguments
      */

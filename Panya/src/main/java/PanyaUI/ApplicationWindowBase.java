@@ -40,6 +40,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         topHeaderPanel = new javax.swing.JPanel();
         topHeaderLabel = new javax.swing.JLabel();
+        menuIconLabel2 = new javax.swing.JLabel();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
@@ -86,7 +87,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
 
         menuIconLabel.setForeground(java.awt.Color.white);
         menuIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/twotone_menu_white_18dp.png"))); // NOI18N
-        titlePanel.add(menuIconLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        titlePanel.add(menuIconLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, 50));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -153,8 +154,27 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
 
         topHeaderLabel.setFont(topHeaderLabel.getFont());
         topHeaderLabel.setForeground(java.awt.Color.white);
+        topHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topHeaderLabel.setText("Title");
-        topHeaderPanel.add(topHeaderLabel, new java.awt.GridBagConstraints());
+        topHeaderLabel.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        topHeaderLabel.setMinimumSize(new java.awt.Dimension(564, 50));
+        topHeaderLabel.setPreferredSize(new java.awt.Dimension(564, 50));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 0.1;
+        topHeaderPanel.add(topHeaderLabel, gridBagConstraints);
+
+        menuIconLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/twotone_menu_white_18dp.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        topHeaderPanel.add(menuIconLabel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -290,6 +310,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
     javax.swing.JLabel imageLabel;
     javax.swing.JPanel imagePanel;
     javax.swing.JLabel menuIconLabel;
+    javax.swing.JLabel menuIconLabel2;
     javax.swing.JLabel menuLabel;
     javax.swing.JPanel menuListPanel;
     javax.swing.JPanel menuPanel;

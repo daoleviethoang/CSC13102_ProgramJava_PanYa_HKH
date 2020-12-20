@@ -8,12 +8,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ignored) {
+        // try {
+        //     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        // } catch (Exception ignored) {
 
-        }
+        // }
 
-        SwingUtilities.invokeLater(() -> new PanyaUI.TestMain("blue", true).setVisible(true));
+        SwingUtilities.invokeLater(() -> new PanyaUI.ApplicationWindow(true).setVisible(true));
     }
 }

@@ -37,10 +37,10 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         storageLabel = new javax.swing.JLabel();
         menuLabel = new javax.swing.JLabel();
         homeLabel = new javax.swing.JLabel();
-        headerPanel = new javax.swing.JPanel();
         topHeaderPanel = new javax.swing.JPanel();
         topHeaderLabel = new javax.swing.JLabel();
         menuIconLabel2 = new javax.swing.JLabel();
+        outerContentPanel = new javax.swing.JPanel();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
@@ -143,10 +143,6 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.1;
         getContentPane().add(menuPanel, gridBagConstraints);
 
-        headerPanel.setMinimumSize(new java.awt.Dimension(600, 200));
-        headerPanel.setPreferredSize(new java.awt.Dimension(600, 200));
-        headerPanel.setLayout(new java.awt.GridBagLayout());
-
         topHeaderPanel.setBackground(new java.awt.Color(0, 105, 192));
         topHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
         topHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
@@ -177,8 +173,16 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         topHeaderPanel.add(menuIconLabel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        headerPanel.add(topHeaderPanel, gridBagConstraints);
+        gridBagConstraints.weightx = 0.1;
+        getContentPane().add(topHeaderPanel, gridBagConstraints);
+
+        outerContentPanel.setMinimumSize(new java.awt.Dimension(600, 600));
+        outerContentPanel.setPreferredSize(new java.awt.Dimension(600, 600));
+        outerContentPanel.setLayout(new java.awt.GridBagLayout());
 
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
@@ -203,7 +207,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        headerPanel.add(contentHeaderPanel, gridBagConstraints);
+        outerContentPanel.add(contentHeaderPanel, gridBagConstraints);
 
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
@@ -224,18 +228,10 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        headerPanel.add(bottomHeaderPanel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        getContentPane().add(headerPanel, gridBagConstraints);
+        outerContentPanel.add(bottomHeaderPanel, gridBagConstraints);
 
         contentPanel.setBackground(java.awt.Color.white);
         contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -249,8 +245,18 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        outerContentPanel.add(contentPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -260,7 +266,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        getContentPane().add(contentPanel, gridBagConstraints);
+        getContentPane().add(outerContentPanel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,7 +311,6 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
     javax.swing.JLabel contentHeaderLabel;
     javax.swing.JPanel contentHeaderPanel;
     javax.swing.JPanel contentPanel;
-    javax.swing.JPanel headerPanel;
     javax.swing.JLabel homeLabel;
     javax.swing.JLabel imageLabel;
     javax.swing.JPanel imagePanel;
@@ -314,6 +319,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
     javax.swing.JLabel menuLabel;
     javax.swing.JPanel menuListPanel;
     javax.swing.JPanel menuPanel;
+    javax.swing.JPanel outerContentPanel;
     javax.swing.JLabel recipeLabel;
     javax.swing.JLabel storageLabel;
     javax.swing.JPanel titlePanel;

@@ -21,6 +21,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
     Color primaryTextColor;
     Color lightTextColor;
     Color darkTextColor;
+    Font hightlightFont;
+    Font unhilightFont;
 
     GridBagConstraints hideMenuHeaderPanelConstraint;
     GridBagConstraints hideMenuContentPanelConstraint;
@@ -40,6 +42,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
     private void initComponents() {
         this.menuIconLabel2.setVisible(false);
+        this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
+        this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);
         this.initAction();
         this.initGridBagConstraints();
     }
@@ -53,7 +57,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         final var DARK = theme.get(Theme.DARK);
 
         this.initTheme(PRIMARY, LIGHT, DARK);
-        this.highlightLabelColor(homeLabel);
+        this.setHighlightLabel(homeLabel);
 
     }
 
@@ -66,7 +70,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         var DARK = theme.get(Theme.DARK);
         this.randomColor = randomColor;
         this.initTheme(PRIMARY, LIGHT, DARK);
-        this.highlightLabelColor(homeLabel);
+        this.setHighlightLabel(homeLabel);
 
     }
 
@@ -74,7 +78,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         super();
         initComponents();
         this.initTheme(primary, light, dark);
-        this.highlightLabelColor(homeLabel);
+        this.setHighlightLabel(homeLabel);
         this.randomColor = randomColor;
     }
 
@@ -122,7 +126,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
         // this.contentPanel;
-        // this.headerPanel;
+        // this.outerContentPanel;
         this.homeLabel.setBackground(primaryTextColor);
         this.imageLabel.setBackground(primaryTextColor);
         this.imagePanel.setBackground(primaryColor);
@@ -140,8 +144,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.topHeaderLabel.setForeground(darkTextColor);
         this.topHeaderPanel.setBackground(darkColor);
 
-        this.highlightLabelColor(this.homeLabel);
-        this.defaultLabelColor(this.storageLabel);
+        this.setHighlightLabel(this.homeLabel);
+        this.unsetHighlightLabel(this.storageLabel);
     }
 
     private void initAction() {
@@ -167,8 +171,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
     private void initGridBagConstraints() {
         var layout = (GridBagLayout) this.getContentPane().getLayout();
-        showMenuContentPanelConstraint = layout.getConstraints(this.contentPanel);
-        showMenuHeaderPanelConstraint = layout.getConstraints(this.headerPanel);
+        showMenuHeaderPanelConstraint = layout.getConstraints(this.topHeaderPanel);
+        showMenuContentPanelConstraint = layout.getConstraints(this.outerContentPanel);
 
         hideMenuContentPanelConstraint = new java.awt.GridBagConstraints();
         hideMenuContentPanelConstraint.gridx = 0;
@@ -190,39 +194,40 @@ public class ApplicationWindow extends ApplicationWindowBase {
     private void highlightLabel(JLabel lbl) {
         for (var jLabel : menuListLabels) {
             if (jLabel == lbl) {
-                highlightLabelColor(lbl);
+                setHighlightLabel(lbl);
             } else {
-                defaultLabelColor(jLabel);
+                unsetHighlightLabel(jLabel);
             }
         }
     }
 
-    private void highlightLabelColor(JLabel lbl) {
+    private void setHighlightLabel(JLabel lbl) {
         lbl.setOpaque(true);
         lbl.setBackground(primaryColor);
         lbl.setForeground(primaryTextColor);
+        lbl.setFont(this.hightlightFont);
     }
 
-    private void defaultLabelColor(JLabel lbl) {
+    private void unsetHighlightLabel(JLabel lbl) {
         lbl.setOpaque(true);
         lbl.setBackground(lightColor);
         lbl.setForeground(lightTextColor);
+        lbl.setFont(this.unhilightFont);
     }
 
-    private void showMenuActionPerformed(){
+    private void showMenuActionPerformed() {
         var layout = (GridBagLayout) this.getContentPane().getLayout();
 
-        if (this.menuPanel.isVisible()){
+        if (this.menuPanel.isVisible()) {
             this.menuPanel.setVisible(false);
             this.menuIconLabel2.setVisible(true);
-            layout.setConstraints(this.headerPanel, this.hideMenuHeaderPanelConstraint);
-            layout.setConstraints(this.contentPanel, this.hideMenuContentPanelConstraint);
-        }
-        else {
+            layout.setConstraints(this.topHeaderPanel, this.hideMenuHeaderPanelConstraint);
+            layout.setConstraints(this.outerContentPanel, this.hideMenuContentPanelConstraint);
+        } else {
             this.menuPanel.setVisible(true);
             this.menuIconLabel2.setVisible(false);
-            layout.setConstraints(this.contentPanel, this.showMenuContentPanelConstraint);
-            layout.setConstraints(this.headerPanel, this.showMenuHeaderPanelConstraint);
+            layout.setConstraints(this.outerContentPanel, this.showMenuContentPanelConstraint);
+            layout.setConstraints(this.topHeaderPanel, this.showMenuHeaderPanelConstraint);
         }
         this.validate();
         this.repaint();

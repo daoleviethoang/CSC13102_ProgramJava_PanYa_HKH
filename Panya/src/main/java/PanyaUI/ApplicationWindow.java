@@ -41,6 +41,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
     boolean randomColor = false;
 
     private void initComponents() {
+        this.outerContentPanel = new OuterContentPanel();
         this.menuIconLabel2.setVisible(false);
         this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
         this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);

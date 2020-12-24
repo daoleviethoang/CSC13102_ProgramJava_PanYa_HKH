@@ -4,12 +4,68 @@
  * and open the template in the editor.
  */
 package PanyaUI;
-
+import PanyaUI.Theme;
+import java.awt.Color;
 /**
  *
  * @author Dao Le Viet Hoang
  */
-public class OuterContentPanel extends javax.swing.JPanel {
+public class OuterContentPanel extends javax.swing.JPanel implements PanyaContentPanel {
+
+    Color primaryColor;
+    Color darkColor;
+    Color lightColor;
+    Color primaryTextColor;
+    Color lightTextColor;
+    Color darkTextColor;
+
+    /**
+     * Chỉnh màu cho window theo phổ màu đưa vào
+     * 
+     * @param themeName String được lấy từ PanyaUI.Theme.getTheme
+     * @see PanyaUI.Theme#getTheme(String)
+     */
+    public void initTheme(String themeName) {
+        var theme = new Theme().getTheme(themeName);
+        if (theme == null) {
+            return;
+        }
+
+        final var PRIMARY = theme.get(Theme.PRIMARY);
+        final var LIGHT = theme.get(Theme.LIGHT);
+        final var DARK = theme.get(Theme.DARK);
+
+        this.initTheme(PRIMARY, LIGHT, DARK);
+    }
+    
+        /**
+     * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
+     * chính, nhạt, đậm. Tham khảo tại <a href=
+     * "https://material.io/resources/color">https://material.io/resources/color</a>
+     * 
+     * @param primary
+     * @param light
+     * @param dark
+     */
+    public void initTheme(Color primary, Color light, Color dark) {
+        if (primary == null || light == null || dark == null) {
+            return;
+        }
+        this.primaryColor = primary;
+        this.darkColor = dark;
+        this.lightColor = light;
+
+        this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
+        this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
+        this.lightTextColor = Theme.textColorFromBackgroundColor(light);
+
+        this.bottomHeaderPanel.setBackground(lightColor);
+        this.contentHeaderLabel.setForeground(primaryTextColor);
+        this.contentHeaderPanel.setBackground(primaryColor);
+        // this.contentPanel;
+        // this.outerContentPanel;
+
+    }
 
     /**
      * Creates new form OuterContentPanel

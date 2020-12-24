@@ -5,7 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Khung cửa sổ chính của ứng dụng Pan-ya. Kế thừa từ
@@ -29,7 +31,9 @@ public class ApplicationWindow extends ApplicationWindowBase {
     GridBagConstraints showMenuHeaderPanelConstraint;
     GridBagConstraints showMenuContentPanelConstraint;
     GridBagConstraints outerContentPanelConstraint;
-    Chameleon c;
+
+    // Danh sách các panel tương ứng với từng mục trong menu panel
+    Map<String, PanyaContentPanel> panelDicts = new HashMap<>();
 
     final List<JLabel> menuListLabels = new ArrayList<JLabel>() {
         {
@@ -42,18 +46,31 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
     boolean randomColor = false;
 
+    private void initPanelDicts() {
+        this.panelDicts = new HashMap<>() {
+            {
+                put("Home", new OuterContentPanel());
+                put("Menu", new OuterContentPanel());
+                put("Recipe", new OuterContentPanel());
+                put("Storage", new StorageWindow());
+
+            }
+        };
+    }
+
     private void initComponents() {
+        this.initPanelDicts();
         this.initAction();
         this.initGridBagConstraints();
         this.getContentPane().remove(this.outerContentPanel);
-        
-        this.outerContentPanel = new StorageWindow();
+
+        this.outerContentPanel = (JPanel) this.panelDicts.get("Storage");
         this.getContentPane().add(this.outerContentPanel);
 
         var layout = (GridBagLayout) this.getContentPane().getLayout();
         layout.setConstraints(this.outerContentPanel, this.outerContentPanelConstraint);
         this.outerContentPanel.setVisible(true);
-        this.c = (Chameleon) this.outerContentPanel;
+
         this.revalidate();
         this.repaint();
         this.menuIconLabel2.setVisible(false);
@@ -131,7 +148,6 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.darkColor = dark;
         this.lightColor = light;
 
-
         this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
         this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
         this.lightTextColor = Theme.textColorFromBackgroundColor(light);
@@ -139,8 +155,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
+
         this.homeLabel.setBackground(primaryTextColor);
         this.imageLabel.setBackground(primaryTextColor);
         this.imagePanel.setBackground(primaryColor);
@@ -160,7 +175,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
-        c.initTheme(primary, light, dark);
+        this.panelDicts.forEach((k, v)-> v.initTheme(primary, light, dark));
     }
 
     private void initAction() {

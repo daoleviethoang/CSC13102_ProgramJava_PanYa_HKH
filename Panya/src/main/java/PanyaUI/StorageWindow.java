@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Dao Le Viet Hoang
+ * @author Hoang Xuan Kiet
  */
-public class StorageWindow extends javax.swing.JPanel implements Chameleon {
+public class StorageWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
     Color primaryColor;
     Color darkColor;
@@ -314,13 +314,13 @@ public class StorageWindow extends javax.swing.JPanel implements Chameleon {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         }
         //</editor-fold>
 

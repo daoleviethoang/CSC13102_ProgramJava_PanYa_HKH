@@ -1,5 +1,8 @@
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import mdlaf.MaterialLookAndFeel;
+
 /**
  *
  * @author dqh
@@ -13,6 +16,10 @@ public class Main {
         // } catch (Exception ignored) {
 
         // }
+        try {
+            UIManager.setLookAndFeel(new MaterialLookAndFeel());
+        } catch (Exception ignored) {
+        }
 
         SwingUtilities.invokeLater(() -> new PanyaUI.ApplicationWindow(true).setVisible(true));
     }

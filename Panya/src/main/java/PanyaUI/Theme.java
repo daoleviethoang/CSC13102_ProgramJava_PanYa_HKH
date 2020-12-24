@@ -11,11 +11,11 @@ import org.json.JSONObject;
 
 public class Theme {
 
-    static final String COLOR_PALETTE_FILE = "theme/material-colors.json";
-    static final String LIGHT = "300";
-    static final String PRIMARY = "500";
-    static final String DARK = "800";
-    static final String[] THEME_NAMES;
+    public static final String COLOR_PALETTE_FILE = "theme/material-colors.json";
+    public static final String LIGHT = "300";
+    public static final String PRIMARY = "500";
+    public static final String DARK = "800";
+    public static final String[] THEME_NAMES;
     JSONObject colorPalette = null;
 
     static {

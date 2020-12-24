@@ -49,10 +49,10 @@ public class ApplicationWindow extends ApplicationWindowBase {
     private void initPanelDicts() {
         this.panelDicts = new HashMap<>() {
             {
-                put("Home", new OuterContentPanel());
-                put("Menu", new OuterContentPanel());
-                put("Recipe", new OuterContentPanel());
-                put("Storage", new StorageWindow());
+                put("HOME", new OuterContentPanel());
+                put("MENU", new OuterContentPanel());
+                put("RECIPE", new OuterContentPanel());
+                put("STORAGE", new StorageWindow());
 
             }
         };
@@ -62,17 +62,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.initPanelDicts();
         this.initAction();
         this.initGridBagConstraints();
-        this.getContentPane().remove(this.outerContentPanel);
-
-        this.outerContentPanel = (JPanel) this.panelDicts.get("Storage");
-        this.getContentPane().add(this.outerContentPanel);
-
-        var layout = (GridBagLayout) this.getContentPane().getLayout();
-        layout.setConstraints(this.outerContentPanel, this.outerContentPanelConstraint);
-        this.outerContentPanel.setVisible(true);
-
-        this.revalidate();
-        this.repaint();
+        this.replaceOuterPanel("HOME");
         this.menuIconLabel2.setVisible(false);
         this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
         this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);
@@ -163,6 +153,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         if (darkTextColor.equals(Color.BLACK)) {
             this.menuIconLabel.setIcon(new ImageIcon(getClass().getResource("/images/baseline_menu_black_18dp.png")));
         }
+        this.menuIconLabel.setBackground(darkColor);
         this.menuLabel.setForeground(lightTextColor);
         this.menuListPanel.setBackground(lightColor);
         this.menuPanel.setBackground(lightColor);
@@ -178,13 +169,28 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.panelDicts.forEach((k, v)-> v.initTheme(primary, light, dark));
     }
 
+    private void replaceOuterPanel(String labelName) {
+        this.getContentPane().remove(this.outerContentPanel);
+
+        this.outerContentPanel = (JPanel) this.panelDicts.get(labelName);
+        this.getContentPane().add(this.outerContentPanel);
+
+        var layout = (GridBagLayout) this.getContentPane().getLayout();
+        layout.setConstraints(this.outerContentPanel, this.outerContentPanelConstraint);
+        this.outerContentPanel.setVisible(true);
+
+        this.revalidate();
+        this.repaint();
+    }
     private void initAction() {
         menuListLabels.forEach(lbl -> lbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 highlightLabel(lbl);
+                replaceOuterPanel(lbl.getText());
             }
         }));
+
         this.menuIconLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

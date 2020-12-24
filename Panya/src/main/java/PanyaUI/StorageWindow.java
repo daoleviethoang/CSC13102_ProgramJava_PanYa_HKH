@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Hoang Xuan Kiet
+ * @author Dao Le Viet Hoang
  */
-public class StorageWindow extends javax.swing.JPanel implements PanyaContentPanel {
+public class StorageWindow extends javax.swing.JPanel implements Chameleon {
 
     Color primaryColor;
     Color darkColor;
@@ -94,6 +94,16 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        importDialog = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        headerDialogLabel = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        nameDialogTextF = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        quantityDialogTextF = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
@@ -108,6 +118,108 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+
+        importDialog.setPreferredSize(new java.awt.Dimension(410, 300));
+        importDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(410, 50));
+
+        headerDialogLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        headerDialogLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerDialogLabel.setText("Import form");
+        headerDialogLabel.setAlignmentY(0.0F);
+        headerDialogLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addComponent(headerDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerDialogLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        importDialog.getContentPane().add(jPanel4, gridBagConstraints);
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(410, 250));
+
+        jLabel2.setText("Name:");
+        jLabel2.setPreferredSize(new java.awt.Dimension(50, 20));
+
+        jLabel3.setText("Quantiy: ");
+        jLabel3.setPreferredSize(new java.awt.Dimension(50, 20));
+
+        jButton6.setText("Submit");
+
+        jButton7.setText("Clear");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameDialogTextF, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(quantityDialogTextF, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton7)
+                        .addGap(24, 24, 24)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameDialogTextF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantityDialogTextF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton7))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.2;
+        importDialog.getContentPane().add(jPanel5, gridBagConstraints);
 
         setMinimumSize(new java.awt.Dimension(600, 600));
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -175,19 +287,19 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Quantity", "Unit", "Price", "Note"
+                "ID", "Name", "Quantity", "Unit", "Price", "Note", "Statistics (per week)"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -196,17 +308,8 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 600));
-        jTable1.setMinimumSize(null);
         jTable1.setPreferredSize(new java.awt.Dimension(600, 100));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("ID");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Name");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Quantity");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Unit");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Price");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Note");
-        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -230,7 +333,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setText("sdf");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -263,7 +365,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 150);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
         jPanel3.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Delete");
@@ -271,16 +373,25 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
         jPanel3.add(jButton2, gridBagConstraints);
 
         jButton3.setText("Update");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+        jPanel3.add(jButton3, gridBagConstraints);
+
+        jButton5.setText("Import");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 141, 0, 0);
-        jPanel3.add(jButton3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 100, 0, 0);
+        jPanel3.add(jButton5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -314,13 +425,13 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 }
             }
         } catch (ClassNotFoundException ex) {
-
+            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-
+            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-
+            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-
+            java.util.logging.Logger.getLogger(DemoHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -337,15 +448,26 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private javax.swing.JLabel contentHeaderLabel;
     private javax.swing.JPanel contentHeaderPanel;
     private javax.swing.JPanel contentPanel;
+    private javax.swing.JLabel headerDialogLabel;
+    private javax.swing.JDialog importDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nameDialogTextF;
+    private javax.swing.JTextField quantityDialogTextF;
     // End of variables declaration//GEN-END:variables
 }

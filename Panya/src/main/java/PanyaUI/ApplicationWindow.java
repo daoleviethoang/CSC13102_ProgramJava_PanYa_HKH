@@ -28,6 +28,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
     GridBagConstraints hideMenuContentPanelConstraint;
     GridBagConstraints showMenuHeaderPanelConstraint;
     GridBagConstraints showMenuContentPanelConstraint;
+    GridBagConstraints outerContentPanelConstraint;
+    Chameleon c;
 
     final List<JLabel> menuListLabels = new ArrayList<JLabel>() {
         {
@@ -41,12 +43,22 @@ public class ApplicationWindow extends ApplicationWindowBase {
     boolean randomColor = false;
 
     private void initComponents() {
-        this.outerContentPanel = new OuterContentPanel();
+        this.initAction();
+        this.initGridBagConstraints();
+        this.getContentPane().remove(this.outerContentPanel);
+        
+        this.outerContentPanel = new StorageWindow();
+        this.getContentPane().add(this.outerContentPanel);
+
+        var layout = (GridBagLayout) this.getContentPane().getLayout();
+        layout.setConstraints(this.outerContentPanel, this.outerContentPanelConstraint);
+        this.outerContentPanel.setVisible(true);
+        this.c = (Chameleon) this.outerContentPanel;
+        this.revalidate();
+        this.repaint();
         this.menuIconLabel2.setVisible(false);
         this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
         this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);
-        this.initAction();
-        this.initGridBagConstraints();
     }
 
     public ApplicationWindow(String themeName) {
@@ -119,6 +131,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.darkColor = dark;
         this.lightColor = light;
 
+
         this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
         this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
         this.lightTextColor = Theme.textColorFromBackgroundColor(light);
@@ -147,6 +160,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
+        c.initTheme(primary, light, dark);
     }
 
     private void initAction() {
@@ -172,6 +186,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
 
     private void initGridBagConstraints() {
         var layout = (GridBagLayout) this.getContentPane().getLayout();
+        this.outerContentPanelConstraint = layout.getConstraints(this.outerContentPanel);
         showMenuHeaderPanelConstraint = layout.getConstraints(this.topHeaderPanel);
         showMenuContentPanelConstraint = layout.getConstraints(this.outerContentPanel);
 

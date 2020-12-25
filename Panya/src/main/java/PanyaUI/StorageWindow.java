@@ -36,7 +36,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         this.randomColor = randomColor;
     }
     
-       /**
+    /**
      * Chỉnh màu cho window theo phổ màu đưa vào
      * 
      * @param themeName String được lấy từ PanyaUI.Theme.getTheme
@@ -164,7 +164,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        importDialog.setPreferredSize(new java.awt.Dimension(410, 200));
         importDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setPreferredSize(new java.awt.Dimension(410, 50));
@@ -221,7 +220,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 .addGap(32, 32, 32)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameDialogTextF, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -262,7 +261,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.weighty = 0.2;
         importDialog.getContentPane().add(jPanel5, gridBagConstraints);
 
-        deleteDialog.setPreferredSize(new java.awt.Dimension(410, 200));
         deleteDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel6.setPreferredSize(new java.awt.Dimension(410, 50));
@@ -412,7 +410,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 .addGap(32, 32, 32)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameDialogTextF2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -473,7 +471,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
                     .addComponent(jButton10))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -551,7 +549,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 .addGap(32, 32, 32)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameDialogTextF4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -612,7 +610,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton13)
                     .addComponent(jButton12))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -736,12 +734,14 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField1.setMinimumSize(new java.awt.Dimension(450, 39));
+        jTextField1.setPreferredSize(new java.awt.Dimension(450, 39));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 370;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 16);
         jPanel2.add(jTextField1, gridBagConstraints);
 
         jButton4.setText("Search");
@@ -840,74 +840,74 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog addDialog;
-    private javax.swing.JPanel bottomHeaderPanel;
-    private javax.swing.JLabel contentHeaderLabel;
-    private javax.swing.JPanel contentHeaderPanel;
-    private javax.swing.JPanel contentPanel;
-    private javax.swing.JDialog deleteDialog;
-    private javax.swing.JLabel headerDialogLabel;
-    private javax.swing.JLabel headerDialogLabel1;
-    private javax.swing.JLabel headerDialogLabel2;
-    private javax.swing.JLabel headerDialogLabel3;
-    private javax.swing.JDialog importDialog;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField nameDialogTextF;
-    private javax.swing.JTextField nameDialogTextF1;
-    private javax.swing.JTextField nameDialogTextF2;
-    private javax.swing.JTextField nameDialogTextF3;
-    private javax.swing.JTextField nameDialogTextF4;
-    private javax.swing.JTextField nameDialogTextF5;
-    private javax.swing.JTextField quantityDialogTextF;
-    private javax.swing.JTextField quantityDialogTextF1;
-    private javax.swing.JTextField quantityDialogTextF2;
-    private javax.swing.JTextField quantityDialogTextF3;
-    private javax.swing.JTextField quantityDialogTextF4;
-    private javax.swing.JTextField quantityDialogTextF5;
-    private javax.swing.JTextField quantityDialogTextF6;
-    private javax.swing.JTextField quantityDialogTextF7;
-    private javax.swing.JTextField quantityDialogTextF8;
-    private javax.swing.JDialog updateDialog;
+    javax.swing.JDialog addDialog;
+    javax.swing.JPanel bottomHeaderPanel;
+    javax.swing.JLabel contentHeaderLabel;
+    javax.swing.JPanel contentHeaderPanel;
+    javax.swing.JPanel contentPanel;
+    javax.swing.JDialog deleteDialog;
+    javax.swing.JLabel headerDialogLabel;
+    javax.swing.JLabel headerDialogLabel1;
+    javax.swing.JLabel headerDialogLabel2;
+    javax.swing.JLabel headerDialogLabel3;
+    javax.swing.JDialog importDialog;
+    javax.swing.JButton jButton1;
+    javax.swing.JButton jButton10;
+    javax.swing.JButton jButton11;
+    javax.swing.JButton jButton12;
+    javax.swing.JButton jButton13;
+    javax.swing.JButton jButton2;
+    javax.swing.JButton jButton3;
+    javax.swing.JButton jButton4;
+    javax.swing.JButton jButton5;
+    javax.swing.JButton jButton6;
+    javax.swing.JButton jButton7;
+    javax.swing.JButton jButton8;
+    javax.swing.JButton jButton9;
+    javax.swing.JLabel jLabel10;
+    javax.swing.JLabel jLabel11;
+    javax.swing.JLabel jLabel12;
+    javax.swing.JLabel jLabel13;
+    javax.swing.JLabel jLabel14;
+    javax.swing.JLabel jLabel15;
+    javax.swing.JLabel jLabel16;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
+    javax.swing.JLabel jLabel4;
+    javax.swing.JLabel jLabel5;
+    javax.swing.JLabel jLabel6;
+    javax.swing.JLabel jLabel7;
+    javax.swing.JLabel jLabel8;
+    javax.swing.JLabel jLabel9;
+    javax.swing.JPanel jPanel1;
+    javax.swing.JPanel jPanel10;
+    javax.swing.JPanel jPanel11;
+    javax.swing.JPanel jPanel2;
+    javax.swing.JPanel jPanel3;
+    javax.swing.JPanel jPanel4;
+    javax.swing.JPanel jPanel5;
+    javax.swing.JPanel jPanel6;
+    javax.swing.JPanel jPanel7;
+    javax.swing.JPanel jPanel8;
+    javax.swing.JPanel jPanel9;
+    javax.swing.JScrollPane jScrollPane1;
+    javax.swing.JTable jTable1;
+    javax.swing.JTextField jTextField1;
+    javax.swing.JTextField nameDialogTextF;
+    javax.swing.JTextField nameDialogTextF1;
+    javax.swing.JTextField nameDialogTextF2;
+    javax.swing.JTextField nameDialogTextF3;
+    javax.swing.JTextField nameDialogTextF4;
+    javax.swing.JTextField nameDialogTextF5;
+    javax.swing.JTextField quantityDialogTextF;
+    javax.swing.JTextField quantityDialogTextF1;
+    javax.swing.JTextField quantityDialogTextF2;
+    javax.swing.JTextField quantityDialogTextF3;
+    javax.swing.JTextField quantityDialogTextF4;
+    javax.swing.JTextField quantityDialogTextF5;
+    javax.swing.JTextField quantityDialogTextF6;
+    javax.swing.JTextField quantityDialogTextF7;
+    javax.swing.JTextField quantityDialogTextF8;
+    javax.swing.JDialog updateDialog;
     // End of variables declaration//GEN-END:variables
 }

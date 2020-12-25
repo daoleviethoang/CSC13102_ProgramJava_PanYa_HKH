@@ -9,16 +9,80 @@ package PanyaUI;
 import javax.swing.UIManager;
 
 import mdlaf.MaterialLookAndFeel;
+import java.awt.Color;
 
 /**
  *
  * @author dqh
  */
-public class RecipeWindow extends javax.swing.JFrame {
+public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPanel {
+
+    Color primaryColor;
+    Color darkColor;
+    Color lightColor;
+    Color primaryTextColor;
+    Color lightTextColor;
+    Color darkTextColor;
+    boolean randomColor = false;
 
     /** Creates new form RecipeWindow */
     public RecipeWindow() {
         initComponents();
+    }
+
+    public RecipeWindow(Color primary, Color light, Color dark, boolean randomColor) {
+        super();
+        initComponents();
+        this.initTheme(primary, light, dark);
+        this.randomColor = randomColor;
+    }
+
+    /**
+     * Chỉnh màu cho window theo phổ màu đưa vào
+     * 
+     * @param themeName String được lấy từ PanyaUI.Theme.getTheme
+     * @see PanyaUI.Theme#getTheme(String)
+     */
+    public void initTheme(String themeName) {
+        var theme = new Theme().getTheme(themeName);
+        if (theme == null) {
+            return;
+        }
+
+        final var PRIMARY = theme.get(Theme.PRIMARY);
+        final var LIGHT = theme.get(Theme.LIGHT);
+        final var DARK = theme.get(Theme.DARK);
+
+        this.initTheme(PRIMARY, LIGHT, DARK);
+    }
+    
+    /**
+     * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
+     * chính, nhạt, đậm. Tham khảo tại <a href=
+     * "https://material.io/resources/color">https://material.io/resources/color</a>
+     * 
+     * @param primary
+     * @param light
+     * @param dark
+     */
+    public void initTheme(Color primary, Color light, Color dark) {
+        if (primary == null || light == null || dark == null) {
+            return;
+        }
+        this.primaryColor = primary;
+        this.darkColor = dark;
+        this.lightColor = light;
+
+        this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
+        this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
+        this.lightTextColor = Theme.textColorFromBackgroundColor(light);
+
+        // this.bottomHeaderPanel.setBackground(lightColor);
+        this.contentHeaderLabel.setForeground(primaryTextColor);
+        this.contentHeaderPanel.setBackground(primaryColor);
+        // this.contentPanel;
+        // this.outerContentPanel;
+
     }
 
     /** This method is called from within the constructor to
@@ -35,11 +99,16 @@ public class RecipeWindow extends javax.swing.JFrame {
         imageLabel = new javax.swing.JLabel();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        basicInfoPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        basicInfoPanel = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         ingredientsPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
@@ -47,7 +116,6 @@ public class RecipeWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 800));
-        setPreferredSize(new java.awt.Dimension(600, 800));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setBackground(new java.awt.Color(110, 198, 255));
@@ -102,45 +170,93 @@ public class RecipeWindow extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         getContentPane().add(contentHeaderPanel, gridBagConstraints);
 
-        jTabbedPane1.setBackground(new java.awt.Color(33, 150, 243));
-        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(600, 500));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        basicInfoPanel.setLayout(new java.awt.GridBagLayout());
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        basicInfoPanel.setBackground(new java.awt.Color(33, 150, 243));
+        basicInfoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        basicInfoPanel.setMinimumSize(new java.awt.Dimension(600, 500));
+        basicInfoPanel.setPreferredSize(new java.awt.Dimension(600, 500));
 
         jPanel3.setMinimumSize(new java.awt.Dimension(600, 500));
         jPanel3.setPreferredSize(new java.awt.Dimension(600, 500));
         jPanel3.setLayout(new java.awt.GridBagLayout());
-        jScrollPane1.setViewportView(jPanel3);
 
+        jLabel1.setText("Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        jPanel3.add(jLabel1, gridBagConstraints);
+
+        jTextField1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        jTextField1.setToolTipText("");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 10);
+        jPanel3.add(jTextField1, gridBagConstraints);
+
+        jLabel2.setText("Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        jPanel3.add(jLabel2, gridBagConstraints);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        basicInfoPanel.add(jScrollPane1, gridBagConstraints);
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 20, 10);
+        jPanel3.add(jScrollPane2, gridBagConstraints);
 
-        jTabbedPane1.addTab("Basic information", basicInfoPanel);
+        basicInfoPanel.addTab("Basic information", jPanel3);
 
-        javax.swing.GroupLayout ingredientsPanelLayout = new javax.swing.GroupLayout(ingredientsPanel);
-        ingredientsPanel.setLayout(ingredientsPanelLayout);
-        ingredientsPanelLayout.setHorizontalGroup(
-            ingredientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 761, Short.MAX_VALUE)
-        );
-        ingredientsPanelLayout.setVerticalGroup(
-            ingredientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
-        );
+        ingredientsPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTabbedPane1.addTab("Ingredients", ingredientsPanel);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Name", "Quantiity", "Unit", "Note"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane1.setViewportView(jTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        ingredientsPanel.add(jScrollPane1, gridBagConstraints);
+
+        basicInfoPanel.addTab("Ingredients", ingredientsPanel);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,7 +269,7 @@ public class RecipeWindow extends javax.swing.JFrame {
             .addGap(0, 459, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Advance", jPanel2);
+        basicInfoPanel.addTab("Advance", jPanel2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -163,7 +279,7 @@ public class RecipeWindow extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        getContentPane().add(basicInfoPanel, gridBagConstraints);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(600, 50));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 50));
@@ -197,6 +313,10 @@ public class RecipeWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -214,18 +334,23 @@ public class RecipeWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JPanel basicInfoPanel;
+    javax.swing.JTabbedPane basicInfoPanel;
     javax.swing.JLabel contentHeaderLabel;
     javax.swing.JPanel contentHeaderPanel;
     javax.swing.JButton editButton;
     javax.swing.JLabel imageLabel;
     javax.swing.JPanel ingredientsPanel;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
     javax.swing.JPanel jPanel4;
     javax.swing.JScrollPane jScrollPane1;
-    javax.swing.JTabbedPane jTabbedPane1;
+    javax.swing.JScrollPane jScrollPane2;
+    javax.swing.JTable jTable1;
+    javax.swing.JTextArea jTextArea1;
+    javax.swing.JTextField jTextField1;
     javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
 

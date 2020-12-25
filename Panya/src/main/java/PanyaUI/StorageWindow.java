@@ -104,6 +104,14 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         quantityDialogTextF = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        deleteDialog = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        headerDialogLabel1 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        nameDialogTextF1 = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
@@ -120,7 +128,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        importDialog.setPreferredSize(new java.awt.Dimension(410, 300));
         importDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setPreferredSize(new java.awt.Dimension(410, 50));
@@ -220,6 +227,92 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.2;
         importDialog.getContentPane().add(jPanel5, gridBagConstraints);
+
+        deleteDialog.setPreferredSize(new java.awt.Dimension(410, 200));
+        deleteDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(410, 50));
+
+        headerDialogLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        headerDialogLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerDialogLabel1.setText("Delete form");
+        headerDialogLabel1.setAlignmentY(0.0F);
+        headerDialogLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addComponent(headerDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerDialogLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        deleteDialog.getContentPane().add(jPanel6, gridBagConstraints);
+
+        jPanel7.setPreferredSize(new java.awt.Dimension(410, 250));
+
+        jLabel4.setText("ID:");
+        jLabel4.setPreferredSize(new java.awt.Dimension(50, 20));
+
+        jButton8.setText("Delete");
+
+        jButton9.setText("Clear");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameDialogTextF1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addGap(54, 54, 54))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameDialogTextF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.2;
+        deleteDialog.getContentPane().add(jPanel7, gridBagConstraints);
 
         setMinimumSize(new java.awt.Dimension(600, 600));
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -441,7 +534,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private javax.swing.JLabel contentHeaderLabel;
     private javax.swing.JPanel contentHeaderPanel;
     private javax.swing.JPanel contentPanel;
+    private javax.swing.JDialog deleteDialog;
     private javax.swing.JLabel headerDialogLabel;
+    private javax.swing.JLabel headerDialogLabel1;
     private javax.swing.JDialog importDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -450,17 +545,23 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameDialogTextF;
+    private javax.swing.JTextField nameDialogTextF1;
     private javax.swing.JTextField quantityDialogTextF;
     // End of variables declaration//GEN-END:variables
 }

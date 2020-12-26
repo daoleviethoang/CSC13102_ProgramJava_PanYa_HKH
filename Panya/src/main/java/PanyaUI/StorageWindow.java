@@ -161,6 +161,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        importDialog.setLocationByPlatform(true);
+        importDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        importDialog.setPreferredSize(new java.awt.Dimension(300, 200));
         importDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -168,6 +171,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         headerDialogLabel.setText("Import form");
         headerDialogLabel.setAlignmentY(0.0F);
         headerDialogLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        headerDialogLabel.setMaximumSize(new java.awt.Dimension(85, 30));
+        headerDialogLabel.setMinimumSize(new java.awt.Dimension(85, 30));
+        headerDialogLabel.setPreferredSize(new java.awt.Dimension(85, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.weightx = 0.1;
@@ -226,6 +232,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         importDialog.getContentPane().add(jPanel5, gridBagConstraints);
 
+        deleteDialog.setLocationByPlatform(true);
+        deleteDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        deleteDialog.setPreferredSize(new java.awt.Dimension(300, 200));
         deleteDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -233,6 +242,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         headerDialogLabel1.setText("Delete form");
         headerDialogLabel1.setAlignmentY(0.0F);
         headerDialogLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        headerDialogLabel1.setMaximumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel1.setMinimumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel1.setPreferredSize(new java.awt.Dimension(76, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         deleteDialog.getContentPane().add(headerDialogLabel1, gridBagConstraints);
@@ -280,6 +292,10 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         deleteDialog.getContentPane().add(jPanel7, gridBagConstraints);
 
+        addDialog.setLocationByPlatform(true);
+        addDialog.setMinimumSize(new java.awt.Dimension(300, 450));
+        addDialog.setModal(true);
+        addDialog.setPreferredSize(new java.awt.Dimension(300, 450));
         addDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -287,6 +303,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         headerDialogLabel2.setText("Add form");
         headerDialogLabel2.setAlignmentY(0.0F);
         headerDialogLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        headerDialogLabel2.setMaximumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel2.setMinimumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel2.setPreferredSize(new java.awt.Dimension(76, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         addDialog.getContentPane().add(headerDialogLabel2, gridBagConstraints);
@@ -444,6 +463,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.weighty = 0.1;
         addDialog.getContentPane().add(jPanel9, gridBagConstraints);
 
+        updateDialog.setLocationByPlatform(true);
+        updateDialog.setMinimumSize(new java.awt.Dimension(300, 450));
+        updateDialog.setPreferredSize(new java.awt.Dimension(300, 450));
         updateDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -451,6 +473,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         headerDialogLabel3.setText("Update form");
         headerDialogLabel3.setAlignmentY(0.0F);
         headerDialogLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        headerDialogLabel3.setMaximumSize(new java.awt.Dimension(85, 30));
+        headerDialogLabel3.setMinimumSize(new java.awt.Dimension(85, 30));
+        headerDialogLabel3.setPreferredSize(new java.awt.Dimension(85, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -727,6 +752,11 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -735,6 +765,11 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -743,6 +778,11 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.add(jButton2, gridBagConstraints);
 
         jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -751,6 +791,11 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.add(jButton3, gridBagConstraints);
 
         jButton5.setText("Import");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -777,6 +822,39 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.weighty = 0.1;
         add(contentPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        addDialog.setVisible(true);
+        deleteDialog.setVisible(false);
+        updateDialog.setVisible(false);
+        importDialog.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        addDialog.setVisible(false);
+        deleteDialog.setVisible(true);
+        updateDialog.setVisible(false);
+        importDialog.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        addDialog.setVisible(false);
+        deleteDialog.setVisible(false);
+        updateDialog.setVisible(true);
+        importDialog.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        addDialog.setVisible(false);
+        deleteDialog.setVisible(false);
+        updateDialog.setVisible(false);
+        importDialog.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

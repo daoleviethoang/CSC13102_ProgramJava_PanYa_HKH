@@ -50,8 +50,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.panelDicts = new HashMap<>() {
             {
                 put("HOME", new OuterContentPanel());
-                put("MENU", new OuterContentPanel());
-                put("RECIPE", new OuterContentPanel());
+                put("MENU", new MenuWindow());
+                put("RECIPE", new RecipeMainPanel());
                 put("STORAGE", new StorageWindow());
 
             }

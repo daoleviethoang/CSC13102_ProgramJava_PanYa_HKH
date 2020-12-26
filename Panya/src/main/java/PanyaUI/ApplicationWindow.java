@@ -40,7 +40,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
             add(homeLabel);
             add(storageLabel);
             add(recipeLabel);
-            add(menuLabel);
+            add(manageLabel);
         }
     };
 
@@ -50,10 +50,10 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.panelDicts = new HashMap<>() {
             {
                 put("HOME", new OuterContentPanel());
-                put("MENU", new MenuWindow());
-                put("RECIPE", new RecipeMainPanel());
+                put("MANAGE", new ManageWindow());
+                put("RECIPE", new OuterContentPanel());
                 put("STORAGE", new StorageWindow());
-
+                
             }
         };
     }
@@ -154,7 +154,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
             this.menuIconLabel.setIcon(new ImageIcon(getClass().getResource("/images/baseline_menu_black_18dp.png")));
         }
         this.menuIconLabel.setBackground(darkColor);
-        this.menuLabel.setForeground(lightTextColor);
+        this.manageLabel.setForeground(lightTextColor);
         this.menuListPanel.setBackground(lightColor);
         this.menuPanel.setBackground(lightColor);
         this.recipeLabel.setForeground(lightTextColor);
@@ -163,7 +163,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.titlePanel.setBackground(darkColor);
         this.topHeaderLabel.setForeground(darkTextColor);
         this.topHeaderPanel.setBackground(darkColor);
-        this.menuListPanel.setBackground(lightColor);
+        this.manageLabel.setBackground(lightColor);
+        this.manageLabel.setForeground(lightTextColor);
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
         this.panelDicts.forEach((k, v)-> v.initTheme(primary, light, dark));
@@ -186,11 +187,6 @@ public class ApplicationWindow extends ApplicationWindowBase {
         menuListLabels.forEach(lbl -> lbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                // var theme = Theme.getRandomThemeName();
-                // System.out.println(theme);
-                // initTheme(theme);
-
                 highlightLabel(lbl);
                 replaceOuterPanel(lbl.getText());
             }

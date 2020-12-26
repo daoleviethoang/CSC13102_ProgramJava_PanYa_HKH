@@ -35,7 +35,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         menuListPanel = new javax.swing.JPanel();
         recipeLabel = new javax.swing.JLabel();
         storageLabel = new javax.swing.JLabel();
-        menuLabel = new javax.swing.JLabel();
+        manageLabel = new javax.swing.JLabel();
         homeLabel = new javax.swing.JLabel();
         topHeaderPanel = new javax.swing.JPanel();
         topHeaderLabel = new javax.swing.JLabel();
@@ -114,11 +114,13 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         storageLabel.setOpaque(true);
         menuListPanel.add(storageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 300, 70));
 
-        menuLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
-        menuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuLabel.setText("MENU");
-        menuLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        menuListPanel.add(menuLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 300, 70));
+        manageLabel.setBackground(new java.awt.Color(33, 150, 243));
+        manageLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        manageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manageLabel.setText("MANAGE");
+        manageLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        manageLabel.setOpaque(true);
+        menuListPanel.add(manageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 300, 70));
 
         homeLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         homeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -217,11 +219,11 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
         bottomHeaderPanelLayout.setHorizontalGroup(
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         bottomHeaderPanelLayout.setVerticalGroup(
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -314,9 +316,9 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
     javax.swing.JLabel homeLabel;
     javax.swing.JLabel imageLabel;
     javax.swing.JPanel imagePanel;
+    javax.swing.JLabel manageLabel;
     javax.swing.JLabel menuIconLabel;
     javax.swing.JLabel menuIconLabel2;
-    javax.swing.JLabel menuLabel;
     javax.swing.JPanel menuListPanel;
     javax.swing.JPanel menuPanel;
     javax.swing.JPanel outerContentPanel;

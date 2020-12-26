@@ -102,7 +102,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         contentHeaderLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         contentHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
         contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("HISTORY");
+        contentHeaderLabel.setText("MANAGE");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);

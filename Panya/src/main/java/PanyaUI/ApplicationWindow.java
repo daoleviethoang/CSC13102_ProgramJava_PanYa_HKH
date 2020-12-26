@@ -51,7 +51,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
             {
                 put("HOME", new OuterContentPanel());
                 put("MANAGE", new ManageWindow());
-                put("RECIPE", new OuterContentPanel());
+                put("RECIPE", new RecipeMainPanel());
                 put("STORAGE", new StorageWindow());
                 
             }

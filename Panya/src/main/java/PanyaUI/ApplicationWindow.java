@@ -163,7 +163,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.titlePanel.setBackground(darkColor);
         this.topHeaderLabel.setForeground(darkTextColor);
         this.topHeaderPanel.setBackground(darkColor);
-
+        this.menuListPanel.setBackground(lightColor);
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
         this.panelDicts.forEach((k, v)-> v.initTheme(primary, light, dark));
@@ -186,6 +186,11 @@ public class ApplicationWindow extends ApplicationWindowBase {
         menuListLabels.forEach(lbl -> lbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+                // var theme = Theme.getRandomThemeName();
+                // System.out.println(theme);
+                // initTheme(theme);
+
                 highlightLabel(lbl);
                 replaceOuterPanel(lbl.getText());
             }

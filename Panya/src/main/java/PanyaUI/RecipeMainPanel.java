@@ -6,6 +6,11 @@
 package PanyaUI;
 import PanyaUI.Theme;
 import java.awt.Color;
+import java.awt.event.*;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dqh
@@ -71,12 +76,42 @@ public class RecipeMainPanel extends javax.swing.JPanel implements PanyaContentP
         this.privateLabel.setBackground(lightColor);
 
     }
+    void initAction() {
+        this.publicLabel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                publicLabel.setForeground(primaryTextColor);
+                publicLabel.setBackground(primaryColor);
+                privateLabel.setForeground(lightTextColor);
+                privateLabel.setBackground(lightColor);
+                publicLabel.setVisible(true);
+                privatePanel.setVisible(false);
+            }
+        }); 
+        var frame = this;
 
+        this.privateLabel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                var pass = JOptionPane.showInputDialog(frame, "Input your password");
+                if (true){
+                    // TODO: password validation
+                    publicLabel.setForeground(lightTextColor);
+                    publicLabel.setBackground(lightColor);
+                    privateLabel.setForeground(primaryTextColor);
+                    privateLabel.setBackground(primaryColor);
+                    privatePanel.setVisible(true);
+                    publicPanel.setVisible(false);
+                }
+            }
+        });
+    }
     /**
      * Creates new form OuterContentPanel
      */
     public RecipeMainPanel() {
         initComponents();
+        initAction();
     }
 
     /**

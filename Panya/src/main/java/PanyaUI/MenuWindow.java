@@ -6,6 +6,7 @@
 package PanyaUI;
 import PanyaUI.Theme;
 import java.awt.Color;
+import java.awt.Graphics;
 /**
  *
  * @author Dao Le Viet Hoang
@@ -38,7 +39,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         this.initTheme(PRIMARY, LIGHT, DARK);
     }
     
-        /**
+    /**
      * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
      * chính, nhạt, đậm. Tham khảo tại <a href=
      * "https://material.io/resources/color">https://material.io/resources/color</a>
@@ -64,6 +65,11 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         this.contentHeaderPanel.setBackground(primaryColor);
         // this.contentPanel;
         // this.outerContentPanel;
+        // var g = jButton10.getGraphics();
+        // g.setColor(primaryColor);
+        this.addButon.setBorderPainted(false);
+        //this.addButon.mouseho;
+        //this.addButon.addMouseListener(l);
 
     }
 
@@ -165,35 +171,25 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
         bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
 
-        addButon.setBackground(new java.awt.Color(0, 153, 102));
         addButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        addButon.setForeground(new java.awt.Color(255, 255, 255));
         addButon.setText("Add");
         addButon.setBorder(null);
 
-        deleteButon.setBackground(new java.awt.Color(0, 153, 102));
         deleteButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        deleteButon.setForeground(new java.awt.Color(255, 255, 255));
         deleteButon.setText("Delete");
         deleteButon.setBorder(null);
 
-        updataButon.setBackground(new java.awt.Color(0, 153, 102));
         updataButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        updataButon.setForeground(new java.awt.Color(255, 255, 255));
         updataButon.setText("Update");
         updataButon.setBorder(null);
 
-        saleOffButon.setBackground(new java.awt.Color(255, 153, 0));
         saleOffButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        saleOffButon.setForeground(new java.awt.Color(255, 255, 255));
         saleOffButon.setText("Sale Off");
         saleOffButon.setBorder(null);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(160, 40));
 
-        searchButon.setBackground(new java.awt.Color(0, 153, 102));
         searchButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        searchButon.setForeground(new java.awt.Color(255, 255, 255));
         searchButon.setText("Search");
         searchButon.setBorder(null);
         searchButon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -322,7 +318,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +374,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,7 +430,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,7 +486,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -728,9 +724,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -740,9 +733,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JButton saleOffButon;

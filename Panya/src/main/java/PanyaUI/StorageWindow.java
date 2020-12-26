@@ -163,7 +163,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
 
         importDialog.setLocationByPlatform(true);
         importDialog.setMinimumSize(new java.awt.Dimension(300, 200));
-        importDialog.setPreferredSize(new java.awt.Dimension(300, 200));
         importDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -234,7 +233,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
 
         deleteDialog.setLocationByPlatform(true);
         deleteDialog.setMinimumSize(new java.awt.Dimension(300, 200));
-        deleteDialog.setPreferredSize(new java.awt.Dimension(300, 200));
         deleteDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -295,7 +293,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         addDialog.setLocationByPlatform(true);
         addDialog.setMinimumSize(new java.awt.Dimension(300, 450));
         addDialog.setModal(true);
-        addDialog.setPreferredSize(new java.awt.Dimension(300, 450));
         addDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -465,7 +462,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
 
         updateDialog.setLocationByPlatform(true);
         updateDialog.setMinimumSize(new java.awt.Dimension(300, 450));
-        updateDialog.setPreferredSize(new java.awt.Dimension(300, 450));
         updateDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -617,7 +613,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Function description");
+        contentHeaderLabel.setText("Storage");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);

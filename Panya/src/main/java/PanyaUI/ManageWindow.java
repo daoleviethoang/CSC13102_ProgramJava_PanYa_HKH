@@ -6,6 +6,7 @@
 package PanyaUI;
 import PanyaUI.Theme;
 import java.awt.Color;
+
 /**
  *
  * @author Dao Le Viet Hoang
@@ -89,9 +90,9 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         contentPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
-        addButon = new javax.swing.JButton();
-        deleteButon = new javax.swing.JButton();
-        updataButon = new javax.swing.JButton();
+        menuButton = new javax.swing.JButton();
+        historyButton = new javax.swing.JButton();
+        customerOrderButton = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(600, 600));
         setLayout(new java.awt.GridBagLayout());
@@ -157,25 +158,40 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
 
-        addButon.setBackground(new java.awt.Color(0, 153, 102));
-        addButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        addButon.setForeground(new java.awt.Color(255, 255, 255));
-        addButon.setText("MENU");
-        addButon.setBorder(null);
+        menuButton.setBackground(new java.awt.Color(0, 153, 102));
+        menuButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        menuButton.setForeground(new java.awt.Color(255, 255, 255));
+        menuButton.setText("MENU");
+        menuButton.setBorder(null);
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuButtonActionPerformed(evt);
+            }
+        });
 
-        deleteButon.setBackground(new java.awt.Color(0, 153, 102));
-        deleteButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        deleteButon.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButon.setText("HISTORY");
-        deleteButon.setBorder(null);
-        deleteButon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        historyButton.setBackground(new java.awt.Color(0, 153, 102));
+        historyButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        historyButton.setForeground(new java.awt.Color(255, 255, 255));
+        historyButton.setText("HISTORY");
+        historyButton.setBorder(null);
+        historyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        historyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyButtonActionPerformed(evt);
+            }
+        });
 
-        updataButon.setBackground(new java.awt.Color(0, 153, 102));
-        updataButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        updataButon.setForeground(new java.awt.Color(255, 255, 255));
-        updataButon.setText("CUSTOMER ORDER");
-        updataButon.setBorder(null);
-        updataButon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        customerOrderButton.setBackground(new java.awt.Color(0, 153, 102));
+        customerOrderButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        customerOrderButton.setForeground(new java.awt.Color(255, 255, 255));
+        customerOrderButton.setText("CUSTOMER ORDER");
+        customerOrderButton.setBorder(null);
+        customerOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        customerOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerOrderButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
         bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
@@ -183,11 +199,11 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         bottomHeaderPanelLayout.setVerticalGroup(
@@ -195,9 +211,9 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6))
         );
 
@@ -210,15 +226,42 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         add(bottomHeaderPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //System.out.println("MENU");
+        this.removeAll();
+        this.setLayout(new javax.swing.OverlayLayout(this));
+        this.add(new MenuWindow());
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.removeAll();
+        this.setLayout(new javax.swing.OverlayLayout(this));
+        this.add(new HistoryWindow());
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
+    private void customerOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        //nameButtonAction = "CUSTOMER ORDER";
+        this.removeAll();
+        this.setLayout(new javax.swing.OverlayLayout(this));
+        this.add(new CustomerOrderWindow());
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButon;
     private javax.swing.JPanel bottomHeaderPanel;
     private javax.swing.JLabel contentHeaderLabel;
     private javax.swing.JPanel contentHeaderPanel;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JButton deleteButon;
+    private javax.swing.JButton customerOrderButton;
+    private javax.swing.JButton historyButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton updataButon;
+    private javax.swing.JButton menuButton;
+    private javax.swing.JPanel backToManagePanelTemp;
+    private int count = 0;
     // End of variables declaration//GEN-END:variables
 }

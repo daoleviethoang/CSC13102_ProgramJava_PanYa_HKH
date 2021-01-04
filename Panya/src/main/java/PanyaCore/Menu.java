@@ -79,13 +79,14 @@ public class Menu {
         return JsonDataUtils.saveObjectList(path, menu, "menu", JSONObject::new);
     }
 
-    public static void main(String[] args) {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+    // public static void main(String[] args) {
+    //     System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "Panya/src/main/resources/data/ManageData/MenuFile.json";
-        var menu = Menu.readMenuList(INPUT);
+    //     final String INPUT = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+    //     var menu = Menu.readMenuList(INPUT);
 
-        final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-MenuFile.json";
-        Menu.saveCustomProductList(OUTPUT, menu);
-    }
+    //     System.out.println(menu.get(0).products.get(0).id); //lấy data
+    //     final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-MenuFile.json";
+    //     Menu.saveCustomProductList(OUTPUT, menu);
+    // }
 }

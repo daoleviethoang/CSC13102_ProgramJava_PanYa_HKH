@@ -1,11 +1,11 @@
-[
-    {
+[{
         "product": {
             "id": "PYC-001",
             "name": "Donut",
             "price": "15.0",
             "quantity": "10",
             "sellOff": "0.2",
+            "image": "Panya/src/main/resources/images/donut.jpg",
             "note": "Fried dough confection or dessert food"
         }
     },
@@ -16,6 +16,7 @@
             "price": "20.0",
             "quantity": "5",
             "sellOff": "0.2",
+            "image": "Panya/src/main/resources/images/donut.jpg",
             "note": ""
         }
     },
@@ -26,10 +27,10 @@
             "price": "15.0",
             "quantity": "15",
             "sellOff": "0.2",
+            "image": "Panya/src/main/resources/images/donut.jpg",
             "note": ""
         }
-    }
-    ,
+    },
     {
         "product": {
             "id": "PYC-004",
@@ -37,6 +38,7 @@
             "price": "20.0",
             "quantity": "10",
             "sellOff": "0.2",
+            "image": "Panya/src/main/resources/images/donut.jpg",
             "note": ""
         }
     }

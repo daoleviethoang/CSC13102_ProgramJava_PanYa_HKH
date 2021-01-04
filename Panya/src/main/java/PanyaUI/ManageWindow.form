@@ -129,11 +129,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="52" max="32767" attributes="0"/>
-                  <Component id="addButon" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="menuButton" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace pref="59" max="32767" attributes="0"/>
-                  <Component id="deleteButon" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="historyButton" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace pref="66" max="32767" attributes="0"/>
-                  <Component id="updataButon" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="customerOrderButton" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -143,9 +143,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="deleteButon" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="addButon" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="updataButon" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="historyButton" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="menuButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="customerOrderButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               </Group>
@@ -153,7 +153,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="addButon">
+        <Component class="javax.swing.JButton" name="menuButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>
@@ -169,8 +169,11 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuButtonActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="deleteButon">
+        <Component class="javax.swing.JButton" name="historyButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>
@@ -187,8 +190,11 @@
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="historyButtonActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="updataButon">
+        <Component class="javax.swing.JButton" name="customerOrderButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>
@@ -205,6 +211,9 @@
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customerOrderButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

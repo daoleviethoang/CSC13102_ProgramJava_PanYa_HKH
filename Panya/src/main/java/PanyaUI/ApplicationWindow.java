@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import PanyaCore.Product;
+import PanyaCore.Menu;
 
 /**
  * Khung cửa sổ chính của ứng dụng Pan-ya. Kế thừa từ
@@ -16,6 +18,8 @@ import java.util.Map;
  * các chức năng chính của Pan-ya
  */
 public class ApplicationWindow extends ApplicationWindowBase {
+    private static List<Menu> menu = new ArrayList<Menu>();
+    private static List<Product> products = new ArrayList<Product>();
 
     Color primaryColor;
     Color darkColor;
@@ -31,9 +35,11 @@ public class ApplicationWindow extends ApplicationWindowBase {
     GridBagConstraints showMenuHeaderPanelConstraint;
     GridBagConstraints showMenuContentPanelConstraint;
     GridBagConstraints outerContentPanelConstraint;
-
+    public JPanel manageBackPanel;
+    private int count = 0;
     // Danh sách các panel tương ứng với từng mục trong menu panel
     Map<String, PanyaContentPanel> panelDicts = new HashMap<>();
+
 
     final List<JLabel> menuListLabels = new ArrayList<JLabel>() {
         {
@@ -50,15 +56,15 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.panelDicts = new HashMap<>() {
             {
                 put("HOME", new OuterContentPanel());
-                put("MANAGE", new ManageWindow());
+                //put("MANAGE", new ManageWindow());
                 put("RECIPE", new RecipeMainPanel());
                 put("STORAGE", new StorageWindow());
-                
             }
         };
     }
 
     private void initComponents() {
+        loadAllData();
         this.initPanelDicts();
         this.initAction();
         this.initGridBagConstraints();
@@ -66,6 +72,22 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.menuIconLabel2.setVisible(false);
         this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
         this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);
+    }
+    public void loadAllData() {
+        final String pathMenuData = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+        menu = Menu.readMenuList(pathMenuData);
+        System.out.println("test nhe" + menu.get(0).getProducts().get(0).getName());
+        final String pathProductData = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+        products = Product.readProductList(pathProductData);
+        // Thêm đọc data khác ở đây
+    }
+    public static List<Menu> getMenu()
+    {
+        return menu;
+    }
+    public static List<Product> getProducts()
+    {
+        return products;
     }
 
     public ApplicationWindow(String themeName) {
@@ -167,12 +189,11 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.manageLabel.setForeground(lightTextColor);
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
-        this.panelDicts.forEach((k, v)-> v.initTheme(primary, light, dark));
+        this.panelDicts.forEach((k, v) -> v.initTheme(primary, light, dark));
     }
 
     private void replaceOuterPanel(String labelName) {
         this.getContentPane().remove(this.outerContentPanel);
-
         this.outerContentPanel = (JPanel) this.panelDicts.get(labelName);
         this.getContentPane().add(this.outerContentPanel);
 
@@ -183,15 +204,39 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.revalidate();
         this.repaint();
     }
+
     private void initAction() {
+        if(count == 0)
+        {
+            manageBackPanel = new ManageWindow();
+            panelDicts.put("MANAGE", (PanyaContentPanel)manageBackPanel);
+        }
         menuListLabels.forEach(lbl -> lbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 highlightLabel(lbl);
-                replaceOuterPanel(lbl.getText());
+                String labelName = lbl.getText();
+                
+                if(labelName.compareTo("MANAGE") == 0)
+                {
+                    //Đánh dấu sự ngu dốt, 1 ngày 1 đêm mới fix được =]]] cay.
+                    if(count != 0)
+                    {
+                        panelDicts.replace("MANAGE", new ManageWindow());
+                        replaceOuterPanel(labelName);
+                    }
+                    else
+                    {
+                        replaceOuterPanel(lbl.getText());
+                        count++;
+                    }
+                }
+                else
+                {
+                    replaceOuterPanel(labelName);
+                }
             }
         }));
-
         this.menuIconLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

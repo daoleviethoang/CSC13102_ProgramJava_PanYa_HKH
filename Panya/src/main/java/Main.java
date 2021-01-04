@@ -19,7 +19,7 @@ public class Main {
         // } catch (Exception ignored) {
 
         // }
-        var themeName = Theme.getRandomThemeName();
+        var themeName = "blue";
         var theme = new Theme().getTheme(themeName);
         var light = new ColorUIResource(theme.get("300"));
         var primary = new ColorUIResource(theme.get("500"));

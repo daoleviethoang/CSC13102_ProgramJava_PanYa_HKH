@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PanyaUI;
+package PanyaUI.ManageUI;
+
+import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
 import java.awt.Color;
 /**

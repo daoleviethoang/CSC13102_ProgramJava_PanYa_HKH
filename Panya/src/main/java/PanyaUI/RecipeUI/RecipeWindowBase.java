@@ -17,8 +17,12 @@ import java.awt.Color;
  *
  * @author dqh
  */
-public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPanel {
+public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 4207515231747115028L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -28,11 +32,11 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
     boolean randomColor = false;
 
     /** Creates new form RecipeWindow */
-    public RecipeWindow() {
+    public RecipeWindowBase() {
         initComponents();
     }
 
-    public RecipeWindow(Color primary, Color light, Color dark, boolean randomColor) {
+    public RecipeWindowBase(Color primary, Color light, Color dark, boolean randomColor) {
         super();
         initComponents();
         this.initTheme(primary, light, dark);
@@ -103,17 +107,19 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         contentHeaderLabel = new javax.swing.JLabel();
         basicInfoPanel = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        nameTextField = new javax.swing.JTextField();
+        descriptionLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descriptionTextField = new javax.swing.JTextArea();
         ingredientsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ingredientTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -181,17 +187,18 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         jPanel3.setPreferredSize(new java.awt.Dimension(600, 500));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Name");
+        nameLabel.setText("Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel3.add(jLabel1, gridBagConstraints);
+        jPanel3.add(nameLabel, gridBagConstraints);
 
-        jTextField1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jTextField1.setToolTipText("");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nameTextField.setEditable(false);
+        nameTextField.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        nameTextField.setToolTipText("");
+        nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nameTextFieldActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,19 +206,20 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 10);
-        jPanel3.add(jTextField1, gridBagConstraints);
+        jPanel3.add(nameTextField, gridBagConstraints);
 
-        jLabel2.setText("Description");
+        descriptionLabel.setText("Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(jLabel2, gridBagConstraints);
+        jPanel3.add(descriptionLabel, gridBagConstraints);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        descriptionTextField.setEditable(false);
+        descriptionTextField.setColumns(20);
+        descriptionTextField.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        descriptionTextField.setRows(5);
+        jScrollPane2.setViewportView(descriptionTextField);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -228,7 +236,8 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
 
         ingredientsPanel.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ingredientTable.setAutoCreateRowSorter(true);
+        ingredientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -242,13 +251,20 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(jTable1);
+        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane1.setViewportView(ingredientTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
@@ -260,16 +276,12 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
 
         basicInfoPanel.addTab("Ingredients", ingredientsPanel);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 761, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        jCheckBox1.setText("Secret recipe");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        jPanel2.add(jCheckBox1, gridBagConstraints);
 
         basicInfoPanel.addTab("Advance", jPanel2);
 
@@ -291,6 +303,16 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         editButton.setMinimumSize(new java.awt.Dimension(95, 40));
         editButton.setPreferredSize(new java.awt.Dimension(95, 40));
         jPanel1.add(editButton);
+
+        saveButton.setText("Save");
+        saveButton.setMaximumSize(new java.awt.Dimension(95, 40));
+        saveButton.setMinimumSize(new java.awt.Dimension(95, 40));
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(saveButton);
 
         removeButton.setText("Remove");
         removeButton.setMaximumSize(new java.awt.Dimension(95, 40));
@@ -315,9 +337,13 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         // TODO add your handling code here:
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nameTextFieldActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,7 +356,7 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RecipeWindow().setVisible(true);
+                new RecipeWindowBase().setVisible(true);
             }
         });
     }
@@ -339,21 +365,23 @@ public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPane
     javax.swing.JTabbedPane basicInfoPanel;
     javax.swing.JLabel contentHeaderLabel;
     javax.swing.JPanel contentHeaderPanel;
+    javax.swing.JLabel descriptionLabel;
+    javax.swing.JTextArea descriptionTextField;
     javax.swing.JButton editButton;
     javax.swing.JLabel imageLabel;
+    javax.swing.JTable ingredientTable;
     javax.swing.JPanel ingredientsPanel;
-    javax.swing.JLabel jLabel1;
-    javax.swing.JLabel jLabel2;
+    javax.swing.JCheckBox jCheckBox1;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
     javax.swing.JPanel jPanel4;
     javax.swing.JScrollPane jScrollPane1;
     javax.swing.JScrollPane jScrollPane2;
-    javax.swing.JTable jTable1;
-    javax.swing.JTextArea jTextArea1;
-    javax.swing.JTextField jTextField1;
+    javax.swing.JLabel nameLabel;
+    javax.swing.JTextField nameTextField;
     javax.swing.JButton removeButton;
+    javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 
 }

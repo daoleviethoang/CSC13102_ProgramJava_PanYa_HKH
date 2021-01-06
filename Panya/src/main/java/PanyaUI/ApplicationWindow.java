@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import PanyaUI.ManageUI.ManageWindow;
 import PanyaUI.RecipeUI.RecipeMainPanel;
+import PanyaUI.RecipeUI.RecipeMainPanelBase;
 import PanyaUI.StorageUI.StorageWindow;
 
 import java.awt.*;
@@ -49,17 +50,21 @@ public class ApplicationWindow extends ApplicationWindowBase {
     };
 
     boolean randomColor = false;
-
+    String recipeFile  = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
     private void initPanelDicts() {
-        this.panelDicts = new HashMap<>() {
-            {
-                put("HOME", new OuterContentPanel());
-                put("MANAGE", new ManageWindow());
-                put("RECIPE", new RecipeMainPanel());
-                put("STORAGE", new StorageWindow());
-                
-            }
-        };
+        try {
+            
+            this.panelDicts = new HashMap<>() {
+                {
+                    put("HOME", new OuterContentPanel());
+                    put("MANAGE", new ManageWindow());
+                    put("RECIPE", new RecipeMainPanel(recipeFile));
+                    put("STORAGE", new StorageWindow());
+                }
+            };
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
     private void initComponents() {

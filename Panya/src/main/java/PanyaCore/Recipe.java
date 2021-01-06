@@ -145,6 +145,15 @@ public class Recipe {
         return JsonDataUtils.saveObjectList(path, recipes, "recipe", JSONObject::new);
     }
 
+    public static int getLastId(List<Recipe> recipes) {
+        int lastId = 0;
+        for (var recipe : recipes) {
+            var id = Integer.parseInt(recipe.id.replaceAll("[^0-9]", "")); 
+            lastId = id > lastId? id: lastId;
+        }
+        return lastId;
+    }
+
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import PanyaCore.Ingredient;
 import PanyaCore.Recipe;
 
 public class RecipeMainPanel extends RecipeMainPanelBase {
@@ -20,7 +21,9 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     List<Recipe> recipes;
     DefaultTableModel recipeModel;
     DefaultTableModel secretRecipeModel;
-    RecipeWindowBase recipeWindow;
+    RecipeWindow recipeWindow;
+
+    String ingredientFile = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
 
     public RecipeMainPanel(String recipeFile) throws FileNotFoundException {
         super();
@@ -30,55 +33,54 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         }
 
         this.recipeFile = recipeFile;
-        this.recipes = Recipe.readRecipeList(recipeFile); 
-        initComponents();   
+        this.recipes = Recipe.readRecipeList(recipeFile);
+        initComponents();
         initTable();
         initAction();
     }
 
     void initTable() {
         int no = 1;
-        // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật 
+        // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật
         for (int i = 0; i < 4; i++) {
             this.recipeModel.removeRow(0);
             this.secretRecipeModel.removeRow(0);
         }
 
         for (var recipe : recipes) {
-            var rowData = new Object[]{no, recipe.getName(), recipe.getNote()};
+            var rowData = new Object[] { recipe.getId() , recipe.getName(), recipe.getNote() };
             this.recipeModel.addRow(rowData);
         }
     }
 
-    void initComponents(){
+    void initComponents() {
         this.recipeModel = (DefaultTableModel) this.recipeTable.getModel();
         this.secretRecipeModel = (DefaultTableModel) this.secretRecipeTable.getModel();
-        this.recipeWindow = new RecipeWindowBase(this.primaryColor, this.lightColor, this.darkColor, false);
+        this.recipeWindow = new RecipeWindow(this.primaryColor, this.lightColor, this.darkColor, false,
+                ingredientFile, this);
         this.recipeWindow.setVisible(false);
     }
 
     void initAction() {
         super.initAction();
-        this.addRecipeButton.addActionListener(
-            e->{
-                this.recipeWindow.setVisible(true);
-            }
-        );
+        this.addRecipeButton.addActionListener(e -> {
+            this.recipeWindow.setVisible(true);
+            this.recipeWindow.addNewRecipeView();
+        });
     }
 
     public static void main(String[] args) {
         final String recipeFile = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
         // var recipes = Recipe.readRecipeList(INPUT);
-        SwingUtilities.invokeLater(()->{
+        SwingUtilities.invokeLater(() -> {
             try {
                 new RecipeMainPanel(recipeFile).setVisible(true);
 
             } catch (Exception e) {
-                //TODO: handle exception
+                // TODO: handle exception
             }
 
         });
-       
+
     }
 }
-

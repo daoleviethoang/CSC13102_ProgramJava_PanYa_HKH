@@ -33,7 +33,7 @@ public class Ingredient {
         this.note = "";
     }
 
-    Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note)
+    public Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note)
             throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
@@ -101,6 +101,11 @@ public class Ingredient {
         return price.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((Ingredient)obj).id);
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -136,7 +141,7 @@ public class Ingredient {
 
         JSONObject ingredientObject = ingredient;
         try {
-            ingredientObject = (JSONObject) ingredient.get("product");
+            ingredientObject = (JSONObject) ingredient.get("ingredient");
         } catch (JSONException ignored) {
         }
 

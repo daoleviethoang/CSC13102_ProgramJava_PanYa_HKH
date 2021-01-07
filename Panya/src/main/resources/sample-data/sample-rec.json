@@ -6,7 +6,7 @@
             "visibility": true,
             "description": "banh mi recipe made by mom",
             "note": "",
-            "productID": [
+            "productId": [
                 "PYC-001"
             ],
             "ingredients": [

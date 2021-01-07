@@ -276,10 +276,10 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

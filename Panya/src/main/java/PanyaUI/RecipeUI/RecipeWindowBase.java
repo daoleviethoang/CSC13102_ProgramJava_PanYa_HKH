@@ -101,6 +101,16 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        addIngredientFrame = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
+        ingredientNameCombo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        UnitCombo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        quantityField = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        saveIngredientButton = new javax.swing.JButton();
+        ingredientIdText = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         imageLabel = new javax.swing.JLabel();
         contentHeaderPanel = new javax.swing.JPanel();
@@ -115,12 +125,73 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         ingredientsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ingredientTable = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        addIngredientButton = new javax.swing.JButton();
+        removeIngredientButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        secretRecipeCheckBox = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+
+        addIngredientFrame.setMinimumSize(new java.awt.Dimension(400, 171));
+        addIngredientFrame.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setText("Ingredient");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        addIngredientFrame.getContentPane().add(jLabel1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        addIngredientFrame.getContentPane().add(ingredientNameCombo, gridBagConstraints);
+
+        jLabel2.setText("Unit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        addIngredientFrame.getContentPane().add(jLabel2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        addIngredientFrame.getContentPane().add(UnitCombo, gridBagConstraints);
+
+        jLabel3.setText("Quantity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        addIngredientFrame.getContentPane().add(jLabel3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        addIngredientFrame.getContentPane().add(quantityField, gridBagConstraints);
+
+        saveIngredientButton.setText("Save");
+        jPanel6.add(saveIngredientButton);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        addIngredientFrame.getContentPane().add(jPanel6, gridBagConstraints);
+
+        ingredientIdText.setEditable(false);
+        ingredientIdText.setText("jTextField1");
+        ingredientIdText.setEnabled(false);
+        addIngredientFrame.getContentPane().add(ingredientIdText, new java.awt.GridBagConstraints());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 800));
@@ -245,11 +316,11 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
                 {null, null, null, null, null}
             },
             new String [] {
-                "No", "Name", "Quantiity", "Unit", "Note"
+                "No", "Name", "Quantity", "Unit", "Note"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -267,21 +338,44 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         jScrollPane1.setViewportView(ingredientTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         ingredientsPanel.add(jScrollPane1, gridBagConstraints);
 
+        addIngredientButton.setText("   Add   ");
+        addIngredientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addIngredientButtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(addIngredientButton);
+
+        removeIngredientButton.setText("Remove");
+        removeIngredientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeIngredientButtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(removeIngredientButton);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        ingredientsPanel.add(jPanel5, gridBagConstraints);
+
         basicInfoPanel.addTab("Ingredients", ingredientsPanel);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jCheckBox1.setText("Secret recipe");
+        secretRecipeCheckBox.setText("Secret recipe");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        jPanel2.add(jCheckBox1, gridBagConstraints);
+        jPanel2.add(secretRecipeCheckBox, gridBagConstraints);
 
         basicInfoPanel.addTab("Advance", jPanel2);
 
@@ -345,6 +439,14 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         // TODO add your handling code here:
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void removeIngredientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeIngredientButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeIngredientButtonActionPerformed
+
+    private void addIngredientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIngredientButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addIngredientButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +464,9 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JComboBox<String> UnitCombo;
+    javax.swing.JButton addIngredientButton;
+    javax.swing.JFrame addIngredientFrame;
     javax.swing.JTabbedPane basicInfoPanel;
     javax.swing.JLabel contentHeaderLabel;
     javax.swing.JPanel contentHeaderPanel;
@@ -369,19 +474,29 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
     javax.swing.JTextArea descriptionTextField;
     javax.swing.JButton editButton;
     javax.swing.JLabel imageLabel;
+    javax.swing.JTextField ingredientIdText;
+    javax.swing.JComboBox<String> ingredientNameCombo;
     javax.swing.JTable ingredientTable;
     javax.swing.JPanel ingredientsPanel;
-    javax.swing.JCheckBox jCheckBox1;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
     javax.swing.JPanel jPanel1;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
     javax.swing.JPanel jPanel4;
+    javax.swing.JPanel jPanel5;
+    javax.swing.JPanel jPanel6;
     javax.swing.JScrollPane jScrollPane1;
     javax.swing.JScrollPane jScrollPane2;
     javax.swing.JLabel nameLabel;
     javax.swing.JTextField nameTextField;
+    javax.swing.JTextField quantityField;
     javax.swing.JButton removeButton;
+    javax.swing.JButton removeIngredientButton;
     javax.swing.JButton saveButton;
+    javax.swing.JButton saveIngredientButton;
+    javax.swing.JCheckBox secretRecipeCheckBox;
     // End of variables declaration//GEN-END:variables
 
 }

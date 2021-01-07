@@ -50,7 +50,9 @@ public class ApplicationWindow extends ApplicationWindowBase {
     };
 
     boolean randomColor = false;
-    String recipeFile  = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
+    String recipeFile  = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
+    String ingredientFile  = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+    
     private void initPanelDicts() {
         try {
             

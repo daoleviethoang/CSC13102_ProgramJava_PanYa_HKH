@@ -23,7 +23,7 @@ public class Ingredient {
     String unit;
     BigDecimal price;
     String note;
-
+    private int count_sta = 0;
     Ingredient() {
         this.id = "";
         this.name = "";
@@ -33,7 +33,7 @@ public class Ingredient {
         this.note = "";
     }
 
-    Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note)
+    public Ingredient(String id, String name, BigDecimal quantity, String unit, BigDecimal price, String note)
             throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
@@ -101,6 +101,11 @@ public class Ingredient {
         return price.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((Ingredient)obj).id);
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
@@ -136,7 +141,7 @@ public class Ingredient {
 
         JSONObject ingredientObject = ingredient;
         try {
-            ingredientObject = (JSONObject) ingredient.get("product");
+            ingredientObject = (JSONObject) ingredient.get("ingredient");
         } catch (JSONException ignored) {
         }
 
@@ -251,5 +256,15 @@ public class Ingredient {
 
         final String w_path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
         Ingredient.writeIngredients(w_path, ingredients);
+    }
+    public int getCount_sta() {
+        return count_sta;
+    }
+    public void setCount_sta(int count_sta) {
+        this.count_sta = count_sta;
+    }
+    public void plus_count(int x) {
+        int c = this.getCount_sta() + x;
+        this.setCount_sta(c);
     }
 }

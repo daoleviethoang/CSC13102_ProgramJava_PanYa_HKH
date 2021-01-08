@@ -20,14 +20,14 @@ public class Recipe {
     String note;
     boolean visibility = false;
 
-    Recipe() {
+    public Recipe() {
         this.id = "";
         this.name = "";
         this.description = "";
         this.note = "";
     }
 
-    Recipe(String id, String name, List<String> proId, List<Ingredient> ingre, String des, String note,
+    public Recipe(String id, String name, List<String> proId, List<Ingredient> ingre, String des, String note,
             boolean vision) {
         this.id = id;
         this.name = name;
@@ -38,7 +38,7 @@ public class Recipe {
         this.visibility = vision;
     }
 
-    Recipe(Recipe r) {
+    public Recipe(Recipe r) {
         this.id = r.getId();
         this.name = r.getName();
         this.productId = new ArrayList<>(r.getProductId());
@@ -143,6 +143,19 @@ public class Recipe {
 
     public static boolean saveRecipeList(String path, List<Recipe> recipes) {
         return JsonDataUtils.saveObjectList(path, recipes, "recipe", JSONObject::new);
+    }
+
+    public static int getLastId(List<Recipe> recipes) {
+        int lastId = 0;
+        for (var recipe : recipes) {
+            var id = Integer.parseInt(recipe.id.replaceAll("[^0-9]", "")); 
+            lastId = id > lastId? id: lastId;
+        }
+        return lastId;
+    }
+
+    public static String nextId(List<Recipe> recipes) {
+        return "REC-" + getLastId(recipes);
     }
 
     public static void main(String[] args) {

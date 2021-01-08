@@ -1,22 +1,37 @@
 [
-    {
-        "recipe": {
-            "id": "REP-001",
-            "name": "banh-mi",
-            "visibility": true,
-            "description": "banh mi recipe made by mom",
-            "note": "",
-            "productID": [
-                "PYC-001"
-            ],
-            "ingredients": [
-                {
-                    "id": "ING-001",
-                    "quantity": "9",
-                    "unit": "gram"
-                }
-            ]
-        }
-    }
- ]
- 
+    {"recipe": {
+        "note": "",
+        "productId": ["PYC-001"],
+        "visibility": true,
+        "name": "banh-mi",
+        "ingredients": [{
+            "unit": "gram",
+            "quantity": "9",
+            "id": "ING-001"
+        }],
+        "description": "banh mi recipe made by mom",
+        "id": "REP-001"
+    }},
+    {"recipe": {
+        "note": "",
+        "productId": [],
+        "visibility": true,
+        "name": "Vietnamese Ice coffee",
+        "ingredients": [
+            {
+                "unit": "kilograms",
+                "quantity": "0.5",
+                "name": "",
+                "id": "ING-004"
+            },
+            {
+                "unit": "kilograms",
+                "quantity": "0.002",
+                "name": "",
+                "id": "ING-005"
+            }
+        ],
+        "description": "Cà phê sữa đá pha theo phong cách Việt Nam gồm cà phê rang xay được pha phin hay pha sẵn với sữa đặc có đường (thông dụng là sữa Ông Thọ) theo tỷ lệ một phần nước cà phê,1 hoặc hai phần sữa tùy theo khẩu vị của người uống.Cà phê sữa này được uống chung với nhiều nước đá. Món cà phê sữa đá cùng với cà phê đen đá là hai loại thức uống từ cà phê phổ biến tại các quán cà phê cũng như ở toàn thể khắp đại gia đình Việt Nam.",
+        "id": "ING-1"
+    }}
+]

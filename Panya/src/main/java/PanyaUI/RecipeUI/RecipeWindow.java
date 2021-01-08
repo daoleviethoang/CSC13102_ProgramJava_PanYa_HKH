@@ -1,359 +1,243 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package PanyaUI.RecipeUI;
 
-import javax.swing.UIManager;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
-import PanyaUI.PanyaContentPanel;
-import PanyaUI.Theme;
-import mdlaf.MaterialLookAndFeel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import java.math.BigDecimal;
 
-/**
- *
- * @author dqh
- */
-public class RecipeWindow extends javax.swing.JFrame implements PanyaContentPanel {
+import PanyaCore.Ingredient;
+import PanyaCore.Recipe;
+import PanyaUI.Theme;
 
-    Color primaryColor;
-    Color darkColor;
-    Color lightColor;
-    Color primaryTextColor;
-    Color lightTextColor;
-    Color darkTextColor;
-    boolean randomColor = false;
-
-    /** Creates new form RecipeWindow */
-    public RecipeWindow() {
-        initComponents();
-    }
-
-    public RecipeWindow(Color primary, Color light, Color dark, boolean randomColor) {
-        super();
-        initComponents();
-        this.initTheme(primary, light, dark);
-        this.randomColor = randomColor;
-    }
+public class RecipeWindow extends RecipeWindowBase {
 
     /**
-     * Chỉnh màu cho window theo phổ màu đưa vào
-     * 
-     * @param themeName String được lấy từ PanyaUI.Theme.getTheme
-     * @see PanyaUI.Theme#getTheme(String)
+     *
      */
-    public void initTheme(String themeName) {
+    private static final long serialVersionUID = 5264686455325416561L;
+    DefaultTableModel ingredientsTableModel;
+
+    Recipe recipe;
+    List<Ingredient> allIngredients;
+    String ingredientFile;
+    JTextField idTextField;
+    RecipeMainPanel parent;
+
+    public RecipeWindow(Color primary, Color light, Color dark, boolean randomColor, String ingredientFile, RecipeMainPanel parent) {
+        super(primary, light, dark, randomColor);
+        
+        this.parent = parent;
+
+        this.ingredientsTableModel = (DefaultTableModel) this.ingredientTable.getModel();
+        this.ingredientFile = ingredientFile;
+        this.allIngredients = Ingredient.readIngredients(ingredientFile);
+
+        // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật
+        for (int i = 0; i < 4; i++) {
+            this.ingredientsTableModel.removeRow(0);
+        }
+        this.idTextField = new JTextField("ID");
+        this.initButton();
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    void initButton() {
+        this.setActionForAddIngredientFrame();
+
+        this.addIngredientButton.addActionListener(e -> {
+            this.UnitCombo.setModel(new DefaultComboBoxModel<String>());
+            this.quantityField.setText("");
+
+            this.addIngredientFrame.setVisible(true);
+            var selectedIngredients = new ArrayList<String>();
+            for (var ingredient : allIngredients) {
+                if (!this.recipe.getIngredient().contains(ingredient)) {
+                    selectedIngredients.add(ingredient.getId() + " | " + ingredient.getName());
+                }
+            }
+
+            this.ingredientNameCombo
+                    .setModel(new DefaultComboBoxModel<String>(selectedIngredients.toArray(String[]::new)));
+
+        });
+
+        this.removeIngredientButton.addActionListener(e -> {
+            var idx = this.ingredientTable.getSelectedRow();
+            if (idx == -1) {
+                return;
+            }
+            this.recipe.getIngredient().remove(idx);
+            this.ingredientsTableModel.removeRow(idx);
+
+        });
+
+        this.saveButton.addActionListener(e -> {
+            
+            this.getRecipeFromWindow();
+            
+            var name = this.recipe.getName();
+            if (name == null || name.isEmpty()) {
+                JOptionPane.showMessageDialog(this.addIngredientFrame,
+                        "Please input a valid name in the name text field", "Empty name",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (this.parent != null) {
+                this.recipe.setId(Recipe.nextId(this.parent.recipes));
+                this.parent.recipes.add(recipe);
+                this.parent.recipeModel.addRow(new Object[]{this.recipe.getId(), this.recipe.getName(), this.recipe.getNote()});
+                Recipe.saveRecipeList(this.parent.recipeFile, this.parent.recipes);
+                this.setVisible(false);
+
+            }
+
+        });
+    }
+
+    void setEditable(boolean b) {
+        this.nameTextField.setEditable(b);
+        this.descriptionTextField.setEditable(b);
+        // this.ingredientsTableModel.setEditable(b);
+        this.addIngredientButton.setEnabled(b);
+        this.removeIngredientButton.setEnabled(b);
+        this.saveButton.setEnabled(b);
+        this.secretRecipeCheckBox.setEnabled(b);
+        this.addIngredientButton.setEnabled(b);
+        this.removeIngredientButton.setEnabled(b);
+    }
+
+    void clear() {
+        this.nameTextField.setText("");
+        this.descriptionTextField.setText("");
+        this.secretRecipeCheckBox.setSelected(false);
+
+        while (this.ingredientTable.getRowCount() != 0) {
+            this.ingredientsTableModel.removeRow(0);
+        }
+
+    }
+
+    public void addNewRecipeView() {
+        this.clear();
+        this.saveButton.setVisible(true);
+        this.editButton.setVisible(false);
+        this.removeButton.setVisible(false);
+        this.setEditable(true);
+        this.recipe = new Recipe();
+
+    }
+
+    void getRecipeFromWindow() {
+        
+        var id = this.idTextField.getText();
+        var name = this.nameTextField.getText();
+        var description = this.descriptionTextField.getText();
+        var visibility = !secretRecipeCheckBox.isSelected();
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        for (int i = 0; i < this.ingredientsTableModel.getRowCount(); i++) {
+            var ingredientId = (String) this.ingredientsTableModel.getValueAt(i, 0);
+            var quantity = new BigDecimal((String) this.ingredientsTableModel.getValueAt(i, 2));
+            var unit = (String) this.ingredientsTableModel.getValueAt(i, 3);
+            var note = (String) this.ingredientsTableModel.getValueAt(i, 4);
+            ingredients.add(new Ingredient(ingredientId, "", quantity, unit, null, note));
+        }
+
+        this.recipe =  new Recipe(id, name, new ArrayList<String>(), ingredients, description, "", visibility);
+    }
+
+    void loadRecipe(Recipe r) {
+        this.recipe = r;
+        this.idTextField.setText(r.getId());
+        this.nameTextField.setText(r.getName());
+        this.descriptionTextField.setText(r.getDescription());
+        this.secretRecipeCheckBox.setSelected(!r.getVisibility());
+
+        int rowCount = 0;
+        for (var i : r.getIngredient()) {
+            var idx = allIngredients.indexOf(i);
+            var name = idx != -1 ? allIngredients.get(idx).getName() : "";
+            this.ingredientsTableModel
+                    .addRow(new Object[] { i.getId(), name, i.getQuantity().toString(), i.getUnit(), i.getNote() });
+        }
+    }
+
+    void setActionForAddIngredientFrame() {
+        this.ingredientIdText.setVisible(false);
+
+        this.saveIngredientButton.addActionListener(e -> {
+            var quantity = BigDecimal.ZERO;
+            try {
+                quantity = new BigDecimal(quantityField.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this.addIngredientFrame,
+                        "Please input a valid number in quantity text field", "Invalid number in quantity text field",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (this.ingredientNameCombo.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this.addIngredientFrame,
+                        "Please input a valid number in quantity text field", "Invalid number in quantity text field",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (this.UnitCombo.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this.addIngredientFrame,
+                        "Please input a valid number in quantity text field", "Invalid number in quantity text field",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            var id = ((String) this.ingredientNameCombo.getSelectedItem()).split(Pattern.quote(" | "))[0]; // Chữa cháy
+                                                                                                           // :<
+            var name = ((String) this.ingredientNameCombo.getSelectedItem()).split(Pattern.quote(" | "))[1]; // Chữa
+                                                                                                             // cháy :<
+            var unit = (String) this.UnitCombo.getSelectedItem();
+            var i = new Ingredient(id, name, quantity, unit, null, null);
+            this.recipe.getIngredient().add(i);
+            this.ingredientsTableModel
+                    .addRow(new Object[] { i.getId(), name, i.getQuantity().toString(), i.getUnit(), i.getNote() });
+            this.addIngredientFrame.setVisible(false);
+
+        });
+
+        this.ingredientNameCombo.addActionListener(e -> {
+            var id = ((String) this.ingredientNameCombo.getSelectedItem()).split(" | ")[0]; // Chữa cháy :<
+            var i = allIngredients.get(allIngredients.indexOf(new Ingredient(id, null, null, null, null, null)));
+            this.UnitCombo.setModel(new DefaultComboBoxModel<String>(new String[] { i.getUnit() }));
+        });
+    }
+
+    public static void main(String[] args) {
+        final String INPUT = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
+        var recipe = Recipe.readRecipeList(INPUT);
+
+        final String INGREDIENTS = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+        var ingredients = Ingredient.readIngredients(INGREDIENTS);
+
+        var themeName = "blue";
         var theme = new Theme().getTheme(themeName);
-        if (theme == null) {
-            return;
-        }
-
-        final var PRIMARY = theme.get(Theme.PRIMARY);
-        final var LIGHT = theme.get(Theme.LIGHT);
-        final var DARK = theme.get(Theme.DARK);
-
-        this.initTheme(PRIMARY, LIGHT, DARK);
-    }
-    
-    /**
-     * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
-     * chính, nhạt, đậm. Tham khảo tại <a href=
-     * "https://material.io/resources/color">https://material.io/resources/color</a>
-     * 
-     * @param primary
-     * @param light
-     * @param dark
-     */
-    public void initTheme(Color primary, Color light, Color dark) {
-        if (primary == null || light == null || dark == null) {
-            return;
-        }
-        this.primaryColor = primary;
-        this.darkColor = dark;
-        this.lightColor = light;
-
-        this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
-        this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
-        this.lightTextColor = Theme.textColorFromBackgroundColor(light);
-
-        // this.bottomHeaderPanel.setBackground(lightColor);
-        this.contentHeaderLabel.setForeground(primaryTextColor);
-        this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
-
-    }
-
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
-
-        jPanel4 = new javax.swing.JPanel();
-        imageLabel = new javax.swing.JLabel();
-        contentHeaderPanel = new javax.swing.JPanel();
-        contentHeaderLabel = new javax.swing.JLabel();
-        basicInfoPanel = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        ingredientsPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        editButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 800));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        jPanel4.setBackground(new java.awt.Color(110, 198, 255));
-        jPanel4.setMinimumSize(new java.awt.Dimension(600, 200));
-        jPanel4.setPreferredSize(new java.awt.Dimension(600, 200));
-        jPanel4.setLayout(new java.awt.GridBagLayout());
-
-        imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.setText("Image");
-        imageLabel.setMaximumSize(new java.awt.Dimension(600, 200));
-        imageLabel.setMinimumSize(new java.awt.Dimension(600, 200));
-        imageLabel.setPreferredSize(new java.awt.Dimension(600, 200));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        jPanel4.add(imageLabel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        getContentPane().add(jPanel4, gridBagConstraints);
-
-        contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
-        contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
-        contentHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
-
-        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("Recipe");
-        contentHeaderLabel.setToolTipText("");
-
-        javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
-        contentHeaderPanel.setLayout(contentHeaderPanelLayout);
-        contentHeaderPanelLayout.setHorizontalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
-        );
-        contentHeaderPanelLayout.setVerticalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.1;
-        getContentPane().add(contentHeaderPanel, gridBagConstraints);
-
-        basicInfoPanel.setBackground(new java.awt.Color(33, 150, 243));
-        basicInfoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        basicInfoPanel.setMinimumSize(new java.awt.Dimension(600, 500));
-        basicInfoPanel.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        jPanel3.setMinimumSize(new java.awt.Dimension(600, 500));
-        jPanel3.setPreferredSize(new java.awt.Dimension(600, 500));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setText("Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel3.add(jLabel1, gridBagConstraints);
-
-        jTextField1.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
-        jTextField1.setToolTipText("");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 10);
-        jPanel3.add(jTextField1, gridBagConstraints);
-
-        jLabel2.setText("Description");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        jPanel3.add(jLabel2, gridBagConstraints);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 20, 10);
-        jPanel3.add(jScrollPane2, gridBagConstraints);
-
-        basicInfoPanel.addTab("Basic information", jPanel3);
-
-        ingredientsPanel.setLayout(new java.awt.GridBagLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Name", "Quantiity", "Unit", "Note"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(jTable1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        ingredientsPanel.add(jScrollPane1, gridBagConstraints);
-
-        basicInfoPanel.addTab("Ingredients", ingredientsPanel);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 761, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
-        );
-
-        basicInfoPanel.addTab("Advance", jPanel2);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        getContentPane().add(basicInfoPanel, gridBagConstraints);
-
-        jPanel1.setMinimumSize(new java.awt.Dimension(600, 50));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 50));
-
-        editButton.setText("Edit");
-        editButton.setMaximumSize(new java.awt.Dimension(95, 40));
-        editButton.setMinimumSize(new java.awt.Dimension(95, 40));
-        editButton.setPreferredSize(new java.awt.Dimension(95, 40));
-        jPanel1.add(editButton);
-
-        removeButton.setText("Remove");
-        removeButton.setMaximumSize(new java.awt.Dimension(95, 40));
-        removeButton.setMinimumSize(new java.awt.Dimension(95, 40));
-        removeButton.setPreferredSize(new java.awt.Dimension(95, 40));
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(removeButton);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        getContentPane().add(jPanel1, gridBagConstraints);
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeButtonActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel(new MaterialLookAndFeel());
-        } catch (Exception ignored) {
-        }
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RecipeWindow().setVisible(true);
-            }
+        var light = new ColorUIResource(theme.get("300"));
+        var primary = new ColorUIResource(theme.get("500"));
+        var dark = new ColorUIResource(theme.get("800"));
+        SwingUtilities.invokeLater(() -> {
+            var recipeWindow = new RecipeWindow(primary, light, dark, false, INGREDIENTS, null);
+            recipeWindow.addNewRecipeView();
+            // recipeWindow.loadRecipe(recipe.get(0));
+            recipeWindow.setVisible(true);
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JTabbedPane basicInfoPanel;
-    javax.swing.JLabel contentHeaderLabel;
-    javax.swing.JPanel contentHeaderPanel;
-    javax.swing.JButton editButton;
-    javax.swing.JLabel imageLabel;
-    javax.swing.JPanel ingredientsPanel;
-    javax.swing.JLabel jLabel1;
-    javax.swing.JLabel jLabel2;
-    javax.swing.JPanel jPanel1;
-    javax.swing.JPanel jPanel2;
-    javax.swing.JPanel jPanel3;
-    javax.swing.JPanel jPanel4;
-    javax.swing.JScrollPane jScrollPane1;
-    javax.swing.JScrollPane jScrollPane2;
-    javax.swing.JTable jTable1;
-    javax.swing.JTextArea jTextArea1;
-    javax.swing.JTextField jTextField1;
-    javax.swing.JButton removeButton;
-    // End of variables declaration//GEN-END:variables
-
 }

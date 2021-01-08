@@ -3,7 +3,7 @@
     "products": [
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Donut.jpg",
-            "quantity": 7,
+            "quantity": 8,
             "price": "15.0",
             "sellOff": "0.2",
             "name": "Donut",
@@ -11,7 +11,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Amandine.jpg",
-            "quantity": 2,
+            "quantity": 3,
             "price": "20.0",
             "sellOff": "0.0",
             "name": "Amandine",
@@ -19,7 +19,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Babka.jpg",
-            "quantity": 12,
+            "quantity": 14,
             "price": "15.0",
             "sellOff": "0.2",
             "name": "Babka",
@@ -27,7 +27,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
-            "quantity": 7,
+            "quantity": 9,
             "price": "20.0",
             "sellOff": "0.2",
             "name": "Wingko",

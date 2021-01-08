@@ -60,20 +60,11 @@ public class ApplicationWindow extends ApplicationWindowBase {
     String ingredientFile  = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
     
     private void initPanelDicts() {
-        this.panelDicts = new HashMap<>() {
-            {
-                put("HOME", new OuterContentPanel());
-                //put("MANAGE", new ManageWindow());
-                put("RECIPE", new RecipeMainPanel());
-                put("STORAGE", new StorageWindow());
-            }
-        };
         try {
-            
             this.panelDicts = new HashMap<>() {
                 {
                     put("HOME", new OuterContentPanel());
-                    put("MANAGE", new ManageWindow());
+                    //put("MANAGE", new ManageWindow());
                     put("RECIPE", new RecipeMainPanel(recipeFile));
                     put("STORAGE", new StorageWindow());
                 }

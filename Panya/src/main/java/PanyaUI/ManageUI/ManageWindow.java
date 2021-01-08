@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package PanyaUI.ManageUI;
+import PanyaUI.ManageUI.MenuUI.*;
+import PanyaUI.ManageUI.HistoryUI.*;
+import PanyaUI.ManageUI.CustomOrderUI.*;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;

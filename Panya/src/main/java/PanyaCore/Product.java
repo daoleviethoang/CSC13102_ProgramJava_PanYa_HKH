@@ -16,8 +16,9 @@ public class Product {
     protected BigDecimal price;
     protected BigDecimal sellOff;
     protected int quantity;
+    protected String image;
 
-    public Product(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note)
+    public Product(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note, String image)
             throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
@@ -26,6 +27,7 @@ public class Product {
         this.quantity = quantity;
         this.sellOff = sellOff;
         this.note = note;
+        this.image = image;
     }
 
     public Product(Product p) {
@@ -35,6 +37,7 @@ public class Product {
         this.quantity = p.quantity;
         this.sellOff = p.sellOff;
         this.note = p.note;
+        this.image = p.image;
     }
 
     public String getName() {
@@ -48,7 +51,9 @@ public class Product {
     public String getNote() {
         return note;
     }
-
+    public String getImage(){
+        return image;
+    }
     @JSONPropertyIgnore
     public BigDecimal getPrice() {
         return price;
@@ -96,7 +101,9 @@ public class Product {
     public void setSellOff(BigDecimal sellOff) throws NullPointerException {
         this.sellOff = Objects.requireNonNull(sellOff);
     }
-
+    public void setImage(String image) throws NullPointerException{
+        this.image = Objects.requireNonNull(image);
+    }
     /**
      * Đọc từ file ra một <code>List<Product></code> định dạng <code>json</code> của
      * có dạng sau:
@@ -169,8 +176,8 @@ public class Product {
             var sellOff = productDetail.optBigDecimal("sellOff", null);
 
             var note = productDetail.optString("note", null);
-
-            return new Product(id, name, price, quantity, sellOff, note);
+            var image = productDetail.optString("image", null);
+            return new Product(id, name, price, quantity, sellOff, note, image);
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
             return null;
@@ -189,14 +196,14 @@ public class Product {
         return JsonDataUtils.saveObjectList(path, products, "product", JSONObject::new);
     }
 
-    public static void main(String[] args) {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+    // public static void main(String[] args) {
+    //     System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String INPUT = "Panya/src/main/resources/data/ManageData/ProductFile.json";
-        var products = Product.readProductList(INPUT);
+    //     final String INPUT = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+    //     var products = Product.readProductList(INPUT);
 
-        final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-ProductFile.json";
-        Product.saveProductList(OUTPUT, products);
-    }
+    //     final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-ProductFile.json";
+    //     Product.saveProductList(OUTPUT, products);
+    // }
 
 }

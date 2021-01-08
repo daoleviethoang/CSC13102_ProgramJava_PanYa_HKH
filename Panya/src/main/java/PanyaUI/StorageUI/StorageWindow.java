@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PanyaUI;
+package PanyaUI.StorageUI;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
+
+import PanyaUI.PanyaContentPanel;
+import PanyaUI.Theme;
 
 /**
  *
@@ -461,7 +464,8 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         addDialog.getContentPane().add(jPanel9, gridBagConstraints);
 
         updateDialog.setLocationByPlatform(true);
-        updateDialog.setMinimumSize(new java.awt.Dimension(300, 450));
+        updateDialog.setMinimumSize(new java.awt.Dimension(350, 450));
+        updateDialog.setPreferredSize(new java.awt.Dimension(350, 450));
         updateDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         headerDialogLabel3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -482,7 +486,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel11, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -493,12 +497,14 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
         updateDialog.getContentPane().add(nameUpdDialogTextF, gridBagConstraints);
 
-        jLabel12.setText("Quantiy: ");
-        jLabel12.setPreferredSize(new java.awt.Dimension(50, 20));
+        jLabel12.setText("Quantiy:");
+        jLabel12.setMaximumSize(new java.awt.Dimension(55, 20));
+        jLabel12.setMinimumSize(new java.awt.Dimension(55, 20));
+        jLabel12.setPreferredSize(new java.awt.Dimension(55, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel12, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -516,7 +522,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel13, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -534,7 +540,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel14, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -552,7 +558,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel15, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -570,7 +576,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jLabel16, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();

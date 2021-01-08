@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 
-package PanyaUI;
+package PanyaUI.RecipeUI;
 
 import javax.swing.UIManager;
 
+import PanyaUI.PanyaContentPanel;
+import PanyaUI.Theme;
 import mdlaf.MaterialLookAndFeel;
 import java.awt.Color;
 

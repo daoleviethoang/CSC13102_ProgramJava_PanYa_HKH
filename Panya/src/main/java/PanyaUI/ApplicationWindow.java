@@ -2,6 +2,10 @@ package PanyaUI;
 
 import javax.swing.*;
 
+import PanyaUI.ManageUI.ManageWindow;
+import PanyaUI.RecipeUI.RecipeMainPanel;
+import PanyaUI.StorageUI.StorageWindow;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -201,8 +205,8 @@ public class ApplicationWindow extends ApplicationWindowBase {
         layout.setConstraints(this.outerContentPanel, this.outerContentPanelConstraint);
         this.outerContentPanel.setVisible(true);
 
-        this.revalidate();
-        this.repaint();
+        this.outerContentPanel.revalidate();
+        this.outerContentPanel.repaint();
     }
 
     private void initAction() {

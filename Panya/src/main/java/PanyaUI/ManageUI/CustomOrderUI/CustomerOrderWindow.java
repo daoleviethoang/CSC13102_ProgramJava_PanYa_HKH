@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PanyaUI;
+package PanyaUI.ManageUI.CustomOrderUI;
+
+import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
 import java.awt.Color;
-
 /**
  *
  * @author Dao Le Viet Hoang
  */
-public class ManageWindow extends javax.swing.JPanel implements PanyaContentPanel {
+public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
     Color primaryColor;
     Color darkColor;
@@ -71,7 +72,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
     /**
      * Creates new form OuterContentPanel
      */
-    public ManageWindow() {
+    public CustomerOrderWindow() {
         initComponents();
     }
 
@@ -88,11 +89,15 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         contentPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         bottomHeaderPanel = new javax.swing.JPanel();
-        menuButton = new javax.swing.JButton();
-        historyButton = new javax.swing.JButton();
-        customerOrderButton = new javax.swing.JButton();
+        addButon = new javax.swing.JButton();
+        deleteButon = new javax.swing.JButton();
+        updataButon = new javax.swing.JButton();
+        searchPanel = new javax.swing.JPanel();
+        searchButon = new javax.swing.JButton();
+        searchTextField = new javax.swing.JTextField();
 
         setMinimumSize(new java.awt.Dimension(600, 600));
         setLayout(new java.awt.GridBagLayout());
@@ -103,13 +108,13 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         contentHeaderLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         contentHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
         contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("MANAGE");
+        contentHeaderLabel.setText("CUSTOMER ORDER");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
         contentHeaderPanelLayout.setHorizontalGroup(
             contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         contentHeaderPanelLayout.setVerticalGroup(
             contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,21 +134,28 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
         contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("EFFECT");
-        jLabel1.setOpaque(true);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Name", "Phone", "Address", "Name Cake", "Quantity", "Sell Off", "Price"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
         contentPanelLayout.setHorizontalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -158,62 +170,92 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
 
-        menuButton.setBackground(new java.awt.Color(0, 153, 102));
-        menuButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        menuButton.setForeground(new java.awt.Color(255, 255, 255));
-        menuButton.setText("MENU");
-        menuButton.setBorder(null);
-        menuButton.addActionListener(new java.awt.event.ActionListener() {
+        addButon.setBackground(new java.awt.Color(0, 153, 102));
+        addButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        addButon.setForeground(new java.awt.Color(255, 255, 255));
+        addButon.setText("Add");
+        addButon.setBorder(null);
+
+        deleteButon.setBackground(new java.awt.Color(0, 153, 102));
+        deleteButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        deleteButon.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButon.setText("Delete");
+        deleteButon.setBorder(null);
+
+        updataButon.setBackground(new java.awt.Color(0, 153, 102));
+        updataButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        updataButon.setForeground(new java.awt.Color(255, 255, 255));
+        updataButon.setText("Update");
+        updataButon.setBorder(null);
+
+        searchPanel.setPreferredSize(new java.awt.Dimension(130, 40));
+
+        searchButon.setBackground(new java.awt.Color(0, 153, 102));
+        searchButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        searchButon.setForeground(new java.awt.Color(255, 255, 255));
+        searchButon.setText("Search");
+        searchButon.setBorder(null);
+        searchButon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        searchButon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButtonActionPerformed(evt);
+                searchButonActionPerformed(evt);
             }
         });
 
-        historyButton.setBackground(new java.awt.Color(0, 153, 102));
-        historyButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        historyButton.setForeground(new java.awt.Color(255, 255, 255));
-        historyButton.setText("HISTORY");
-        historyButton.setBorder(null);
-        historyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        historyButton.addActionListener(new java.awt.event.ActionListener() {
+        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        searchTextField.setToolTipText("");
+        searchTextField.setAutoscrolls(false);
+        searchTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51), 2));
+        searchTextField.setDoubleBuffered(true);
+        searchTextField.setDragEnabled(true);
+        searchTextField.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historyButtonActionPerformed(evt);
+                searchTextFieldActionPerformed(evt);
             }
         });
 
-        customerOrderButton.setBackground(new java.awt.Color(0, 153, 102));
-        customerOrderButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        customerOrderButton.setForeground(new java.awt.Color(255, 255, 255));
-        customerOrderButton.setText("CUSTOMER ORDER");
-        customerOrderButton.setBorder(null);
-        customerOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        customerOrderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerOrderButtonActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(searchButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(searchButon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
         bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
         bottomHeaderPanelLayout.setHorizontalGroup(
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
         bottomHeaderPanelLayout.setVerticalGroup(
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
         );
 
@@ -226,42 +268,27 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         add(bottomHeaderPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //System.out.println("MENU");
-        this.removeAll();
-        this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new MenuWindow());
-        this.setVisible(true);
-        this.revalidate();
-        this.repaint();
-    }
-    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.removeAll();
-        this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new HistoryWindow());
-        this.setVisible(true);
-        this.revalidate();
-        this.repaint();
-    }
-    private void customerOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        //nameButtonAction = "CUSTOMER ORDER";
-        this.removeAll();
-        this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new CustomerOrderWindow());
-        this.setVisible(true);
-        this.revalidate();
-        this.repaint();
-    }
+    private void searchButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchButonActionPerformed
+
+    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTextFieldActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButon;
     private javax.swing.JPanel bottomHeaderPanel;
     private javax.swing.JLabel contentHeaderLabel;
     private javax.swing.JPanel contentHeaderPanel;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JButton customerOrderButton;
-    private javax.swing.JButton historyButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton menuButton;
-    private javax.swing.JPanel backToManagePanelTemp;
-    private int count = 0;
+    private javax.swing.JButton deleteButon;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton searchButon;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextField searchTextField;
+    private javax.swing.JButton updataButon;
     // End of variables declaration//GEN-END:variables
 }

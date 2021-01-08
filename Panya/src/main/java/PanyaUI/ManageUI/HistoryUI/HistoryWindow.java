@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PanyaUI;
+package PanyaUI.ManageUI.HistoryUI;
+
+import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
 import java.awt.Color;
 /**
  *
  * @author Dao Le Viet Hoang
  */
-public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaContentPanel {
+public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
     Color primaryColor;
     Color darkColor;
@@ -70,7 +72,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
     /**
      * Creates new form OuterContentPanel
      */
-    public CustomerOrderWindow() {
+    public HistoryWindow() {
         initComponents();
     }
 
@@ -93,6 +95,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         addButon = new javax.swing.JButton();
         deleteButon = new javax.swing.JButton();
         updataButon = new javax.swing.JButton();
+        saleOffButon = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         searchButon = new javax.swing.JButton();
         searchTextField = new javax.swing.JTextField();
@@ -106,7 +109,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         contentHeaderLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         contentHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
         contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("CUSTOMER ORDER");
+        contentHeaderLabel.setText("HISTORY");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -134,13 +137,13 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "No", "Name", "Phone", "Address", "Name Cake", "Quantity", "Sell Off", "Price"
+                "No", "ID", "Quantity", "Sell Off", "Price"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -153,7 +156,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -186,7 +189,13 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         updataButon.setText("Update");
         updataButon.setBorder(null);
 
-        searchPanel.setPreferredSize(new java.awt.Dimension(130, 40));
+        saleOffButon.setBackground(new java.awt.Color(255, 153, 0));
+        saleOffButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        saleOffButon.setForeground(new java.awt.Color(255, 255, 255));
+        saleOffButon.setText("Statistic");
+        saleOffButon.setBorder(null);
+
+        searchPanel.setPreferredSize(new java.awt.Dimension(160, 40));
 
         searchButon.setBackground(new java.awt.Color(0, 153, 102));
         searchButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
@@ -219,13 +228,13 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(searchButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(searchButon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -240,9 +249,11 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
                 .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
                 .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(saleOffButon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7))
         );
         bottomHeaderPanelLayout.setVerticalGroup(
             bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,6 +261,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
                 .addGap(3, 3, 3)
                 .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                    .addComponent(saleOffButon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,6 +296,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
     private javax.swing.JButton deleteButon;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton saleOffButon;
     private javax.swing.JButton searchButon;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextField;

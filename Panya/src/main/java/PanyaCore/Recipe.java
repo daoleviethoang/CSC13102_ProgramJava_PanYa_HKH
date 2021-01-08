@@ -158,6 +158,14 @@ public class Recipe {
         return "REC-" + getLastId(recipes);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof String) {
+            return this.id.equals(obj);
+        }
+        return this.id.equals(((Recipe)obj).id);
+    }
+
     public static void main(String[] args) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 

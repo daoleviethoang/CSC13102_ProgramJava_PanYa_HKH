@@ -1,12 +1,14 @@
 [
     {"recipe": {
         "note": "",
-        "productId": ["PYC-001"],
+        "productId": [],
         "visibility": true,
-        "name": "banh-mi",
+        "name": "banh-mi hihi",
         "ingredients": [{
             "unit": "gram",
             "quantity": "9",
+            "count_sta": 0,
+            "name": "",
             "id": "ING-001"
         }],
         "description": "banh mi recipe made by mom",
@@ -21,12 +23,14 @@
             {
                 "unit": "kilograms",
                 "quantity": "0.5",
+                "count_sta": 0,
                 "name": "",
                 "id": "ING-004"
             },
             {
                 "unit": "kilograms",
                 "quantity": "0.002",
+                "count_sta": 0,
                 "name": "",
                 "id": "ING-005"
             }

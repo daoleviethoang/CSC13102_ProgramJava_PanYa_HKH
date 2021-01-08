@@ -1,13 +1,18 @@
 package PanyaUI.RecipeUI;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MouseInputAdapter;
+import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
 
 import PanyaCore.Recipe;
+import java.awt.Color;
 
 public class RecipeMainPanel extends RecipeMainPanelBase {
 
@@ -51,6 +56,11 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         }
     }
 
+    public void initTheme(Color primary, Color light, Color dark) {
+        super.initTheme(primary, light, dark);
+        this.recipeWindow.initTheme(primary, light, dark);
+    }
+
     void initComponents() {
         this.recipeModel = (DefaultTableModel) this.recipeTable.getModel();
         this.secretRecipeModel = (DefaultTableModel) this.secretRecipeTable.getModel();
@@ -64,6 +74,19 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         this.addRecipeButton.addActionListener(e -> {
             this.recipeWindow.setVisible(true);
             this.recipeWindow.addNewRecipeView();
+        });
+
+        this.recipeTable.addMouseListener(new MouseInputAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    var row = recipeTable.getSelectedRow();
+                    if (row != -1) {
+                        var r = recipes.get(row);
+                        recipeWindow.viewAndEditRecipeView(r);
+                    }
+                }
+            }
         });
     }
 

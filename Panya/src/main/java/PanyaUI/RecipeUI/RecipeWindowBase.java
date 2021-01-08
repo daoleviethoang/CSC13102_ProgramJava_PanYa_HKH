@@ -88,7 +88,16 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         this.contentHeaderPanel.setBackground(primaryColor);
         // this.contentPanel;
         // this.outerContentPanel;
-
+        this.editButton.setBackground(primaryColor);
+        this.editButton.setForeground(primaryTextColor);
+        this.removeButton.setBackground(primaryColor);
+        this.removeButton.setForeground(primaryTextColor);
+        this.saveButton.setBackground(primaryColor);
+        this.saveButton.setForeground(primaryTextColor);
+        this.addIngredientButton.setBackground(primaryColor);
+        this.addIngredientButton.setForeground(primaryTextColor);
+        this.removeIngredientButton.setBackground(primaryColor);
+        this.removeIngredientButton.setForeground(primaryTextColor);
     }
 
     /** This method is called from within the constructor to

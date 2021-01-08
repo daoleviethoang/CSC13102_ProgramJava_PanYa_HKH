@@ -18,6 +18,10 @@ import java.awt.Color;
  */
 public class ManageWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5931480706336928863L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -78,6 +82,11 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
      */
     public ManageWindow() {
         initComponents();
+    }
+
+    public ManageWindow(Color primary, Color light, Color dark) {
+        initComponents();
+        initTheme(primary, light, dark);
     }
 
     /**
@@ -235,7 +244,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         //System.out.println("MENU");
         this.removeAll();
         this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new MenuWindow());
+        this.add(new MenuWindow(primaryColor, lightColor, darkColor));
         this.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -243,7 +252,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.removeAll();
         this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new HistoryWindow());
+        this.add(new HistoryWindow(primaryColor, lightColor, darkColor));
         this.setVisible(true);
         this.revalidate();
         this.repaint();
@@ -252,7 +261,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         //nameButtonAction = "CUSTOMER ORDER";
         this.removeAll();
         this.setLayout(new javax.swing.OverlayLayout(this));
-        this.add(new CustomerOrderWindow());
+        this.add(new CustomerOrderWindow(primaryColor, lightColor, darkColor));
         this.setVisible(true);
         this.revalidate();
         this.repaint();

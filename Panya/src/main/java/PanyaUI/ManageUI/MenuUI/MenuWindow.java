@@ -7,7 +7,6 @@ import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
 import java.awt.Color;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
@@ -27,6 +25,10 @@ import javax.swing.event.ChangeEvent;
 
 public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 3424060310827836268L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -89,9 +91,14 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
      * Creates new form OuterContentPanel
      */
     public MenuWindow() {
-
         setListMaxQuantity(menuData);
         initComponents();
+    }
+
+    public MenuWindow(Color primary, Color light, Color dark) {
+        setListMaxQuantity(menuData);
+        initComponents();
+        initTheme(primary, light, dark);
     }
 
     /**

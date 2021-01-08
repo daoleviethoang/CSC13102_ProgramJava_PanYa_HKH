@@ -12,6 +12,11 @@ package PanyaUI.ManageUI.MenuUI;
 public class AddMenuForm extends javax.swing.JPanel {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = 6073323533093989849L;
+
+    /**
      * Creates new form AddMenuForm
      */
     public AddMenuForm() {

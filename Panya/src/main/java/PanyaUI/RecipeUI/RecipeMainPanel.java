@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import PanyaCore.Ingredient;
 import PanyaCore.Recipe;
 
 public class RecipeMainPanel extends RecipeMainPanelBase {
@@ -40,7 +39,6 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     }
 
     void initTable() {
-        int no = 1;
         // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật
         for (int i = 0; i < 4; i++) {
             this.recipeModel.removeRow(0);

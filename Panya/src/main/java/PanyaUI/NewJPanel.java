@@ -12,6 +12,11 @@ package PanyaUI;
 public class NewJPanel extends javax.swing.JPanel {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = -7782096804762756496L;
+
+    /**
      * Creates new form NewJPanel
      */
     public NewJPanel() {

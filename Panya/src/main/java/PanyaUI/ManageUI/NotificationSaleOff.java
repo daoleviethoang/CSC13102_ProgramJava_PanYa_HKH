@@ -12,6 +12,11 @@ package PanyaUI.ManageUI;
 public class NotificationSaleOff extends javax.swing.JPanel {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = 4354768659029631005L;
+
+    /**
      * Creates new form NotificationSaleOff
      */
     public NotificationSaleOff() {

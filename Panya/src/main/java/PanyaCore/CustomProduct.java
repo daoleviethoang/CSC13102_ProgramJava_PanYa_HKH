@@ -1,6 +1,5 @@
 package PanyaCore;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,10 +13,11 @@ public class CustomProduct extends Product {
     String customerName;
     String customerPhoneNumber;
 
-    public CustomProduct(String name, String id, String note, BigDecimal price, BigDecimal sellOff, int quantity,
+    // String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note, String image
+    public CustomProduct(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff, String note,
             BigDecimal customPrice, String customerName, String customerPhoneNumber) throws NullPointerException {
 
-        super(name, id, price, quantity, sellOff, note);
+        super(id, name, price, quantity, sellOff, note, null);
         this.customPrice = customPrice;
         this.customerName = customerName;
         this.customerPhoneNumber = customerPhoneNumber;

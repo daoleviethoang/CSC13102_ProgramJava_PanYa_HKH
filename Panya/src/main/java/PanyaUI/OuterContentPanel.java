@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package PanyaUI;
-import PanyaUI.Theme;
 import java.awt.Color;
 /**
  *
@@ -12,6 +11,10 @@ import java.awt.Color;
  */
 public class OuterContentPanel extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8660300770576249499L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;

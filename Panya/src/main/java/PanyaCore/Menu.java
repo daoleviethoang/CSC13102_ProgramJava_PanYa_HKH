@@ -59,7 +59,7 @@ public class Menu {
         try {
             menuDetail = (JSONObject) menuJsonObject.getJSONObject("menu");
 
-            var sellOff = menuDetail.getBigDecimal("sellOf");
+            var sellOff = menuDetail.getBigDecimal("sellOff");
             var products = JsonDataUtils.toObjectList(menuDetail.getJSONArray("products"),
                     Product::parseProductJSONObject);
 

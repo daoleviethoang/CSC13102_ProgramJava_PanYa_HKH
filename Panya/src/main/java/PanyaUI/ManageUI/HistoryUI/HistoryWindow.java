@@ -14,6 +14,10 @@ import java.awt.Color;
  */
 public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2528333323062254137L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -75,6 +79,12 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
     public HistoryWindow() {
         initComponents();
     }
+
+    public HistoryWindow(Color primary, Color light, Color dark) {
+        initComponents();
+        initTheme(primary, light, dark);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

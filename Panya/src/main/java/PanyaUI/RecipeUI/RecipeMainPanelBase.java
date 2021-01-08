@@ -10,7 +10,6 @@ import PanyaUI.Theme;
 import java.awt.Color;
 import java.awt.event.*;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -99,7 +98,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.privateLabel.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                var pass = JOptionPane.showInputDialog(frame, "Input your password");
+                JOptionPane.showInputDialog(frame, "Input your password");
                 if (true){
                     // TODO: password validation
                     publicLabel.setForeground(lightTextColor);

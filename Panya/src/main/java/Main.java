@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 
 import PanyaUI.Theme;
 import mdlaf.MaterialLookAndFeel;
-import mdlaf.utils.MaterialColors;
 
 /**
  *
@@ -22,9 +18,9 @@ public class Main {
         // } catch (Exception ignored) {
 
         // }
-        var themeName = "blue";
+        var themeName = "green";
         var theme = new Theme().getTheme(themeName);
-        var light = new ColorUIResource(theme.get("300"));
+        // var light = new ColorUIResource(theme.get("300"));
         var primary = new ColorUIResource(theme.get("500"));
         var dark = new ColorUIResource(theme.get("800"));
         var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));

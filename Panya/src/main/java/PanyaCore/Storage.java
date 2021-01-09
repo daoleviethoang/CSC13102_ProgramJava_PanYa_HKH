@@ -10,7 +10,7 @@ public class Storage {
     int capacity = 0;
     List<Ingredient> list = new ArrayList<Ingredient>();
 
-    Storage() {
+    public Storage() {
         this.capacity = 0;
     }
 
@@ -22,7 +22,7 @@ public class Storage {
      * @throws NullPointerException khi l <code>null</code>
      * @see PanyaCore.Ingredient
      */
-    Storage(int cap, List<Ingredient> l) throws NullPointerException {
+    public Storage(int cap, List<Ingredient> l) throws NullPointerException {
         this.capacity = cap;
         try {
             this.list = new ArrayList<>(l);

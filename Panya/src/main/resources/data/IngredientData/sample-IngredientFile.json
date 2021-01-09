@@ -1,0 +1,56 @@
+[
+    {"ingredient": {
+        "note": "high quality floor for making cakes",
+        "unit": "kilograms",
+        "quantity": "9.0",
+        "price": "15.0",
+        "count_sta": 0,
+        "name": "flour",
+        "id": "ING-001"
+    }},
+    {"ingredient": {
+        "note": "",
+        "unit": "can",
+        "quantity": "5",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "butter",
+        "id": "ING-002"
+    }},
+    {"ingredient": {
+        "note": "",
+        "unit": "kilograms",
+        "quantity": "20.0",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "Baking Powder",
+        "id": "ING-003"
+    }},
+    {"ingredient": {
+        "note": "",
+        "unit": "kilograms",
+        "quantity": "20.0",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "Sugar",
+        "id": "ING-004"
+    }},
+    {"ingredient": {
+        "note": "",
+        "unit": "kilograms",
+        "quantity": "20.0",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "Salt",
+        "id": "ING-005"
+    }},
+    {"ingredient": {
+        "note": "",
+        "unit": "Lits",
+        "quantity": "20.0",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "Oil",
+        "id": "ING-006"
+    }}
+]

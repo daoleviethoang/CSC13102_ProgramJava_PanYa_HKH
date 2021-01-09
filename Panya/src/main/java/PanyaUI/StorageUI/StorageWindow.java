@@ -15,6 +15,8 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import PanyaCore.*;
+
 /**
  *
  * @author Dao Le Viet Hoang
@@ -28,25 +30,30 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     Color lightTextColor;
     Color darkTextColor;
     boolean randomColor = false;
+    Storage storage;
 
     /**
      * Creates new form OuterContentPanel
      */
     public StorageWindow() {
         initComponents();
-        //
-        Object[] row = {"1", "flour", "5000", "g", "10000", "make bakery", "30"};
-        DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();   
-        //DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
-        model.addRow(row);
-        
-        //edit cell
-        //String name = "sugar";
-        //model.setValueAt(name, 0, 1);
+        final String path = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+        readStorage(path);
         
         
         
+    }
+    public void readStorage(String path) {
         
+        var ingredients = Ingredient.readIngredients(path);
+        int cap = 1000;
+        storage = new Storage(cap, ingredients);
+        
+        DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
+        for(Ingredient i : storage.getList()){
+            Object[] row = {i.getId(), i.getName(), i.getQuantity().toString(), i.getUnit(), i.getPrice().toString(), i.getNote(), i.getCount_sta()};
+            model.addRow(row);            
+        }
     }
     
     public StorageWindow(Color primary, Color light, Color dark, boolean randomColor) {
@@ -642,7 +649,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         });
         ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         ingredientTable.setMaximumSize(new java.awt.Dimension(2147483647, 600));
-        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 100));
+        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 324));
         jScrollPane1.setViewportView(ingredientTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -779,12 +786,23 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
         // TODO add your handling code here:
         addDialog.setVisible(false);
-
         updateDialog.setVisible(false);
         importDialog.setVisible(false);
+
+        //remove
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
+        
         int index = ingredientTable.getSelectedRow();
         String id = model.getValueAt(index, 0).toString();      //lấy id để remove trong system
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                storage.getList().remove(i);
+            }
+        }
+        //write xuong file
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
+
         model.removeRow(ingredientTable.getSelectedRow());
         JOptionPane.showMessageDialog(null, "Selected ingredient deleted successfully");
     }//GEN-LAST:event_DeleteBtnActionPerformed
@@ -808,18 +826,26 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
 
     private void addAddDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAddDialogBtnActionPerformed
         // TODO add your handling code here:
-        //add row
-        
+        // get infor
         String id = idAddDialogTextF.getText();
         String name = nameAddDialogTextF.getText();
         String quantity = quantityAddDialogTextF.getText();
         String unit = unitAddDialogTextF.getText();
         String price = priceAddDialogTextF.getText();
         String note = noteAddDialogTextF.getText();
-        
+
+        //add list
+        Ingredient new_ing = new Ingredient(id, name, new BigDecimal(quantity), unit, new BigDecimal(price), note);
+        new_ing.setCount_sta(0);
+        storage.getList().add(new_ing);
+        //add table
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
-        Object[] row = {id, name, quantity, unit, price, note};
-        model.addRow(row);
+        Object[] row = {new_ing.getId(), new_ing.getName(), new_ing.getQuantity(), new_ing.getUnit(), new_ing.getPrice(), new_ing.getNote(), 
+            new_ing.getCount_sta()};
+        model.addRow(row);    
+
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
 
     }//GEN-LAST:event_addAddDialogBtnActionPerformed
 
@@ -842,12 +868,19 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
         int index = ingredientTable.getSelectedRow();
-        String id = model.getValueAt(index, 0).toString();  //lấy id để import trong system
-
         BigDecimal input_quantity = new BigDecimal(quantityImpDialogTextF.getText());     //chuyển string quantity vừa nhập thành bigdemical
         BigDecimal old_quantity = new BigDecimal(model.getValueAt(index, 2).toString());    //lấy quantity trong table
         BigDecimal new_quan = input_quantity.add(old_quantity); 
+        String id = model.getValueAt(index, 0).toString();  //lấy id để import trong system
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                storage.getList().get(i).setQuantity(new_quan);
+            }
+        }
+
         model.setValueAt(new_quan, ingredientTable.getSelectedRow(), 2);
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
         JOptionPane.showMessageDialog(null, "Selected ingredient imported successfully");
     }//GEN-LAST:event_submitImpDialogBtnActionPerformed
 
@@ -862,22 +895,35 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         String new_price = priceUpdDialogTextF.getText();
         String new_note = noteUpdDialogTextF.getText();
         
-        if(new_name.length() > 0){
-            model.setValueAt(new_name, ingredientTable.getSelectedRow(), 1);
-        }
-        if(new_quantity.length() > 0){
-            model.setValueAt(new_quantity, ingredientTable.getSelectedRow(), 2);
-        }
-        if(new_unit.length() > 0){
-            model.setValueAt(new_unit, ingredientTable.getSelectedRow(), 3);
-        }
-        if(new_price.length() > 0){
-            model.setValueAt(new_price, ingredientTable.getSelectedRow(), 4);
-        }
-        if(new_note.length() > 0){
-            model.setValueAt(new_note, ingredientTable.getSelectedRow(), 5);
-        }
         
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                if(new_name.length() > 0){
+                    model.setValueAt(new_name, ingredientTable.getSelectedRow(), 1);
+                    storage.getList().get(i).setName(new_name);
+                }
+                if(new_quantity.length() > 0){
+                    model.setValueAt(new_quantity, ingredientTable.getSelectedRow(), 2);
+                    storage.getList().get(i).setQuantity(new BigDecimal(new_quantity));
+                }
+                if(new_unit.length() > 0){
+                    model.setValueAt(new_unit, ingredientTable.getSelectedRow(), 3);
+                    storage.getList().get(i).setUnit(new_unit);
+                }
+                if(new_price.length() > 0){
+                    model.setValueAt(new_price, ingredientTable.getSelectedRow(), 4);
+                    storage.getList().get(i).setPrice(new BigDecimal(new_price));
+                }
+                if(new_note.length() > 0){
+                    model.setValueAt(new_note, ingredientTable.getSelectedRow(), 5);
+                    storage.getList().get(i).setNote(new_note);
+                }
+            }
+        }
+        //lưu vào file
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
+
         JOptionPane.showMessageDialog(null, "Selected ingredient updated successfully");
     }//GEN-LAST:event_updateUpdDialogBtnActionPerformed
 

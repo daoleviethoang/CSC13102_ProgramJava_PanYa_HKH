@@ -5,19 +5,25 @@ import PanyaUI.ApplicationWindow;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
+
 import java.awt.Color;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
+
+
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -35,6 +41,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     Color darkTextColor;
 
         //data
+        private List<PanyaCore.Product> products = PanyaCore.Product.readProductList("Panya/src/main/resources/data/ManageData/ProductFile.json");
         private List<PanyaCore.Menu> menuData = ApplicationWindow.getMenu();
 
     /**
@@ -271,8 +278,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
 
 
-
-        //hoi chen
         
         javax.swing.JScrollPane itemScrollPanel = createItemMenuPanel(menuData);
         //subItemScrollPanel.setViewportView(subItemPanel);
@@ -307,18 +312,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         gridBagConstraints.weighty = 0.1;
         add(contentPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-
-    private BigDecimal caculateOriginalPrice(List<PanyaCore.Menu> dataAdd)
-    {
-        BigDecimal result = new BigDecimal("");
-        for(int i = 0; i < dataAdd.size(); i++)
-        {
-            //result.add(dataAdd.)
-        }
-
-        return result;
-    }
     private void calculatorPayment()
     {
         double totalPayment = 0.0;
@@ -617,109 +610,101 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         subItemPanel.add(Box.createVerticalStrut(5));
         subItemScrollPanel.setViewportView(subItemPanel);
     }
-    private javax.swing.JScrollPane createItemMenuPanel(List<PanyaCore.Menu> menuData)
+    public javax.swing.JPanel createPanel(int i)
     {
-
         itemScrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         itemScrollPanel.setPreferredSize(new java.awt.Dimension(130, 400));
 
 
-        List<javax.swing.JPanel> containItemPanel = new ArrayList<javax.swing.JPanel>();
-        List<javax.swing.JLabel> nameItemLabel = new ArrayList<javax.swing.JLabel>();
-        List<javax.swing.JLabel> imgItemLabel = new ArrayList<javax.swing.JLabel>();
-        List<javax.swing.JLabel> priceItemLabel = new ArrayList<javax.swing.JLabel>();
-        List<javax.swing.JButton> addItemButton = new ArrayList<javax.swing.JButton>();
-        List<javax.swing.JLabel> slItemLabel = new ArrayList<javax.swing.JLabel>();
-        List<javax.swing.JLabel> saleLabel = new ArrayList<javax.swing.JLabel>();
-        List<javax.swing.GroupLayout> itemPanelLayout = new ArrayList<javax.swing.GroupLayout>();
+        javax.swing.JPanel containItemPanel = new javax.swing.JPanel();
+        javax.swing.JLabel nameItemLabel = new javax.swing.JLabel();
+        javax.swing.JLabel imgItemLabel = new javax.swing.JLabel();
+        javax.swing.JLabel priceItemLabel = new javax.swing.JLabel();
+        javax.swing.JButton addItemButton = new javax.swing.JButton();
+        javax.swing.JLabel slItemLabel = new javax.swing.JLabel();
+        javax.swing.JLabel saleLabel = new javax.swing.JLabel();
+        javax.swing.GroupLayout itemPanelLayout;
 
-        containItemPanel.clear();
-        for(int i = 0; i < menuData.get(0).getProducts().size(); i++)
-        {
-            containItemPanel.add(new javax.swing.JPanel());
-            containItemPanel.get(i).setBackground(new java.awt.Color(255, 255, 255));
-            containItemPanel.get(i).setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
-            containItemPanel.get(i).setPreferredSize(new java.awt.Dimension(210, 250));
+            containItemPanel.setBackground(new java.awt.Color(255, 255, 255));
+            containItemPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
+            containItemPanel.setPreferredSize(new java.awt.Dimension(210, 250));
 
-            nameItemLabel.add(new javax.swing.JLabel());
-            nameItemLabel.get(i).setBackground(new java.awt.Color(255, 255, 255));
-            nameItemLabel.get(i).setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-            nameItemLabel.get(i).setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            nameItemLabel.get(i).setText(menuData.get(0).getProducts().get(i).getName());
-            nameItemLabel.get(i).setOpaque(true);
+            nameItemLabel.setBackground(new java.awt.Color(255, 255, 255));
+            nameItemLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+            nameItemLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            nameItemLabel.setText(menuData.get(0).getProducts().get(i).getName());
+            nameItemLabel.setOpaque(true);
 
-            imgItemLabel.add(new javax.swing.JLabel());
-            imgItemLabel.get(i).setBackground(new java.awt.Color(204, 204, 204));
-            imgItemLabel.get(i).setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            imgItemLabel.get(i).setIcon(new javax.swing.ImageIcon(menuData.get(0).getProducts().get(i).getImage())); // NOI18N
-            imgItemLabel.get(i).setOpaque(true);
+            imgItemLabel.setBackground(new java.awt.Color(204, 204, 204));
+            imgItemLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            imgItemLabel.setIcon(new javax.swing.ImageIcon(menuData.get(0).getProducts().get(i).getImage())); // NOI18N
+            imgItemLabel.setOpaque(true);
 
-            priceItemLabel.add(new javax.swing.JLabel());
-            priceItemLabel.get(i).setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-            priceItemLabel.get(i).setForeground(new java.awt.Color(0, 153, 153));
-            priceItemLabel.get(i).setText("Price: " + menuData.get(0).getProducts().get(i).getPriceString());
+            priceItemLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+            priceItemLabel.setForeground(new java.awt.Color(0, 153, 153));
+            priceItemLabel.setText("Price: " + menuData.get(0).getProducts().get(i).getPriceString());
 
-            addItemButton.add(new javax.swing.JButton());
-            addItemButton.get(i).setBackground(new java.awt.Color(255, 204, 51));
-            addItemButton.get(i).setText("ADD");
-            addItemButton.get(i).setBorder(null);
-            addItemButton.get(i).addActionListener(new java.awt.event.ActionListener() {
+            addItemButton.setBackground(new java.awt.Color(255, 204, 51));
+            addItemButton.setText("ADD");
+            addItemButton.setBorder(null);
+            addItemButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     item1AddButtonActionPerformed(evt);
                 }
             });
             
-            slItemLabel.add(new javax.swing.JLabel());
-            slItemLabel.get(i).setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-            slItemLabel.get(i).setText("SL: " + menuData.get(0).getProducts().get(i).getQuantity());
+            slItemLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+            slItemLabel.setText("SL: " + menuData.get(0).getProducts().get(i).getQuantity());
 
-            saleLabel.add(new javax.swing.JLabel());
-            saleLabel.get(i).setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-            saleLabel.get(i).setForeground(new java.awt.Color(255, 0, 51));
-            saleLabel.get(i).setText("Sale: " + menuData.get(0).getProducts().get(i).getSellOffString());
+            saleLabel.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+            saleLabel.setForeground(new java.awt.Color(255, 0, 51));
+            saleLabel.setText("Sale: " + menuData.get(0).getProducts().get(i).getSellOffString());
 
-            itemPanelLayout.add(new javax.swing.GroupLayout(containItemPanel.get(i)));
-            containItemPanel.get(i).setLayout(itemPanelLayout.get(i));
-            itemPanelLayout.get(i).setHorizontalGroup(
-                itemPanelLayout.get(i).createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(itemPanelLayout.get(i).createSequentialGroup()
+            itemPanelLayout = new javax.swing.GroupLayout(containItemPanel);
+            containItemPanel.setLayout(itemPanelLayout);
+            itemPanelLayout.setHorizontalGroup(
+                itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(itemPanelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(itemPanelLayout.get(i).createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(itemPanelLayout.get(i).createSequentialGroup()
-                            .addComponent(priceItemLabel.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(itemPanelLayout.createSequentialGroup()
+                            .addComponent(priceItemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(0, 0, 0)
-                            .addComponent(addItemButton.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(itemPanelLayout.get(i).createSequentialGroup()
-                            .addComponent(nameItemLabel.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(itemPanelLayout.createSequentialGroup()
+                            .addComponent(nameItemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) //cho nay fix size 30 = 186, 236, 
-                            .addComponent(saleLabel.get(i))
+                            .addComponent(saleLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(slItemLabel.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(imgItemLabel.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(slItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(imgItemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
             );
-            itemPanelLayout.get(i).setVerticalGroup(
-                itemPanelLayout.get(i).createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(itemPanelLayout.get(i).createSequentialGroup()
-                    .addGroup(itemPanelLayout.get(i).createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(nameItemLabel.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(saleLabel.get(i))
-                        .addComponent(slItemLabel.get(i)))
+            itemPanelLayout.setVerticalGroup(
+                itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(itemPanelLayout.createSequentialGroup()
+                    .addGroup(itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saleLabel)
+                        .addComponent(slItemLabel))
                     .addGap(0, 0, 0)                            ////.addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .addComponent(imgItemLabel.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imgItemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(0, 0, 0)
-                    .addGroup(itemPanelLayout.get(i).createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addItemButton.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(priceItemLabel.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addItemButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(priceItemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
             );
-        }
+        return containItemPanel;
+    }
+    private javax.swing.JScrollPane createItemMenuPanel(List<PanyaCore.Menu> menuData)
+    {
         java.awt.GridLayout layout = new java.awt.GridLayout(0,2);
         layout.setHgap(5);
         layout.setVgap(5);
         itemPanel.setLayout(layout);
-        for(int i = 0; i < containItemPanel.size(); i++)
+        for(int i = 0; i < menuData.get(0).getProducts().size(); i++)
         {
-            itemPanel.add(containItemPanel.get(i));
+            itemPanel.add(createPanel(i));
         }
         itemPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
@@ -733,7 +718,10 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     private void searchButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchButonActionPerformed
-
+    private void addButonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        createAddForm();
+    }
     private void deleteItemAddMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItemAddMenuButtonActionPerformed
         // TODO add your handling code here:
         JButton button = (JButton)evt.getSource();
@@ -809,15 +797,358 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         }
         subItemScrollPanel.setViewportView(subItemPanel);
         calculatorPayment();
-    }//GEN-LAST:event_deleteItemAddMenuButtonActionPerformed
-    private void addButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButonActionPerformed
+    }
+    public Boolean checkImage(String fileName)
+    {
+        return true;
+    }
+    public void createAddForm() 
+    { 
+        java.awt.Container c;
+        javax.swing.JLabel title;
+        javax.swing.JLabel ID;
+        javax.swing.JLabel name; 
+        javax.swing.JLabel price; 
+        javax.swing.JLabel quantity; 
+
+        javax.swing.JLabel SaleOff; 
+        javax.swing.JSpinner tSaleOff; 
+
+        javax.swing.JLabel image; 
+        javax.swing.JTextField timage;
+        javax.swing.JButton cimage;
+ 
+        javax.swing.JButton sub; 
+        javax.swing.JButton reset; 
+        javax.swing.JButton check; 
+        javax.swing.JLabel res; 
+        javax.swing.JTextArea resadd; 
+        JFrame addFrame = new JFrame();
+        addFrame.setTitle("Registration Form"); 
+        addFrame.setBounds(300, 90, 900, 600); 
+        addFrame.setResizable(false); 
+  
+        c = addFrame.getContentPane(); 
+        c.setLayout(null); 
+  
+        title = new javax.swing.JLabel("ADD FORM"); 
+        title.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 30)); 
+        title.setSize(300, 30); 
+        title.setLocation(300, 30); 
+        c.add(title); 
+  
+        ID = new javax.swing.JLabel("ID"); 
+        ID.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        ID.setSize(100, 30); 
+        ID.setLocation(100, 100); 
+        c.add(ID); 
+  
+        tID = new javax.swing.JTextField(); 
+        tID.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        tID.setSize(200, 30); 
+        tID.setLocation(200, 100); 
+        c.add(tID); 
+  
+        name = new javax.swing.JLabel("Name"); 
+        name.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        name.setSize(100, 30); 
+        name.setLocation(100, 150); 
+        c.add(name); 
+  
+        tname = new javax.swing.JTextField();    
+        tname.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        tname.setSize(200, 30); 
+        tname.setLocation(200, 150); 
+        c.add(tname); 
+  
+        price = new javax.swing.JLabel("Price"); 
+        price.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        price.setSize(100, 30); 
+        price.setLocation(100, 200); 
+        c.add(price); 
+  
+        tprice = new javax.swing.JTextField();    
+        tprice.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        tprice.setSize(200, 30); 
+        tprice.setLocation(200, 200); 
+        c.add(tprice); 
+
+        quantity = new javax.swing.JLabel("Quantity"); 
+        quantity.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        quantity.setSize(100, 30); 
+        quantity.setLocation(100, 250); 
+        c.add(quantity); 
+  
+        tquantity = new javax.swing.JSpinner();
+        tquantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null , 1));
+        tquantity.setSize(100, 30);
+        tquantity.setLocation(200, 250);
+        c.add(tquantity);
+
+        SaleOff = new javax.swing.JLabel("Sale Off"); 
+        SaleOff.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        SaleOff.setSize(100, 30); 
+        SaleOff.setLocation(100, 300); 
+        c.add(SaleOff); 
+  
+        tSaleOff = new javax.swing.JSpinner();
+        tSaleOff.setModel(new javax.swing.SpinnerNumberModel(0.0, 0.0, 1.0 , 0.1));
+        tSaleOff.setSize(100, 30);
+        tSaleOff.setLocation(200, 300);
+        c.add(tSaleOff);
+  
+        image = new javax.swing.JLabel("Image"); 
+        image.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        image.setSize(100, 30); 
+        image.setLocation(100, 350); 
+        c.add(image); 
+
+        timage = new javax.swing.JTextField(); 
+        timage.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        timage.setSize(200, 30); 
+        timage.setLocation(200, 350); 
+        c.add(timage);       
+
+        showImg = new javax.swing.JLabel(); 
+        showImg.setBackground(new java.awt.Color(150,150,200)); 
+        showImg.setSize(300, 176); 
+        showImg.setLocation(500, 300);
+        // showImg.setIcon(new javax.swing.ImageIcon("Panya\\src\\main\\resources\\images\\Donut.jpg"));
+        c.add(showImg);
+
+        cimage = new javax.swing.JButton("...");
+        cimage.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        cimage.setSize(50, 30); 
+        cimage.setLocation(405, 350);
+        cimage.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                javax.swing.JFileChooser jChooser = new javax.swing.JFileChooser(new File("Panya\\src\\main\\resources\\images\\"));
+                int r = jChooser.showSaveDialog(null);
+                if (r == javax.swing.JFileChooser.APPROVE_OPTION) 
+                { 
+                    timage.setText(jChooser.getSelectedFile().getAbsolutePath());
+                    try
+                    {
+                        showImg.setIcon(new javax.swing.ImageIcon(jChooser.getSelectedFile().getAbsolutePath()));
+                    }catch(Exception e)
+                    {
+                        showImg.setText("Cannot upload image");
+                    }
+                } 
+                // if the user cancelled the operation 
+                else
+                    timage.setText("the user cancelled the operation"); 
+            }
+        });
+        c.add(cimage);
+
+        check = new javax.swing.JButton("Check"); 
+        check.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        check.setSize(100, 30); 
+        check.setLocation(390, 450); 
+        check.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                showImg.setText("");
+                showImg.setIcon(null);
+                String sNotify = "";
+                boolean flag = true;
+                tout.setText("");
+                try{
+                    if(tID.getText().isEmpty() == true)
+                    {
+                        int throwE = 5 / 0;
+                    }
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify + "ID: " + "Re-Enter ID." + "\n";
+                }
+                try{
+                    if(tname.getText().isEmpty() == true)
+                    {
+                        int throwE = 5 / 0;
+                    }
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify +"Name: Re-Enter Name."+"\n";
+                }
+
+                try{
+                    Double.parseDouble(tprice.getText());
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify +"Price: Here you must enter number."+"\n";
+                }
+                try{
+                    File file = new File(timage.getText());
+                    if(ImageIO.read(file) == null){}
+                    String s1 = "ID: " + tID.getText() + "\n" + 
+                    "Name: " + tname.getText() + "\n" + 
+                    "Price: " + tprice.getText() + "\n" +
+                    "Quantity: " + tquantity.getValue() + "\n" +
+                    "Sale Off: " + tSaleOff.getValue() + "\n";
+                    tout.setText(s1);
+                    showImg.setIcon(new javax.swing.ImageIcon(timage.getText()));
+                }catch(Exception e)
+                {
+                    flag = false;
+                    showImg.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+                    showImg.setText("Cannot upload image");
+                }
+                if(flag == true){
+                    String s1 = "ID: " + tID.getText() + "\n" + 
+                    "Name: " + tname.getText() + "\n" + 
+                    "Price: " + tprice.getText() + "\n" +
+                    "Quantity: " + tquantity.getValue() + "\n" +
+                    "Sale Off: " + tSaleOff.getValue() + "\n";
+                    tout.setText(s1);
+                }
+                else{
+                    tout.setText(sNotify);
+                }            
+            }
+        });        
+        c.add(check); 
+  
+        sub = new javax.swing.JButton("Add"); 
+        sub.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        sub.setSize(100, 30); 
+        sub.setLocation(150, 450); 
+
+        sub.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                String sNotify = "";
+                showImg.setText("");
+                showImg.setIcon(null);
+                tout.setText("");    
+                boolean flag = true;
+                try{
+                    if(tID.getText().isEmpty() == true)
+                    {
+                        int throwE = 5 / 0;
+                    }
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify + "ID: " + "Re-Enter ID." + "\n";
+                }
+                try{
+                    if(tname.getText().isEmpty() == true)
+                    {
+                        int throwE = 5 / 0;
+                    }
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify +"Name: Re-Enter Name."+"\n";
+                }
+
+                try{
+                    Double.parseDouble(tprice.getText());
+                }catch(Exception e)
+                {
+                    flag = false;
+                    sNotify = sNotify +"Price: Here you must enter number."+"\n";
+                }
+                try{
+                    File file = new File(timage.getText());
+                    if(ImageIO.read(file) == null){}                
+                }catch(Exception e)
+                {
+                    flag = false;
+                    showImg.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20));
+                    showImg.setText("Cannot upload image");
+                }
+                if(flag == true){
+                    String s1 = "ID: " + tID.getText() + "\n" + 
+                    "Name: " + tname.getText() + "\n" + 
+                    "Price: " + tprice.getText() + "\n" +
+                    "Quantity: " + tquantity.getValue() + "\n" +
+                    "Sale Off: " + tSaleOff.getValue() + "\n";
+                    tout.setText(s1);
+                    showImg.setIcon(new javax.swing.ImageIcon(timage.getText()));   
+                    //goi ham tao component va add vao menu
+                    BigDecimal bigPrice = new BigDecimal(tprice.getText());
+                    int Iquantity = (int)tquantity.getValue();
+                    BigDecimal IsaleOff = new BigDecimal((tSaleOff.getValue() + ""));
+                    PanyaCore.Product p = new PanyaCore.Product(tID.getText(), tname.getText(), bigPrice, Iquantity, IsaleOff,  " ", timage.getText());
+                    menuData.get(0).getProducts().add(p);
+                    products.add(p);
+                    itemPanel.add(createPanel(menuData.get(0).getProducts().size() - 1));
+                    itemScrollPanel.setViewportView(itemPanel);
+                    addFrame.setVisible(false); //you can't see me!
+                    PanyaCore.Menu.saveCustomProductList("Panya/src/main/resources/data/ManageData/MenuFile.json", menuData);
+                    PanyaCore.Product.saveProductList("Panya/src/main/resources/data/ManageData/ProductFile.json", products);                
+                }
+                else{
+                    tout.setText(sNotify);
+                }
+            }
+        });
+        c.add(sub); 
+  
+        reset = new javax.swing.JButton("Reset"); 
+        reset.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        reset.setSize(100, 30); 
+        reset.setLocation(270, 450); 
+        reset.addActionListener(new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt){
+                tID.setText("");
+                tname.setText("");
+                tprice.setText("");
+                tquantity.setValue(1);
+                tSaleOff.setValue(0);
+                timage.setText("");
+
+                showImg.setText("");
+                showImg.setIcon(null);
+                tout.setText("");            
+            }
+        });        
+        c.add(reset); 
+  
+        tout = new javax.swing.JTextArea(); 
+        tout.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        tout.setSize(300, 180); 
+        tout.setLocation(500, 100); 
+        tout.setLineWrap(true); 
+        tout.setEditable(false); 
+        c.add(tout); 
+  
+        res = new javax.swing.JLabel(""); 
+        res.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 20)); 
+        res.setSize(500, 25); 
+        res.setLocation(100, 500); 
+        c.add(res); 
+  
+        resadd = new javax.swing.JTextArea(); 
+        resadd.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 15)); 
+        resadd.setSize(200, 75); 
+        resadd.setLocation(580, 175); 
+        resadd.setLineWrap(true); 
+        c.add(resadd); 
+  
+        addFrame.setVisible(true); 
+    } 
+    private void settingActionAddForm(java.awt.event.ActionEvent evt) {
+        return;
+    }
+    private void settingActionResetForm(java.awt.event.ActionEvent evt) {
+        return;
+    }
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         java.awt.Component[] spParent = itemPanel.getComponents();
-        List<PanyaCore.Product> products = PanyaCore.Product.readProductList("Panya/src/main/resources/data/ManageData/ProductFile.json");
         int check = 0;
+        List<Integer> lstIndexOfRemove = new ArrayList<Integer>();
         for(java.awt.Component spPanel: spParent)
         {
             if(spPanel instanceof javax.swing.JPanel)
@@ -842,17 +1173,26 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
                         if(text.contains("SL:") == true)
                         {
                             String[] txtSplit = text.split(": ");
-                            //System.out.println(txtSplit[1]);
                             int quantity = Integer.parseInt(txtSplit[1]);
+                            if(quantity == 0)
+                            {
+                                lstIndexOfRemove.add(indexOfThisPanel);
+                                break;
+                            }
                             menuData.get(0).getProducts().get(indexOfThisPanel).setQuantity(quantity);
                             products.get(indexOfThisPanel).setQuantity(quantity);
-                            //System.out.println(products.get(indexOfThisPanel).getQuantity());
-                            //System.out.println(menuData.get(0).getProducts().get(indexOfThisPanel).getQuantity());
                             break;
                         }
                     }
                 }                
             }
+        }
+        for(int i = 0; i < lstIndexOfRemove.size(); i++)
+        {
+            menuData.get(0).getProducts().remove((int)lstIndexOfRemove.get(i));
+            products.remove((int)lstIndexOfRemove.get(i));
+            itemPanel.remove((int)lstIndexOfRemove.get(i));
+            itemPanel.repaint();
         }
         //Nhớ mở lên khi nộp bài, hoặc báo cáo đồ án.
         PanyaCore.Menu.saveCustomProductList("Panya/src/main/resources/data/ManageData/MenuFile.json", menuData);
@@ -932,7 +1272,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextField;
 
-    private List<PanyaCore.Menu> dataCart = new ArrayList<PanyaCore.Menu>();
     static int countSL = 1;
 
     //private javax.swing.JScrollPane subItemScrollPanel;
@@ -946,4 +1285,12 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     List<Integer> listMaxQuantity = new ArrayList<Integer>();
 
     private javax.swing.JPanel paymentPanel = new javax.swing.JPanel();
+    private javax.swing.JTextArea tout; 
+    private javax.swing.JLabel showImg;
+    private javax.swing.JTextField tID;
+    private javax.swing.JTextField tname; 
+    private javax.swing.JTextField tprice; 
+    private javax.swing.JSpinner tquantity; 
+
+
 }

@@ -71,7 +71,7 @@ public class JsonDataUtils {
             var fileContent = new String(Files.readAllBytes(Path.of(path)));
             var jsonList = new JSONArray(fileContent);
 
-            System.out.println(jsonList.toString(4));
+            //System.out.println(jsonList.toString(4));
 
             List<T> list = new ArrayList<>();
 

@@ -95,8 +95,9 @@ public class RecipeWindow extends RecipeWindowBase {
             if (this.parent != null) {
                 this.recipe.setId(Recipe.nextId(this.parent.recipes));
                 this.parent.recipes.add(recipe);
-                this.parent.recipeModel
-                        .addRow(new Object[] { this.recipe.getId(), this.recipe.getName(), this.recipe.getNote() });
+                // this.parent.recipeModel
+                //         .addRow(new Object[] { this.recipe.getId(), this.recipe.getName(), this.recipe.getNote() });
+                this.parent.reloadTableModels();
                 Recipe.saveRecipeList(this.parent.recipeFile, this.parent.recipes);
                 this.setVisible(false);
 
@@ -127,13 +128,12 @@ public class RecipeWindow extends RecipeWindowBase {
                         return;
                     }
                     this.parent.recipes.set(idx, this.recipe);
-
-                    var model = this.parent.recipeModel;
+                    this.parent.reloadTableModels();
 
                     // Gán cứng chữa cháy
-                    model.setValueAt(this.recipe.getId(), idx, 0);
-                    model.setValueAt(this.recipe.getName(), idx, 1);
-                    model.setValueAt(this.recipe.getNote(), idx, 2);
+                    // model.setValueAt(this.recipe.getId(), idx, 0);
+                    // model.setValueAt(this.recipe.getName(), idx, 1);
+                    // model.setValueAt(this.recipe.getNote(), idx, 2);
                     Recipe.saveRecipeList(this.parent.recipeFile, this.parent.recipes);
 
                     editButton.setText("Edit");
@@ -152,10 +152,9 @@ public class RecipeWindow extends RecipeWindowBase {
             }
 
             // È difficile stare al mondo :<
-            var idx = this.parent.recipes.indexOf(this.recipe);
             this.parent.recipes.remove(this.recipe);
-
-            this.parent.recipeModel.removeRow(idx);
+            this.parent.reloadTableModels();
+           
             Recipe.saveRecipeList(this.parent.recipeFile, this.parent.recipes);
 
             this.setVisible(false);
@@ -193,6 +192,14 @@ public class RecipeWindow extends RecipeWindowBase {
         this.removeButton.setVisible(false);
         this.setEditable(true);
         this.recipe = new Recipe();
+
+    }
+
+
+    public void addNewSecretRecipeView() {
+        this.addNewRecipeView();
+        this.recipe.setVisibility(false);
+        this.loadRecipe(this.recipe);
 
     }
 
@@ -289,23 +296,23 @@ public class RecipeWindow extends RecipeWindowBase {
         });
     }
 
-    public static void main(String[] args) {
-        final String INPUT = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
-        var recipe = Recipe.readRecipeList(INPUT);
+//     public static void main(String[] args) {
+//         final String INPUT = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
+//         var recipe = Recipe.readRecipeList(INPUT);
 
-        final String INGREDIENTS = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
-        var ingredients = Ingredient.readIngredients(INGREDIENTS);
+//         final String INGREDIENTS = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+//         var ingredients = Ingredient.readIngredients(INGREDIENTS);
 
-        var themeName = "blue";
-        var theme = new Theme().getTheme(themeName);
-        var light = new ColorUIResource(theme.get("300"));
-        var primary = new ColorUIResource(theme.get("500"));
-        var dark = new ColorUIResource(theme.get("800"));
-        SwingUtilities.invokeLater(() -> {
-            var recipeWindow = new RecipeWindow(primary, light, dark, false, INGREDIENTS, null);
-            recipeWindow.addNewRecipeView();
-            // recipeWindow.loadRecipe(recipe.get(0));
-            recipeWindow.setVisible(true);
-        });
-    }
+//         var themeName = "blue";
+//         var theme = new Theme().getTheme(themeName);
+//         var light = new ColorUIResource(theme.get("300"));
+//         var primary = new ColorUIResource(theme.get("500"));
+//         var dark = new ColorUIResource(theme.get("800"));
+//         SwingUtilities.invokeLater(() -> {
+//             var recipeWindow = new RecipeWindow(primary, light, dark, false, INGREDIENTS, null);
+//             recipeWindow.addNewRecipeView();
+//             // recipeWindow.loadRecipe(recipe.get(0));
+//             recipeWindow.setVisible(true);
+//         });
+//     }
 }

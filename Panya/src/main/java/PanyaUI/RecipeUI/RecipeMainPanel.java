@@ -1,17 +1,21 @@
 package PanyaUI.RecipeUI;
 
+import java.awt.event.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
-import javax.swing.event.MenuEvent;
+import javax.swing.DefaultRowSorter;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.MouseInputAdapter;
-import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 import PanyaCore.Recipe;
+
 import java.awt.Color;
 
 public class RecipeMainPanel extends RecipeMainPanelBase {
@@ -26,6 +30,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     DefaultTableModel recipeModel;
     DefaultTableModel secretRecipeModel;
     RecipeWindow recipeWindow;
+
 
     String ingredientFile = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
 
@@ -52,7 +57,30 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
 
         for (var recipe : recipes) {
             var rowData = new Object[] { recipe.getId() , recipe.getName(), recipe.getNote() };
-            this.recipeModel.addRow(rowData);
+            if (recipe.getVisibility()) {
+                this.recipeModel.addRow(rowData);
+            }
+            else {
+                this.secretRecipeModel.addRow(rowData);
+            }
+        }
+    }
+
+    public void reloadTableModels() {
+        while (this.recipeModel.getRowCount() != 0) {
+            this.recipeModel.removeRow(0);
+        }
+        while (this.secretRecipeModel.getRowCount() != 0) {
+            this.secretRecipeModel.removeRow(0);
+        }
+        for (var recipe : recipes) {
+            var rowData = new Object[] { recipe.getId() , recipe.getName(), recipe.getNote() };
+            if (recipe.getVisibility()) {
+                this.recipeModel.addRow(rowData);
+            }
+            else {
+                this.secretRecipeModel.addRow(rowData);
+            }
         }
     }
 
@@ -61,7 +89,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         this.recipeWindow.initTheme(primary, light, dark);
     }
 
-    void initComponents() {
+    void initComponents() {  
         this.recipeModel = (DefaultTableModel) this.recipeTable.getModel();
         this.secretRecipeModel = (DefaultTableModel) this.secretRecipeTable.getModel();
         this.recipeWindow = new RecipeWindow(this.primaryColor, this.lightColor, this.darkColor, false,
@@ -70,10 +98,43 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     }
 
     void initAction() {
-        super.initAction();
+        this.publicLabel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                publicLabel.setForeground(primaryTextColor);
+                publicLabel.setBackground(primaryColor);
+                privateLabel.setForeground(lightTextColor);
+                privateLabel.setBackground(lightColor);
+                publicLabel.setVisible(true);
+                privatePanel.setVisible(false);
+            }
+        }); 
+        var frame = this;
+
+        this.privateLabel.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showInputDialog(frame, "Input your password");
+                if (true){
+                    // TODO: password validation
+                    publicLabel.setForeground(lightTextColor);
+                    publicLabel.setBackground(lightColor);
+                    privateLabel.setForeground(primaryTextColor);
+                    privateLabel.setBackground(primaryColor);
+                    privatePanel.setVisible(true);
+                    publicPanel.setVisible(false);
+                }
+            }
+        });
+        
         this.addRecipeButton.addActionListener(e -> {
             this.recipeWindow.setVisible(true);
             this.recipeWindow.addNewRecipeView();
+        });
+
+        this.addSecretRecipeButton.addActionListener(e -> {
+            this.recipeWindow.setVisible(true);
+            this.recipeWindow.addNewSecretRecipeView();
         });
 
         this.recipeTable.addMouseListener(new MouseInputAdapter(){
@@ -82,26 +143,97 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 if (e.getClickCount() == 2) {
                     var row = recipeTable.getSelectedRow();
                     if (row != -1) {
-                        var r = recipes.get(row);
+                        var id = (String) recipeTable.getValueAt(row, 0);
+                        var r = recipes.get(recipes.indexOf(new Recipe(id)));
                         recipeWindow.viewAndEditRecipeView(r);
                     }
                 }
             }
         });
-    }
 
-    public static void main(String[] args) {
-        final String recipeFile = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
-        // var recipes = Recipe.readRecipeList(INPUT);
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new RecipeMainPanel(recipeFile).setVisible(true);
-
-            } catch (Exception e) {
-                // TODO: handle exception
+        this.secretRecipeTable.addMouseListener(new MouseInputAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    var row = secretRecipeTable.getSelectedRow();
+                    if (row != -1) {
+                        var id = (String)secretRecipeTable.getValueAt(row, 0);
+                        var r = recipes.get(recipes.indexOf(new Recipe(id)));
+                        recipeWindow.viewAndEditRecipeView(r);
+                    }
+                }
             }
-
         });
 
+
+        this.searchTextField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                recipeTableFilter();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                recipeTableFilter();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                recipeTableFilter();
+            }
+        });
+
+        this.secretSearchTextField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                secretRecipeTableFilter();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                secretRecipeTableFilter();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                secretRecipeTableFilter();
+            }
+        });
     }
+
+    /** 
+     * Update the row filter regular expression from the expression in
+     * the text box.
+     */
+    private void recipeTableFilter() {
+        RowFilter<DefaultTableModel, Object> rf = null;
+        //If current expression doesn't parse, don't update.
+        try {
+            rf = RowFilter.regexFilter("(?i)" + this.searchTextField.getText());
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        ((DefaultRowSorter<DefaultTableModel, Object>)this.recipeTable.getRowSorter()).setRowFilter(rf);
+    }
+
+    private void secretRecipeTableFilter() {
+        RowFilter<DefaultTableModel, Object> rf = null;
+        //If current expression doesn't parse, don't update.
+        try {
+            rf = RowFilter.regexFilter("(?i)" + this.secretSearchTextField.getText());
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        ((DefaultRowSorter<DefaultTableModel, Object>)this.secretRecipeTable.getRowSorter()).setRowFilter(rf);
+    }
+
+
+    // public static void main(String[] args) {
+    //     final String recipeFile = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
+    //     // var recipes = Recipe.readRecipeList(INPUT);
+    //     SwingUtilities.invokeLater(() -> {
+    //         try {
+    //             new RecipeMainPanel(recipeFile).setVisible(true);
+
+    //         } catch (Exception e) {
+    //             // TODO: handle exception
+    //         }
+
+    //     });
+
+    // }
 }

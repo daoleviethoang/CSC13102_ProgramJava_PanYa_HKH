@@ -3,7 +3,7 @@
     "products": [
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Donut.jpg",
-            "quantity": 7,
+            "quantity": 5,
             "price": "15.0",
             "sellOff": "0.2",
             "name": "Donut",
@@ -11,7 +11,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Amandine.jpg",
-            "quantity": 2,
+            "quantity": 0,
             "price": "20.0",
             "sellOff": "0.0",
             "name": "Amandine",

@@ -38,6 +38,16 @@ public class Recipe {
         this.visibility = vision;
     }
 
+    public Recipe(String id) {
+        this.id = id;
+        this.name = "";
+        this.productId = new ArrayList<>();
+        this.ingredient = new ArrayList<>();
+        this.description = "";
+        this.note = "";
+        this.visibility = false;
+    }
+
     public Recipe(Recipe r) {
         this.id = r.getId();
         this.name = r.getName();
@@ -145,17 +155,17 @@ public class Recipe {
         return JsonDataUtils.saveObjectList(path, recipes, "recipe", JSONObject::new);
     }
 
-    public static int getLastId(List<Recipe> recipes) {
+    public static int getNextId(List<Recipe> recipes) {
         int lastId = 0;
         for (var recipe : recipes) {
             var id = Integer.parseInt(recipe.id.replaceAll("[^0-9]", "")); 
             lastId = id > lastId? id: lastId;
         }
-        return lastId;
+        return lastId + 1;
     }
 
     public static String nextId(List<Recipe> recipes) {
-        return "REC-" + getLastId(recipes);
+        return "REC-" + getNextId(recipes);
     }
 
     @Override

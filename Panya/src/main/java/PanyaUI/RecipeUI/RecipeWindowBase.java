@@ -7,6 +7,7 @@
 package PanyaUI.RecipeUI;
 
 import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
@@ -83,11 +84,22 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
         this.lightTextColor = Theme.textColorFromBackgroundColor(light);
 
+        var primaryResource = new ColorUIResource(primary);
+        var darkResource = new ColorUIResource(dark);
+
+        var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));
+        UIManager.put("Button.background", primaryResource);
+        UIManager.put("Button.mouseHoverColor", darkResource);
+        UIManager.put("Button.foreground", textColor);
+
         // this.bottomHeaderPanel.setBackground(lightColor);
-        this.contentHeaderLabel.setForeground(primaryTextColor);
-        this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
+        this.contentHeaderLabel.setForeground(darkTextColor);
+        this.contentHeaderPanel.setBackground(darkColor);
+        
+        this.imageLabel.setForeground(primaryTextColor);
+        this.imageLabel.setBackground(primaryColor);
+        this.jPanel4.setForeground(primaryTextColor);
+        this.jPanel4.setBackground(primaryColor);
         this.editButton.setBackground(primaryColor);
         this.editButton.setForeground(primaryTextColor);
         this.removeButton.setBackground(primaryColor);

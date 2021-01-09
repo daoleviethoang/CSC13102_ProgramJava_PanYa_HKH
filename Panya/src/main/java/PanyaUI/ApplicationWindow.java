@@ -10,6 +10,8 @@ import PanyaUI.StorageUI.StorageWindow;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,10 +94,17 @@ public class ApplicationWindow extends ApplicationWindowBase {
     }
 
     public void loadAllData() {
-        final String pathMenuData = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+        
+        String pathMenuData = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+        if (!new File(pathMenuData).exists()){
+            pathMenuData = "src/main/resources/data/ManageData/MenuFile.json";
+        }
         menu = Menu.readMenuList(pathMenuData);
         System.out.println("test nhe" + menu.get(0).getProducts().get(0).getName());
-        final String pathProductData = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+        String pathProductData = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+        if (!new File(pathProductData).exists()){
+            pathProductData = "src/main/resources/data/ManageData/ProductFile.json";
+        }
         products = Product.readProductList(pathProductData);
         // Thêm đọc data khác ở đây
     }

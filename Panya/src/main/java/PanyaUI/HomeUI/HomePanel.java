@@ -44,6 +44,9 @@ public class HomePanel extends HomePanelBase {
         this.getThemeCombo().setModel(new DefaultComboBoxModel<>(primaries.toArray(allThemes)));
         this.getThemeCombo().addActionListener(e->{
             var themeStr = (String) this.getThemeCombo().getSelectedItem();
+            if (themeStr == null || themeStr.isEmpty()) {
+                return;
+            }
             var theme = new Theme().getTheme(themeStr);
             
             var primary = theme.get(Theme.PRIMARY);

@@ -1,296 +1,125 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PanyaUI.ManageUI.HistoryUI;
-
-import PanyaUI.PanyaContentPanel;
-import PanyaUI.Theme;
 import java.awt.Color;
-/**
- *
- * @author Dao Le Viet Hoang
- */
-public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPanel {
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultRowSorter;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+
+import PanyaCore.History;
+import PanyaCore.Product;
+
+public class HistoryWindow extends HistoryWindowBase {
+    
     /**
      *
      */
-    private static final long serialVersionUID = 2528333323062254137L;
-    Color primaryColor;
-    Color darkColor;
-    Color lightColor;
-    Color primaryTextColor;
-    Color lightTextColor;
-    Color darkTextColor;
+    private static final long serialVersionUID = 2609214394896659859L;
 
-    /**
-     * Chỉnh màu cho window theo phổ màu đưa vào
-     * 
-     * @param themeName String được lấy từ PanyaUI.Theme.getTheme
-     * @see PanyaUI.Theme#getTheme(String)
-     */
-    public void initTheme(String themeName) {
-        var theme = new Theme().getTheme(themeName);
-        if (theme == null) {
-            return;
-        }
+    String historyFile = "Panya/src/main/resources/data/ManageData/HistoryFile.json";
+    List<History> histories;
+    DefaultTableModel historyModel;
 
-        final var PRIMARY = theme.get(Theme.PRIMARY);
-        final var LIGHT = theme.get(Theme.LIGHT);
-        final var DARK = theme.get(Theme.DARK);
-
-        this.initTheme(PRIMARY, LIGHT, DARK);
-    }
-    
-        /**
-     * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
-     * chính, nhạt, đậm. Tham khảo tại <a href=
-     * "https://material.io/resources/color">https://material.io/resources/color</a>
-     * 
-     * @param primary
-     * @param light
-     * @param dark
-     */
-    public void initTheme(Color primary, Color light, Color dark) {
-        if (primary == null || light == null || dark == null) {
-            return;
-        }
-        this.primaryColor = primary;
-        this.darkColor = dark;
-        this.lightColor = light;
-
-        this.primaryTextColor = Theme.textColorFromBackgroundColor(primary);
-        this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
-        this.lightTextColor = Theme.textColorFromBackgroundColor(light);
-
-        this.bottomHeaderPanel.setBackground(lightColor);
-        this.contentHeaderLabel.setForeground(primaryTextColor);
-        this.contentHeaderPanel.setBackground(primaryColor);
-        this.searchPanel.setBackground(lightColor);
-
-    }
-
-    /**
-     * Creates new form OuterContentPanel
-     */
+    List<List<Object>> tableRows = new ArrayList<>();
     public HistoryWindow() {
+        super();
         initComponents();
+        this.histories = History.readHistoryList(historyFile);
+        initTable();
     }
 
     public HistoryWindow(Color primary, Color light, Color dark) {
+        super();
         initComponents();
+        initTable();
         initTheme(primary, light, dark);
     }
 
+    private void initComponents() {
+        this.statisticButton.setVisible(false);
+
+        this.deleteButton.addActionListener(e->{
+            var idx = this.historyTable.getSelectedRow();
+            if (idx == -1) {
+                return;
+            }
+            var row = this.tableRows.get(idx);
+    
+            var product = (Product) row.get(5);
+            var history = (History) row.get(6);
+            history.getProducts().remove(product);
+            
+            if (history.getProducts().isEmpty()){
+                this.histories.remove(history);
+            }
+            this.tableRows.remove(idx);
+            this.historyModel.removeRow(idx);
+            History.saveHistoryList(historyFile, this.histories);
+        });
+
+        this.searchTextField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                historyTableFilter();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                historyTableFilter();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                historyTableFilter();
+            }
+        });
+    }
+
+    void refreshTable() {
+        this.histories = History.readHistoryList(historyFile);
+        if (this.histories != null) {
+
+            for (var history : histories) {    
+                for (var product : history.getProducts()){
+                    var objects = new ArrayList<Object>();
+                    
+                    objects.add(history.getDate().toString());
+                    objects.add(product.getName());
+                    objects.add(product.getQuantity());
+                    objects.add(product.getSellOff().toString());
+                    objects.add(product.getPrice().toString());
+                    this.historyModel.addRow(objects.toArray());
+                    
+                    objects.add(product);
+                    objects.add(history);
+                    this.tableRows.add(objects);
+                }
+                
+            }
+        }
+    }
 
     /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+     * Update the row filter regular expression from the expression in the text box.
      */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+    private void historyTableFilter() {
+        RowFilter<DefaultTableModel, Object> rf = null;
+        // If current expression doesn't parse, don't update.
+        try {
+            rf = RowFilter.regexFilter("(?i)" + this.searchTextField.getText());
+        } catch (java.util.regex.PatternSyntaxException e) {
+            return;
+        }
+        ((DefaultRowSorter) this.historyTable.getRowSorter()).setRowFilter(rf);
+    }
 
-        contentHeaderPanel = new javax.swing.JPanel();
-        contentHeaderLabel = new javax.swing.JLabel();
-        contentPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        bottomHeaderPanel = new javax.swing.JPanel();
-        deleteButton = new javax.swing.JButton();
-        statisticButton = new javax.swing.JButton();
-        searchPanel = new javax.swing.JPanel();
-        searchButon = new javax.swing.JButton();
-        searchTextField = new javax.swing.JTextField();
+    public void initTable() {
+        
+        this.historyModel = (DefaultTableModel) this.historyTable.getModel();
+        refreshTable();
+    }
 
-        setMinimumSize(new java.awt.Dimension(600, 600));
-        setLayout(new java.awt.GridBagLayout());
-
-        contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
-        contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
-
-        contentHeaderLabel.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        contentHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
-        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("HISTORY");
-
-        javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
-        contentHeaderPanel.setLayout(contentHeaderPanelLayout);
-        contentHeaderPanelLayout.setHorizontalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-        );
-        contentHeaderPanelLayout.setVerticalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weightx = 0.1;
-        add(contentHeaderPanel, gridBagConstraints);
-
-        contentPanel.setBackground(java.awt.Color.white);
-        contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
-        contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
-        contentPanel.setLayout(new java.awt.GridBagLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "No", "ID", "Quantity", "Sell Off", "Price"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
-        contentPanel.add(jScrollPane1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        add(contentPanel, gridBagConstraints);
-
-        bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
-        bottomHeaderPanel.setMaximumSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
-
-        deleteButton.setBackground(new java.awt.Color(0, 153, 102));
-        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setText("Delete");
-        deleteButton.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        bottomHeaderPanel.add(deleteButton, gridBagConstraints);
-
-        statisticButton.setBackground(new java.awt.Color(255, 153, 0));
-        statisticButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        statisticButton.setForeground(new java.awt.Color(255, 255, 255));
-        statisticButton.setText("Statistic");
-        statisticButton.setBorder(null);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
-        bottomHeaderPanel.add(statisticButton, gridBagConstraints);
-
-        searchPanel.setPreferredSize(new java.awt.Dimension(160, 40));
-        searchPanel.setLayout(new java.awt.GridBagLayout());
-
-        searchButon.setBackground(new java.awt.Color(0, 153, 102));
-        searchButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        searchButon.setForeground(new java.awt.Color(255, 255, 255));
-        searchButon.setText("Search");
-        searchButon.setBorder(null);
-        searchButon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        searchButon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchButonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
-        searchPanel.add(searchButon, gridBagConstraints);
-
-        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        searchTextField.setToolTipText("");
-        searchTextField.setAutoscrolls(false);
-        searchTextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51), 2));
-        searchTextField.setDoubleBuffered(true);
-        searchTextField.setDragEnabled(true);
-        searchTextField.setMaximumSize(new java.awt.Dimension(32767, 32767));
-        searchTextField.setMinimumSize(null);
-        searchTextField.setPreferredSize(null);
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 0.2;
-        searchPanel.add(searchTextField, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.2;
-        bottomHeaderPanel.add(searchPanel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        add(bottomHeaderPanel, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void searchButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchButonActionPerformed
-
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextFieldActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel bottomHeaderPanel;
-    private javax.swing.JLabel contentHeaderLabel;
-    private javax.swing.JPanel contentHeaderPanel;
-    private javax.swing.JPanel contentPanel;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton searchButon;
-    private javax.swing.JPanel searchPanel;
-    private javax.swing.JTextField searchTextField;
-    private javax.swing.JButton statisticButton;
-    // End of variables declaration//GEN-END:variables
+    public void initButton() {
+        
+    }
 }

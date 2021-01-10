@@ -16,6 +16,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
+
+import PanyaCore.History;
+import PanyaCore.Product;
+
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -93,12 +97,15 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     public MenuWindow() {
         setListMaxQuantity(menuData);
         initComponents();
+        this.itemScrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+
     }
 
     public MenuWindow(Color primary, Color light, Color dark) {
         setListMaxQuantity(menuData);
         initComponents();
         initTheme(primary, light, dark);
+        this.itemScrollPanel.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**
@@ -821,7 +828,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         // TODO add your handling code here:
     }//GEN-LAST:event_addButonActionPerformed
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
         java.awt.Component[] spParent = itemPanel.getComponents();
         List<PanyaCore.Product> products = PanyaCore.Product.readProductList("Panya/src/main/resources/data/ManageData/ProductFile.json");
         int check = 0;
@@ -862,6 +868,13 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             }
         }
         //Nhớ mở lên khi nộp bài, hoặc báo cáo đồ án.
+        
+        var allProducts = Product.readProductList("Panya/src/main/resources/data/ManageData/ProductFile.json");
+        var histories = History.readHistoryList("Panya/src/main/resources/data/ManageData/HistoryFile.json");
+        var boughtProducts = Product.getBoughtProducts(allProducts, products);
+        History.addNewHistory(histories, boughtProducts);
+        History.saveHistoryList("Panya/src/main/resources/data/ManageData/HistoryFile.json", histories);
+
         PanyaCore.Menu.saveCustomProductList("Panya/src/main/resources/data/ManageData/MenuFile.json", menuData);
         PanyaCore.Product.saveProductList("Panya/src/main/resources/data/ManageData/ProductFile.json", products);
         subItemPanel.removeAll();

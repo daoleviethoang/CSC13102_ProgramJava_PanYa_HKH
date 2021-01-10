@@ -300,6 +300,7 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         descriptionTextField.setEditable(false);
         descriptionTextField.setColumns(20);
         descriptionTextField.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        descriptionTextField.setLineWrap(true);
         descriptionTextField.setRows(5);
         jScrollPane2.setViewportView(descriptionTextField);
 

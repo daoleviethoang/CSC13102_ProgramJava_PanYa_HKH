@@ -2,7 +2,7 @@
     {"product": {
         "note": "Fried dough confection or dessert food",
         "image": "Panya\\src\\main\\resources\\images\\Donut.jpg",
-        "quantity": 5,
+        "quantity": 1,
         "price": "15.0",
         "sellOff": "0.2",
         "name": "Donut",
@@ -20,7 +20,7 @@
     {"product": {
         "note": "",
         "image": "Panya\\src\\main\\resources\\images\\Babka.jpg",
-        "quantity": 12,
+        "quantity": 11,
         "price": "15.0",
         "sellOff": "0.2",
         "name": "Babka",
@@ -29,7 +29,7 @@
     {"product": {
         "note": "",
         "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
-        "quantity": 7,
+        "quantity": 5,
         "price": "20.0",
         "sellOff": "0.2",
         "name": "Wingko",
@@ -38,16 +38,7 @@
     {"product": {
         "note": "",
         "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
-        "quantity": 8,
-        "price": "22.0",
-        "sellOff": "0.2",
-        "name": "Angel food cake",
-        "id": "PYC-005"
-    }},
-    {"product": {
-        "note": "",
-        "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
-        "quantity": 8,
+        "quantity": 6,
         "price": "22.0",
         "sellOff": "0.2",
         "name": "Angel food cake",
@@ -56,7 +47,7 @@
     {"product": {
         "note": "",
         "image": "Panya\\src\\main\\resources\\images\\Frog cake.jpg",
-        "quantity": 8,
+        "quantity": 7,
         "price": "22.0",
         "sellOff": "0.2",
         "name": "Frog cake",

@@ -56,6 +56,11 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     }
 
     void initTable() {
+        this.recipeTable.getColumnModel().getColumn(0).setMinWidth(35);
+        this.recipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(35);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+
         for (var recipe : recipes) {
             var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
             if (recipe.getVisibility()) {

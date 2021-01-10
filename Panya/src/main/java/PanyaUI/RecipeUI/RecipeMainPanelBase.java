@@ -238,7 +238,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
 
             },
             new String [] {
-                "#ID", "Name", "Note"
+                "ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
@@ -257,7 +257,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
             }
         });
         recipeTable.setToolTipText("Double click to a recipe to see the details");
-        recipeTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        recipeTable.setAutoscrolls(false);
         recipeTable.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(recipeTable);
         if (recipeTable.getColumnModel().getColumnCount() > 0) {
@@ -328,11 +328,11 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
 
             },
             new String [] {
-                "#ID", "Name", "Note"
+                "ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false

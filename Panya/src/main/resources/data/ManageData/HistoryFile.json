@@ -1,24 +1,32 @@
-[
-    {
-        "history": {
-            "products": [
-                {
-                    "product": {
-                        "id": "PYC-001",
-                        "quantity": 10,
-                        "price": "15.0",
-                        "sellOff": "0.2"
-                    }
-                },
-                {   "product": {
-                        "id": "PYC-002",
-                        "quantity": 5,
-                        "price": "20.0",
-                        "sellOff": "0.2"
-                    }
-                }
-            ],
-            "date": "2020-05-12"
-        }
-    }
-]
+[{"history": {
+    "date": "2021-01-11",
+    "products": [
+        {"product": {
+            "note": "",
+            "image": "Panya\\src\\main\\resources\\images\\Babka.jpg",
+            "quantity": 1,
+            "price": "15.0",
+            "sellOff": "0.2",
+            "name": "Babka",
+            "id": "PYC-003"
+        }},
+        {"product": {
+            "note": "",
+            "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
+            "quantity": 2,
+            "price": "20.0",
+            "sellOff": "0.2",
+            "name": "Wingko",
+            "id": "PYC-004"
+        }},
+        {"product": {
+            "note": "",
+            "image": "Panya\\src\\main\\resources\\images\\Frog cake.jpg",
+            "quantity": 1,
+            "price": "22.0",
+            "sellOff": "0.2",
+            "name": "Frog cake",
+            "id": "PYC-006"
+        }}
+    ]
+}}]

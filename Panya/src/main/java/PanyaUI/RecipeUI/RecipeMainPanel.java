@@ -4,7 +4,9 @@ import java.awt.event.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.DefaultRowSorter;
 import javax.swing.RowFilter;
@@ -30,8 +32,9 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     DefaultTableModel recipeModel;
     DefaultTableModel secretRecipeModel;
     RecipeWindow recipeWindow;
+    ArrayList<String> passwords;
 
-
+    String passwordFile = "Panya/src/main/resources/data/RecipeData/Password.txt";
     String ingredientFile = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
 
     public RecipeMainPanel(String recipeFile) throws FileNotFoundException {
@@ -96,6 +99,20 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 ingredientFile, this);
         this.recipeWindow.setVisible(false);
     }
+    public void readPassword(String path){
+        try {
+            File myObj = new File(path);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+              String data = myReader.nextLine();
+              passwords.add(data);
+            }
+            myReader.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+    }
 
     void initAction() {
         this.publicLabel.addMouseListener(new MouseAdapter(){
@@ -114,15 +131,48 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         this.privateLabel.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showInputDialog(frame, "Input your password");
-                if (true){
-                    // TODO: password validation
-                    publicLabel.setForeground(lightTextColor);
-                    publicLabel.setBackground(lightColor);
-                    privateLabel.setForeground(primaryTextColor);
-                    privateLabel.setBackground(primaryColor);
-                    privatePanel.setVisible(true);
-                    publicPanel.setVisible(false);
+                readPassword(passwordFile);
+                boolean op = false;
+                while(op == false){
+                    String user_password = JOptionPane.showInputDialog(frame, "Input your password", "Secret password", JOptionPane.QUESTION_MESSAGE);
+                    boolean auth;
+                    for(String pass : passwords){
+                        if(user_password.compareTo(pass) == 0){
+                            auth = true;
+                        }
+                    }
+                    auth = false;                                       //nếu pass đúng thì show
+                    
+                    if (auth){
+                        // TODO: password validation
+                        op = true;
+                        publicLabel.setForeground(lightTextColor);
+                        publicLabel.setBackground(lightColor);
+                        privateLabel.setForeground(primaryTextColor);
+                        privateLabel.setBackground(primaryColor);
+                        privatePanel.setVisible(true);
+                        publicPanel.setVisible(false);
+                    }
+                    else{               //nếu sai thì cho chọn dk password hoặc nhập lại
+                        Object[] options = {"Yes, please", "No, thanks"};
+                        int n = JOptionPane.showOptionDialog(frame,
+                        "Your password is incorrect, do you want to register this password",
+                        "Register", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
+                        options[0]);
+                        if (n==0){                                              //dk password
+                            passwords.add(user_password);                       //add vào list password
+                            publicLabel.setForeground(lightTextColor);
+                            publicLabel.setBackground(lightColor);
+                            privateLabel.setForeground(primaryTextColor);
+                            privateLabel.setBackground(primaryColor);
+                            privatePanel.setVisible(true);
+                            publicPanel.setVisible(false);
+                            op = true;
+                        }
+                        else{                                                   //nhập lại
+                            op = false;
+                        }
+                    }
                 }
             }
         });

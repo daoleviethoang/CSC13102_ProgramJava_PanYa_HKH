@@ -27,7 +27,8 @@ public class Main {
 
         try {
             UIManager.setLookAndFeel(new MaterialLookAndFeel());
-
+            UIManager.put("Button[Default].background", primary);
+            UIManager.put("Button[Default].foreground", textColor);
             UIManager.put("Button.background", primary);
             UIManager.put("Button.mouseHoverColor", dark);
             UIManager.put("Button.foreground", textColor);

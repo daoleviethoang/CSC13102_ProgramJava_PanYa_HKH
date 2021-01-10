@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,7 +33,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     DefaultTableModel recipeModel;
     DefaultTableModel secretRecipeModel;
     RecipeWindow recipeWindow;
-    ArrayList<String> passwords;
+    ArrayList<String> passwords = new ArrayList<>();
 
     String passwordFile = "Panya/src/main/resources/data/RecipeData/Password.txt";
     String ingredientFile = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
@@ -59,11 +60,10 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         }
 
         for (var recipe : recipes) {
-            var rowData = new Object[] { recipe.getId() , recipe.getName(), recipe.getNote() };
+            var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
             if (recipe.getVisibility()) {
                 this.recipeModel.addRow(rowData);
-            }
-            else {
+            } else {
                 this.secretRecipeModel.addRow(rowData);
             }
         }
@@ -77,11 +77,10 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
             this.secretRecipeModel.removeRow(0);
         }
         for (var recipe : recipes) {
-            var rowData = new Object[] { recipe.getId() , recipe.getName(), recipe.getNote() };
+            var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
             if (recipe.getVisibility()) {
                 this.recipeModel.addRow(rowData);
-            }
-            else {
+            } else {
                 this.secretRecipeModel.addRow(rowData);
             }
         }
@@ -92,30 +91,46 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         this.recipeWindow.initTheme(primary, light, dark);
     }
 
-    void initComponents() {  
+    void initComponents() {
         this.recipeModel = (DefaultTableModel) this.recipeTable.getModel();
         this.secretRecipeModel = (DefaultTableModel) this.secretRecipeTable.getModel();
-        this.recipeWindow = new RecipeWindow(this.primaryColor, this.lightColor, this.darkColor, false,
-                ingredientFile, this);
+        this.recipeWindow = new RecipeWindow(this.primaryColor, this.lightColor, this.darkColor, false, ingredientFile,
+                this);
         this.recipeWindow.setVisible(false);
     }
-    public void readPassword(String path){
+
+    public void readPassword(String path) {
         try {
             File myObj = new File(path);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-              String data = myReader.nextLine();
-              passwords.add(data);
+            if (!myObj.exists()) {
+                try (var fin = new FileWriter(myObj)) {
+                    
+                } catch (Exception e) {
+
+                }
+                this.passwords = new ArrayList<>();
+                return;
             }
-            myReader.close();
-          } catch (FileNotFoundException e) {
+            try (Scanner myReader = new Scanner(myObj);) {
+                // while (myReader.hasNextLine()) {
+                if (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    if (data != null) {
+                        this.passwords.add(data);
+                    }
+                } else {
+                    this.passwords = new ArrayList<>();
+                }
+                // }
+            } 
+        } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-          }
+        }
     }
 
     void initAction() {
-        this.publicLabel.addMouseListener(new MouseAdapter(){
+        this.publicLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 publicLabel.setForeground(primaryTextColor);
@@ -125,27 +140,29 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 publicLabel.setVisible(true);
                 privatePanel.setVisible(false);
             }
-        }); 
+        });
         var frame = this;
 
-        this.privateLabel.addMouseListener(new MouseAdapter(){
+        this.privateLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                readPassword(passwordFile);
                 boolean op = false;
-                while(op == false){
-                    String user_password = JOptionPane.showInputDialog(frame, "Input your password", "Secret password", JOptionPane.QUESTION_MESSAGE);
-                    boolean auth;
-                    for(String pass : passwords){
-                        if(user_password.compareTo(pass) == 0){
-                            auth = true;
-                        }
-                    }
-                    auth = false;                                       //nếu pass đúng thì show
+                readPassword(passwordFile);
+                
+                if (passwords.isEmpty()) {
+
+                    String user_password = JOptionPane.showInputDialog(frame, "Register your password", "Secret password",
+                    JOptionPane.QUESTION_MESSAGE);
+                    passwords.add(user_password); // add vào list password
                     
-                    if (auth){
-                        // TODO: password validation
-                        op = true;
+                    if (user_password != null){ 
+                        passwords.add(user_password);
+                        try (var fout = new FileWriter(passwordFile)) {
+                            fout.write(passwords.get(0));
+                        } catch (Exception ex) {
+                            //TODO: handle exception
+                        }
+
                         publicLabel.setForeground(lightTextColor);
                         publicLabel.setBackground(lightColor);
                         privateLabel.setForeground(primaryTextColor);
@@ -153,30 +170,47 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                         privatePanel.setVisible(true);
                         publicPanel.setVisible(false);
                     }
-                    else{               //nếu sai thì cho chọn dk password hoặc nhập lại
-                        Object[] options = {"Yes, please", "No, thanks"};
+
+                    op = true;
+                }
+
+                while (op == false) {
+                    // if (this.pass)
+                    String user_password = JOptionPane.showInputDialog(frame, "Input your password", "Secret password",
+                            JOptionPane.QUESTION_MESSAGE);
+                    boolean auth = false;
+                    if (user_password != null){
+                        for (String pass : passwords) {
+                            if (user_password.compareTo(pass) == 0) {
+                                auth = true;
+                            }
+                        }   
+                    }
+
+                    // auth = false; // nếu pass đúng thì show // cái gì đây =)) auth = false thì sao vô dòng dưới được
+                    if (auth) {
+                        op = true;
+                        publicLabel.setForeground(lightTextColor);
+                        publicLabel.setBackground(lightColor);
+                        privateLabel.setForeground(primaryTextColor);
+                        privateLabel.setBackground(primaryColor);
+                        privatePanel.setVisible(true);
+                        publicPanel.setVisible(false);
+                    } else { // nếu sai thì cho chọn dk password hoặc nhập lại
+                        Object[] options = { "Yes, please", "No, thanks" };
                         int n = JOptionPane.showOptionDialog(frame,
-                        "Your password is incorrect, do you want to register this password",
-                        "Register", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
-                        options[0]);
-                        if (n==0){                                              //dk password
-                            passwords.add(user_password);                       //add vào list password
-                            publicLabel.setForeground(lightTextColor);
-                            publicLabel.setBackground(lightColor);
-                            privateLabel.setForeground(primaryTextColor);
-                            privateLabel.setBackground(primaryColor);
-                            privatePanel.setVisible(true);
-                            publicPanel.setVisible(false);
-                            op = true;
-                        }
-                        else{                                                   //nhập lại
+                                "Your password is incorrect, do you want to input this password again\n", "Validation failed",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                        if (n == 0) { // nhập lại
                             op = false;
+                        } else { //
+                            return;
                         }
                     }
                 }
             }
         });
-        
+
         this.addRecipeButton.addActionListener(e -> {
             this.recipeWindow.setVisible(true);
             this.recipeWindow.addNewRecipeView();
@@ -187,7 +221,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
             this.recipeWindow.addNewSecretRecipeView();
         });
 
-        this.recipeTable.addMouseListener(new MouseInputAdapter(){
+        this.recipeTable.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -201,20 +235,19 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
             }
         });
 
-        this.secretRecipeTable.addMouseListener(new MouseInputAdapter(){
+        this.secretRecipeTable.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     var row = secretRecipeTable.getSelectedRow();
                     if (row != -1) {
-                        var id = (String)secretRecipeTable.getValueAt(row, 0);
+                        var id = (String) secretRecipeTable.getValueAt(row, 0);
                         var r = recipes.get(recipes.indexOf(new Recipe(id)));
                         recipeWindow.viewAndEditRecipeView(r);
                     }
                 }
             }
         });
-
 
         this.searchTextField.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -245,45 +278,44 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         });
     }
 
-    /** 
-     * Update the row filter regular expression from the expression in
-     * the text box.
+    /**
+     * Update the row filter regular expression from the expression in the text box.
      */
     private void recipeTableFilter() {
         RowFilter<DefaultTableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
+        // If current expression doesn't parse, don't update.
         try {
             rf = RowFilter.regexFilter("(?i)" + this.searchTextField.getText());
         } catch (java.util.regex.PatternSyntaxException e) {
             return;
         }
-        ((DefaultRowSorter<DefaultTableModel, Object>)this.recipeTable.getRowSorter()).setRowFilter(rf);
+        ((DefaultRowSorter<DefaultTableModel, Object>) this.recipeTable.getRowSorter()).setRowFilter(rf);
     }
 
     private void secretRecipeTableFilter() {
         RowFilter<DefaultTableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
+        // If current expression doesn't parse, don't update.
         try {
             rf = RowFilter.regexFilter("(?i)" + this.secretSearchTextField.getText());
         } catch (java.util.regex.PatternSyntaxException e) {
             return;
         }
-        ((DefaultRowSorter<DefaultTableModel, Object>)this.secretRecipeTable.getRowSorter()).setRowFilter(rf);
+        ((DefaultRowSorter<DefaultTableModel, Object>) this.secretRecipeTable.getRowSorter()).setRowFilter(rf);
     }
 
-
     // public static void main(String[] args) {
-    //     final String recipeFile = "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
-    //     // var recipes = Recipe.readRecipeList(INPUT);
-    //     SwingUtilities.invokeLater(() -> {
-    //         try {
-    //             new RecipeMainPanel(recipeFile).setVisible(true);
+    // final String recipeFile =
+    // "Panya/src/main/resources/data/RecipeData/RecipeFile-out.json";
+    // // var recipes = Recipe.readRecipeList(INPUT);
+    // SwingUtilities.invokeLater(() -> {
+    // try {
+    // new RecipeMainPanel(recipeFile).setVisible(true);
 
-    //         } catch (Exception e) {
-    //             // TODO: handle exception
-    //         }
+    // } catch (Exception e) {
+    // // TODO: handle exception
+    // }
 
-    //     });
+    // });
 
     // }
 }

@@ -56,6 +56,8 @@ public class HomePanel extends HomePanelBase {
             var darkResource = new ColorUIResource(dark);
 
             var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));
+            UIManager.put("Button[Default].background", primaryResource);
+            UIManager.put("Button[Default].foreground", textColor);
             UIManager.put("Button.background", primaryResource);
             UIManager.put("Button.mouseHoverColor", darkResource);
             UIManager.put("Button.foreground", textColor);

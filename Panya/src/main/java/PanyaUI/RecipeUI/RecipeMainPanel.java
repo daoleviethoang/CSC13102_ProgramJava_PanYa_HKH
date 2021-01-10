@@ -10,12 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.DefaultRowSorter;
+import javax.swing.JLabel;
 import javax.swing.RowFilter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import PanyaCore.Recipe;
 
@@ -53,12 +56,6 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
     }
 
     void initTable() {
-        // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật
-        for (int i = 0; i < 4; i++) {
-            this.recipeModel.removeRow(0);
-            this.secretRecipeModel.removeRow(0);
-        }
-
         for (var recipe : recipes) {
             var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
             if (recipe.getVisibility()) {
@@ -104,7 +101,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
             File myObj = new File(path);
             if (!myObj.exists()) {
                 try (var fin = new FileWriter(myObj)) {
-                    
+
                 } catch (Exception e) {
 
                 }
@@ -122,7 +119,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                     this.passwords = new ArrayList<>();
                 }
                 // }
-            } 
+            }
         } catch (Exception e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
@@ -148,19 +145,18 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
             public void mouseClicked(MouseEvent e) {
                 boolean op = false;
                 readPassword(passwordFile);
-                
-                if (passwords.isEmpty()) {
 
-                    String user_password = JOptionPane.showInputDialog(frame, "Register your password", "Secret password",
-                    JOptionPane.QUESTION_MESSAGE);
+                if (passwords.isEmpty()) {
+                    String user_password = JOptionPane.showInputDialog(frame, "Register your password",
+                            "Secret password", JOptionPane.QUESTION_MESSAGE);
                     passwords.add(user_password); // add vào list password
-                    
-                    if (user_password != null){ 
+
+                    if (user_password != null) {
                         passwords.add(user_password);
                         try (var fout = new FileWriter(passwordFile)) {
                             fout.write(passwords.get(0));
                         } catch (Exception ex) {
-                            //TODO: handle exception
+                            // TODO: handle exception
                         }
 
                         publicLabel.setForeground(lightTextColor);
@@ -175,19 +171,27 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 }
 
                 while (op == false) {
-                    // if (this.pass)
-                    String user_password = JOptionPane.showInputDialog(frame, "Input your password", "Secret password",
-                            JOptionPane.QUESTION_MESSAGE);
+                    JPanel panel = new JPanel();
+                    JLabel label = new JLabel("Enter a password:");
+                    JPasswordField p = new JPasswordField(10);
+                    panel.add(label);
+                    panel.add(p);
+                    String[] secretOptions = new String[] { "OK", "Cancel" };
+                    int option = JOptionPane.showOptionDialog(null, panel, "Secret password", JOptionPane.NO_OPTION,
+                            JOptionPane.PLAIN_MESSAGE, null, secretOptions, secretOptions[1]);
                     boolean auth = false;
-                    if (user_password != null){
-                        for (String pass : passwords) {
-                            if (user_password.compareTo(pass) == 0) {
-                                auth = true;
+                    if (option == 0) {
+                        // pressing OK button
+                        var user_password = new String(p.getPassword());
+                        if (user_password != null) {
+                            for (String pass : passwords) {
+                                if (user_password.compareTo(pass) == 0) {
+                                    auth = true;
+                                }
                             }
-                        }   
+                        }
                     }
 
-                    // auth = false; // nếu pass đúng thì show // cái gì đây =)) auth = false thì sao vô dòng dưới được
                     if (auth) {
                         op = true;
                         publicLabel.setForeground(lightTextColor);
@@ -199,8 +203,9 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                     } else { // nếu sai thì cho chọn dk password hoặc nhập lại
                         Object[] options = { "Yes, please", "No, thanks" };
                         int n = JOptionPane.showOptionDialog(frame,
-                                "Your password is incorrect, do you want to input this password again\n", "Validation failed",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                                "Your password is incorrect, do you want to input this password again\n",
+                                "Validation failed", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                                options, options[0]);
                         if (n == 0) { // nhập lại
                             op = false;
                         } else { //

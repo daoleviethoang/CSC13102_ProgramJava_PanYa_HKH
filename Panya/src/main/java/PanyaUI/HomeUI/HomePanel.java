@@ -11,9 +11,7 @@ import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
-import javax.swing.UIManager;
 import javax.swing.event.EventListenerList;
-import javax.swing.plaf.ColorUIResource;
 
 import PanyaUI.ApplicationWindow;
 import PanyaUI.Theme;
@@ -51,16 +49,6 @@ public class HomePanel extends HomePanelBase {
             var primary = theme.get(Theme.PRIMARY);
             var light = theme.get(Theme.LIGHT);
             var dark = theme.get(Theme.DARK);
-
-            var primaryResource = new ColorUIResource(primary);
-            var darkResource = new ColorUIResource(dark);
-
-            var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));
-            UIManager.put("Button[Default].background", primaryResource);
-            UIManager.put("Button[Default].foreground", textColor);
-            UIManager.put("Button.background", primaryResource);
-            UIManager.put("Button.mouseHoverColor", darkResource);
-            UIManager.put("Button.foreground", textColor);
 
             this.parent.initTheme(primary, light, dark);
         });

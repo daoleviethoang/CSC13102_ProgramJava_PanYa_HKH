@@ -41,10 +41,6 @@ public class RecipeWindow extends RecipeWindowBase {
         this.ingredientFile = ingredientFile;
         this.allIngredients = Ingredient.readIngredients(ingredientFile);
 
-        // Hack: trong Netbeans để 4 dòng table trống, xóa nó đi để load data thật
-        for (int i = 0; i < 4; i++) {
-            this.ingredientsTableModel.removeRow(0);
-        }
         this.idTextField = new JTextField("ID");
         this.initButton();
     }

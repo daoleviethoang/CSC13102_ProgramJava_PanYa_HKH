@@ -84,15 +84,6 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
         this.lightTextColor = Theme.textColorFromBackgroundColor(light);
 
-        var primaryResource = new ColorUIResource(primary);
-        var darkResource = new ColorUIResource(dark);
-
-        var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));
-        UIManager.put("Button.background", primaryResource);
-        UIManager.put("Button.mouseHoverColor", darkResource);
-        UIManager.put("Button.foreground", textColor);
-
-        // this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(darkTextColor);
         this.contentHeaderPanel.setBackground(darkColor);
         
@@ -270,7 +261,6 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         gridBagConstraints.weightx = 0.1;
         getContentPane().add(contentHeaderPanel, gridBagConstraints);
 
-        basicInfoPanel.setBackground(new java.awt.Color(33, 150, 243));
         basicInfoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         basicInfoPanel.setMinimumSize(new java.awt.Dimension(600, 500));
         basicInfoPanel.setPreferredSize(new java.awt.Dimension(600, 500));

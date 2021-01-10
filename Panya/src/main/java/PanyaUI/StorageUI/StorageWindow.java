@@ -568,13 +568,15 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         updateDialog.getContentPane().add(jPanel11, gridBagConstraints);
 
         setMinimumSize(new java.awt.Dimension(600, 600));
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 324));
         setLayout(new java.awt.GridBagLayout());
 
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Storage");
+        contentHeaderLabel.setForeground(java.awt.Color.white);
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentHeaderLabel.setText("STORAGE ストレンジ");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -647,9 +649,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 return types [columnIndex];
             }
         });
-        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         ingredientTable.setMaximumSize(new java.awt.Dimension(2147483647, 600));
-        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 324));
+        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 300));
         jScrollPane1.setViewportView(ingredientTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -658,6 +660,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -697,13 +700,16 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 20, 10, 20);
         contentPanel.add(jPanel2, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         addBtn.setText("Add");
+        addBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        addBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        addBtn.setPreferredSize(new java.awt.Dimension(68, 37));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -713,20 +719,23 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel3.add(addBtn, gridBagConstraints);
 
         DeleteBtn.setText("Delete");
+        DeleteBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setPreferredSize(new java.awt.Dimension(68, 37));
         DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(DeleteBtn, gridBagConstraints);
 
         updateBtn.setText("Update");
@@ -736,24 +745,25 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(updateBtn, gridBagConstraints);
 
         importBtn.setText("Import");
+        importBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        importBtn.setMinimumSize(new java.awt.Dimension(68, 37));
         importBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 100, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(importBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -762,7 +772,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 17, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 17, 20);
         contentPanel.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

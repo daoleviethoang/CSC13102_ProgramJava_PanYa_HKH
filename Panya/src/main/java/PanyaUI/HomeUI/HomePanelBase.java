@@ -69,6 +69,7 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
+        this.themeLabel.setForeground(lightTextColor);
         // this.contentPanel;
         // this.outerContentPanel;
 
@@ -100,10 +101,9 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
-        contentPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         themeLabel = new javax.swing.JLabel();
         themeCombo = new javax.swing.JComboBox<>();
+        contentPanel = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(600, 600));
         setLayout(new java.awt.GridBagLayout());
@@ -136,17 +136,19 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
         bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
+        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
-        bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
-        bottomHeaderPanelLayout.setHorizontalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        bottomHeaderPanelLayout.setVerticalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        themeLabel.setText("Current theme");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 11, 0, 11);
+        bottomHeaderPanel.add(themeLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        bottomHeaderPanel.add(themeCombo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -160,28 +162,6 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
         contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
         contentPanel.setLayout(new java.awt.GridBagLayout());
-
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        themeLabel.setText("Current theme");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 11, 0, 11);
-        jPanel1.add(themeLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
-        jPanel1.add(themeCombo, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        contentPanel.add(jPanel1, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -202,7 +182,6 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
     javax.swing.JLabel contentHeaderLabel;
     javax.swing.JPanel contentHeaderPanel;
     javax.swing.JPanel contentPanel;
-    javax.swing.JPanel jPanel1;
     javax.swing.JComboBox<String> themeCombo;
     javax.swing.JLabel themeLabel;
     // End of variables declaration//GEN-END:variables

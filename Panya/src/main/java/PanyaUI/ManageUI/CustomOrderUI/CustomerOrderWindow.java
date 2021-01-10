@@ -68,8 +68,9 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
+
+        this.contentHeaderLabel.setForeground(primaryTextColor);
+        this.contentHeaderPanel.setBackground(primaryColor);
 
     }
 
@@ -85,6 +86,7 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         this.primaryColor = primary;
         this.darkColor = dark;
         this.lightColor = light;
+        initTheme(primary, light, dark);
     }
 
 

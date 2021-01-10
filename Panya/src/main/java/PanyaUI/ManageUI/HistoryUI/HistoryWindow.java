@@ -68,8 +68,7 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
+        this.searchPanel.setBackground(lightColor);
 
     }
 
@@ -102,10 +101,8 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         bottomHeaderPanel = new javax.swing.JPanel();
-        addButon = new javax.swing.JButton();
-        deleteButon = new javax.swing.JButton();
-        updataButon = new javax.swing.JButton();
-        saleOffButon = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        statisticButton = new javax.swing.JButton();
         searchPanel = new javax.swing.JPanel();
         searchButon = new javax.swing.JButton();
         searchTextField = new javax.swing.JTextField();
@@ -144,6 +141,7 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         contentPanel.setBackground(java.awt.Color.white);
         contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
         contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
+        contentPanel.setLayout(new java.awt.GridBagLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,16 +156,15 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
-        contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-        );
-        contentPanelLayout.setVerticalGroup(
-            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        contentPanel.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -179,33 +176,39 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         add(contentPanel, gridBagConstraints);
 
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
+        bottomHeaderPanel.setMaximumSize(new java.awt.Dimension(600, 50));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
+        bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
+        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        addButon.setBackground(new java.awt.Color(0, 153, 102));
-        addButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        addButon.setForeground(new java.awt.Color(255, 255, 255));
-        addButon.setText("Add");
-        addButon.setBorder(null);
+        deleteButton.setBackground(new java.awt.Color(0, 153, 102));
+        deleteButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setText("Delete");
+        deleteButton.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        bottomHeaderPanel.add(deleteButton, gridBagConstraints);
 
-        deleteButon.setBackground(new java.awt.Color(0, 153, 102));
-        deleteButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        deleteButon.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButon.setText("Delete");
-        deleteButon.setBorder(null);
-
-        updataButon.setBackground(new java.awt.Color(0, 153, 102));
-        updataButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        updataButon.setForeground(new java.awt.Color(255, 255, 255));
-        updataButon.setText("Update");
-        updataButon.setBorder(null);
-
-        saleOffButon.setBackground(new java.awt.Color(255, 153, 0));
-        saleOffButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
-        saleOffButon.setForeground(new java.awt.Color(255, 255, 255));
-        saleOffButon.setText("Statistic");
-        saleOffButon.setBorder(null);
+        statisticButton.setBackground(new java.awt.Color(255, 153, 0));
+        statisticButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
+        statisticButton.setForeground(new java.awt.Color(255, 255, 255));
+        statisticButton.setText("Statistic");
+        statisticButton.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        bottomHeaderPanel.add(statisticButton, gridBagConstraints);
 
         searchPanel.setPreferredSize(new java.awt.Dimension(160, 40));
+        searchPanel.setLayout(new java.awt.GridBagLayout());
 
         searchButon.setBackground(new java.awt.Color(0, 153, 102));
         searchButon.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
@@ -218,6 +221,14 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
                 searchButonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
+        searchPanel.add(searchButon, gridBagConstraints);
 
         searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         searchTextField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -227,57 +238,29 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
         searchTextField.setDoubleBuffered(true);
         searchTextField.setDragEnabled(true);
         searchTextField.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        searchTextField.setMinimumSize(null);
+        searchTextField.setPreferredSize(null);
         searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTextFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.2;
+        searchPanel.add(searchTextField, gridBagConstraints);
 
-        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
-        searchPanel.setLayout(searchPanelLayout);
-        searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(searchButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(searchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(searchButon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
-        bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
-        bottomHeaderPanelLayout.setHorizontalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(saleOffButon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7))
-        );
-        bottomHeaderPanelLayout.setVerticalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(saleOffButon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(deleteButon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(updataButon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.2;
+        bottomHeaderPanel.add(searchPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -298,18 +281,16 @@ public class HistoryWindow extends javax.swing.JPanel implements PanyaContentPan
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButon;
     private javax.swing.JPanel bottomHeaderPanel;
     private javax.swing.JLabel contentHeaderLabel;
     private javax.swing.JPanel contentHeaderPanel;
     private javax.swing.JPanel contentPanel;
-    private javax.swing.JButton deleteButon;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton saleOffButon;
     private javax.swing.JButton searchButon;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField searchTextField;
-    private javax.swing.JButton updataButon;
+    private javax.swing.JButton statisticButton;
     // End of variables declaration//GEN-END:variables
 }

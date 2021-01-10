@@ -78,14 +78,6 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.privateLabel.setForeground(lightTextColor);
         this.privateLabel.setBackground(lightColor);
 
-        var primaryResource = new ColorUIResource(primary);
-        var darkResource = new ColorUIResource(dark);
-    
-        var textColor = new ColorUIResource(Theme.textColorFromBackgroundColor(dark));
-        UIManager.put("Button.background", primaryResource);
-        UIManager.put("Button.mouseHoverColor", darkResource);
-        UIManager.put("Button.foreground", textColor);
-
     }
 
     /**
@@ -134,7 +126,9 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Main Recipe");
+        contentHeaderLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentHeaderLabel.setText("YOUR RECIPE 自分の公式");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -241,13 +235,10 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         recipeTable.setAutoCreateRowSorter(true);
         recipeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "#", "Name", "Note"
+                "#ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
@@ -267,6 +258,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         });
         recipeTable.setToolTipText("Double click to a recipe to see the details");
         recipeTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        recipeTable.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(recipeTable);
         if (recipeTable.getColumnModel().getColumnCount() > 0) {
             recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
@@ -333,20 +325,17 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         secretRecipeTable.setAutoCreateRowSorter(true);
         secretRecipeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "#", "Name", "Note"
+                "#ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

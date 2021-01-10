@@ -72,9 +72,12 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
-
+        this.menuButton.setBackground(lightColor);
+        this.menuButton.setForeground(lightTextColor);
+        this.historyButton.setBackground(lightColor);
+        this.historyButton.setForeground(lightTextColor);
+        this.customerOrderButton.setBackground(lightColor);
+        this.customerOrderButton.setForeground(lightTextColor);
     }
 
     /**
@@ -157,7 +160,7 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         );
         contentPanelLayout.setVerticalGroup(
             contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -171,17 +174,28 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
 
         bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
         bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
+        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
         menuButton.setBackground(new java.awt.Color(0, 153, 102));
         menuButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
         menuButton.setForeground(new java.awt.Color(255, 255, 255));
         menuButton.setText("MENU");
         menuButton.setBorder(null);
+        menuButton.setMaximumSize(null);
+        menuButton.setMinimumSize(null);
+        menuButton.setPreferredSize(new java.awt.Dimension(200, 50));
         menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        bottomHeaderPanel.add(menuButton, gridBagConstraints);
 
         historyButton.setBackground(new java.awt.Color(0, 153, 102));
         historyButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
@@ -189,11 +203,21 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         historyButton.setText("HISTORY");
         historyButton.setBorder(null);
         historyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        historyButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        historyButton.setMinimumSize(new java.awt.Dimension(200, 50));
+        historyButton.setPreferredSize(new java.awt.Dimension(200, 50));
         historyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historyButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        bottomHeaderPanel.add(historyButton, gridBagConstraints);
 
         customerOrderButton.setBackground(new java.awt.Color(0, 153, 102));
         customerOrderButton.setFont(new java.awt.Font("Century Gothic", 1, 15)); // NOI18N
@@ -201,35 +225,21 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
         customerOrderButton.setText("CUSTOMER ORDER");
         customerOrderButton.setBorder(null);
         customerOrderButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        customerOrderButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        customerOrderButton.setMinimumSize(new java.awt.Dimension(200, 50));
+        customerOrderButton.setPreferredSize(new java.awt.Dimension(200, 50));
         customerOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerOrderButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
-        bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
-        bottomHeaderPanelLayout.setHorizontalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-        bottomHeaderPanelLayout.setVerticalGroup(
-            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomHeaderPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.1;
+        bottomHeaderPanel.add(customerOrderButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -275,7 +285,5 @@ public class ManageWindow extends javax.swing.JPanel implements PanyaContentPane
     private javax.swing.JButton historyButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton menuButton;
-    private javax.swing.JPanel backToManagePanelTemp;
-    private int count = 0;
     // End of variables declaration//GEN-END:variables
 }

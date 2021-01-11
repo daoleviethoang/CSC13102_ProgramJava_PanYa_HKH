@@ -1,122 +1,92 @@
-[{
-        "product": {
-            "note": "Fried dough confection or dessert food",
-            "image": "Panya\\src\\main\\resources\\images\\Donut.jpg",
-            "quantity": 7,
-            "price": "15.0",
-            "sellOff": "0.2",
-            "name": "Donut",
-            "id": "PYC-001"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Amandine.jpg",
-            "quantity": 2,
-            "price": "20.0",
-            "sellOff": "0.2",
-            "name": "Amandine",
-            "id": "PYC-002"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Babka.jpg",
-            "quantity": 12,
-            "price": "15.0",
-            "sellOff": "0.2",
-            "name": "Babka",
-            "id": "PYC-003"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
-            "quantity": 7,
-            "price": "20.0",
-            "sellOff": "0.2",
-            "name": "Wingko",
-            "id": "PYC-004"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Angel food cake",
-            "id": "PYC-005"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Frog cake.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Frog cake",
-            "id": "PYC-006"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Battenberg cake.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Battenberg cake",
-            "id": "PYC-007"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Bánh Mì PewPew.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Bánh Mì PewPew",
-            "id": "PYC-008"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Cupcake.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Cupcake",
-            "id": "PYC-009"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Goose breast.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Goose breast",
-            "id": "PYC-010"
-        }
-    },
-    {
-        "product": {
-            "note": "",
-            "image": "Panya\\src\\main\\resources\\images\\Halloween cake.jpg",
-            "quantity": 8,
-            "price": "22.0",
-            "sellOff": "0.2",
-            "name": "Halloween cake",
-            "id": "PYC-011"
-        }
-    }
+[
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Donut.jpg",
+        "note": "Fried dough confection or dessert food",
+        "quantity": 1,
+        "price": "15.0",
+        "sellOff": "0.2",
+        "name": "Donut",
+        "id": "PYC-001"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Babka.jpg",
+        "note": "",
+        "quantity": 11,
+        "price": "15.0",
+        "sellOff": "0.2",
+        "name": "Babka",
+        "id": "PYC-003"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
+        "note": "",
+        "quantity": 5,
+        "price": "20.0",
+        "sellOff": "0.2",
+        "name": "Wingko",
+        "id": "PYC-004"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
+        "note": "",
+        "quantity": 6,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Angel food cake",
+        "id": "PYC-005"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Frog cake.jpg",
+        "note": "",
+        "quantity": 7,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Frog cake",
+        "id": "PYC-006"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Battenberg cake.jpg",
+        "note": "",
+        "quantity": 8,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Battenberg cake",
+        "id": "PYC-007"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Bánh Mì PewPew.jpg",
+        "note": "",
+        "quantity": 8,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Bánh Mì PewPew",
+        "id": "PYC-008"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Cupcake.jpg",
+        "note": "",
+        "quantity": 8,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Cupcake",
+        "id": "PYC-009"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Goose breast.jpg",
+        "note": "",
+        "quantity": 8,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Goose breast",
+        "id": "PYC-010"
+    }},
+    {"product": {
+        "image": "Panya\\src\\main\\resources\\images\\Halloween cake.jpg",
+        "note": "",
+        "quantity": 8,
+        "price": "22.0",
+        "sellOff": "0.2",
+        "name": "Halloween cake",
+        "id": "PYC-011"
+    }}
 ]

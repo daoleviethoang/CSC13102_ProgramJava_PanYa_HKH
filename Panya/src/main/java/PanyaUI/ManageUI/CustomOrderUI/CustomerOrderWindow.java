@@ -14,6 +14,10 @@ import java.awt.Color;
  */
 public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5133500612097443182L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -64,8 +68,9 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
+
+        this.contentHeaderLabel.setForeground(primaryTextColor);
+        this.contentHeaderPanel.setBackground(primaryColor);
 
     }
 
@@ -75,6 +80,15 @@ public class CustomerOrderWindow extends javax.swing.JPanel implements PanyaCont
     public CustomerOrderWindow() {
         initComponents();
     }
+
+    public CustomerOrderWindow(Color primary, Color light, Color dark) {
+        initComponents();
+        this.primaryColor = primary;
+        this.darkColor = dark;
+        this.lightColor = light;
+        initTheme(primary, light, dark);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -9,7 +9,6 @@ import PanyaUI.Theme;
 import java.awt.Color;
 import java.io.File;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +18,11 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.event.ChangeListener;
 
+import PanyaCore.History;
+import PanyaCore.Product;
 
 import javax.swing.event.ChangeEvent;
 
@@ -33,6 +33,10 @@ import javax.swing.event.ChangeEvent;
 
 public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 3424060310827836268L;
     Color primaryColor;
     Color darkColor;
     Color lightColor;
@@ -96,9 +100,17 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
      * Creates new form OuterContentPanel
      */
     public MenuWindow() {
-
         setListMaxQuantity(menuData);
         initComponents();
+        this.itemScrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+
+    }
+
+    public MenuWindow(Color primary, Color light, Color dark) {
+        setListMaxQuantity(menuData);
+        initComponents();
+        initTheme(primary, light, dark);
+        this.itemScrollPanel.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     /**
@@ -649,7 +661,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             addItemButton.setBorder(null);
             addItemButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    item1AddButtonActionPerformed(evt);
+                     item1AddButtonActionPerformed(evt);
                 }
             });
             
@@ -1145,7 +1157,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
         return;
     }
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
         java.awt.Component[] spParent = itemPanel.getComponents();
         int check = 0;
         List<Integer> lstIndexOfRemove = new ArrayList<Integer>();
@@ -1195,6 +1206,13 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
             itemPanel.repaint();
         }
         //Nhớ mở lên khi nộp bài, hoặc báo cáo đồ án.
+        
+        var allProducts = Product.readProductList("Panya/src/main/resources/data/ManageData/ProductFile.json");
+        var histories = History.readHistoryList("Panya/src/main/resources/data/ManageData/HistoryFile.json");
+        var boughtProducts = Product.getBoughtProducts(allProducts, products);
+        History.addNewHistory(histories, boughtProducts);
+        History.saveHistoryList("Panya/src/main/resources/data/ManageData/HistoryFile.json", histories);
+
         PanyaCore.Menu.saveCustomProductList("Panya/src/main/resources/data/ManageData/MenuFile.json", menuData);
         PanyaCore.Product.saveProductList("Panya/src/main/resources/data/ManageData/ProductFile.json", products);
         subItemPanel.removeAll();

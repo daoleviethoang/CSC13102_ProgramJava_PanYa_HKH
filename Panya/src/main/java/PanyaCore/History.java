@@ -55,6 +55,40 @@ public class History {
         this.products = new ArrayList<>(products);
     }
 
+    public void addProductToTodayHistory(List<Product> boughtProducts) {
+        if (boughtProducts == null) {
+            return;
+        }
+        for (var product : boughtProducts) {
+            var idx = this.products.indexOf(product);
+            if (idx != -1) {
+                var thatProduct = this.products.get(idx);
+                thatProduct.quantity += product.quantity;
+            }
+            else {
+                this.products.add(product);
+            }
+        }
+    }
+
+    public static void addNewHistory(List<History> histories, List<Product> boughtProducts) {
+        if (histories == null || boughtProducts == null) {
+            return;
+        }
+        var today = LocalDate.now();
+        var todayIdx = histories.indexOf(new History(today, new ArrayList<Product>()));
+        if (todayIdx != -1) {
+            histories.get(todayIdx).addProductToTodayHistory(boughtProducts);
+            return;
+        }
+        histories.add(new History(today, boughtProducts));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.date.equals(((History) obj).date);
+    }
+
     /**
      * Trả về một object đọc được từ {@link org.json.JSONObject}
      * 
@@ -143,7 +177,7 @@ public class History {
      * @return <code>true</code> nếu lưu file thành công, <code>false</code> cho các
      *         trường hợp khác
      */
-    public static boolean saveCustomProductList(String path, List<History> history) {
+    public static boolean saveHistoryList(String path, List<History> history) {
         return JsonDataUtils.saveObjectList(path, history, "history", JSONObject::new);
     }
 
@@ -154,6 +188,6 @@ public class History {
         var history = History.readHistoryList(INPUT);
 
         final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-HistoryFile.json";
-        History.saveCustomProductList(OUTPUT, history);
+        History.saveHistoryList(OUTPUT, history);
     }
 }

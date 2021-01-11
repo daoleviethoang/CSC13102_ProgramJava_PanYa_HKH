@@ -10,6 +10,11 @@ package PanyaUI;
  * @author dqh
  */
 public class ApplicationWindowBase extends javax.swing.JFrame {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -9159851544442388312L;
+
     /** Creates new form ApplicationWindowBase */
     public ApplicationWindowBase() {
         initComponents();

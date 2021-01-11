@@ -12,6 +12,11 @@ package PanyaUI.Archived;
  */
 public class DemoHome extends javax.swing.JFrame {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 329327323571963290L;
+
     /** Creates new form DemoHome */
     public DemoHome() {
         initComponents();

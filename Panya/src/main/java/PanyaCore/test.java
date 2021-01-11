@@ -12,6 +12,11 @@ package PanyaCore;
 public class test extends javax.swing.JFrame {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = 661599791104118343L;
+
+    /**
      * Creates new form test
      */
     public test() {

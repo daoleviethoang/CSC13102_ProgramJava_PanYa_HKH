@@ -15,6 +15,8 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import PanyaCore.*;
+
 /**
  *
  * @author Dao Le Viet Hoang
@@ -28,25 +30,30 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     Color lightTextColor;
     Color darkTextColor;
     boolean randomColor = false;
+    Storage storage;
 
     /**
      * Creates new form OuterContentPanel
      */
     public StorageWindow() {
         initComponents();
-        //
-        Object[] row = {"1", "flour", "5000", "g", "10000", "make bakery", "30"};
-        DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();   
-        //DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
-        model.addRow(row);
-        
-        //edit cell
-        //String name = "sugar";
-        //model.setValueAt(name, 0, 1);
+        final String path = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+        readStorage(path);
         
         
         
+    }
+    public void readStorage(String path) {
         
+        var ingredients = Ingredient.readIngredients(path);
+        int cap = 1000;
+        storage = new Storage(cap, ingredients);
+        
+        DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
+        for(Ingredient i : storage.getList()){
+            Object[] row = {i.getId(), i.getName(), i.getQuantity().toString(), i.getUnit(), i.getPrice().toString(), i.getNote(), i.getCount_sta()};
+            model.addRow(row);            
+        }
     }
     
     public StorageWindow(Color primary, Color light, Color dark, boolean randomColor) {
@@ -156,6 +163,21 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel11 = new javax.swing.JPanel();
         updateUpdDialogBtn = new javax.swing.JButton();
         clearUpdDialogBtn = new javax.swing.JButton();
+        searchDialog = new javax.swing.JDialog();
+        headerDialogLabel4 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        quantitySearchDialogTextF = new javax.swing.JTextField();
+        nameSearchDialogTextF = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        idSearchDialogTextF = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        unitSearchDialogTextF = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        priceSearchDialogTextF = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        noteSearchDialogTextF = new javax.swing.JTextField();
         contentHeaderPanel = new javax.swing.JPanel();
         contentHeaderLabel = new javax.swing.JLabel();
         bottomHeaderPanel = new javax.swing.JPanel();
@@ -164,13 +186,14 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jScrollPane1 = new javax.swing.JScrollPane();
         ingredientTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        searchTextF = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
         importBtn = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        updateBtn = new javax.swing.JButton();
 
         importDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         importDialog.setLocationByPlatform(true);
@@ -560,14 +583,160 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         updateDialog.getContentPane().add(jPanel11, gridBagConstraints);
 
+        searchDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        searchDialog.setLocationByPlatform(true);
+        searchDialog.setMinimumSize(new java.awt.Dimension(300, 450));
+        searchDialog.setModal(true);
+        searchDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        headerDialogLabel4.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        headerDialogLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerDialogLabel4.setText("Search");
+        headerDialogLabel4.setAlignmentY(0.0F);
+        headerDialogLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        headerDialogLabel4.setMaximumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel4.setMinimumSize(new java.awt.Dimension(76, 25));
+        headerDialogLabel4.setPreferredSize(new java.awt.Dimension(76, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        searchDialog.getContentPane().add(headerDialogLabel4, gridBagConstraints);
+
+        jPanel10.setPreferredSize(new java.awt.Dimension(410, 50));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        searchDialog.getContentPane().add(jPanel10, gridBagConstraints);
+
+        jLabel13.setText("Quantity: ");
+        jLabel13.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel13, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(quantitySearchDialogTextF, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(nameSearchDialogTextF, gridBagConstraints);
+
+        jLabel17.setText("Name:");
+        jLabel17.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel17, gridBagConstraints);
+
+        jLabel18.setText("ID:");
+        jLabel18.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel18, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(idSearchDialogTextF, gridBagConstraints);
+
+        jLabel19.setText("Unit: ");
+        jLabel19.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel19, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(unitSearchDialogTextF, gridBagConstraints);
+
+        jLabel20.setText("Price: ");
+        jLabel20.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel20, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(priceSearchDialogTextF, gridBagConstraints);
+
+        jLabel21.setText("Note: ");
+        jLabel21.setPreferredSize(new java.awt.Dimension(50, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 5);
+        searchDialog.getContentPane().add(jLabel21, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        searchDialog.getContentPane().add(noteSearchDialogTextF, gridBagConstraints);
+
         setMinimumSize(new java.awt.Dimension(600, 600));
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 324));
         setLayout(new java.awt.GridBagLayout());
 
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Storage");
+        contentHeaderLabel.setForeground(java.awt.Color.white);
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentHeaderLabel.setText("STORAGE ストレンジ");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -640,9 +809,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 return types [columnIndex];
             }
         });
-        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         ingredientTable.setMaximumSize(new java.awt.Dimension(2147483647, 600));
-        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 100));
+        ingredientTable.setPreferredSize(new java.awt.Dimension(600, 300));
         jScrollPane1.setViewportView(ingredientTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -651,6 +820,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -666,23 +836,28 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setMinimumSize(new java.awt.Dimension(450, 39));
-        jTextField1.setPreferredSize(new java.awt.Dimension(450, 39));
+        searchTextF.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        searchTextF.setMinimumSize(new java.awt.Dimension(450, 39));
+        searchTextF.setPreferredSize(new java.awt.Dimension(450, 39));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 16);
-        jPanel2.add(jTextField1, gridBagConstraints);
+        jPanel2.add(searchTextF, gridBagConstraints);
 
-        jButton4.setText("Search");
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipady = 8;
-        jPanel2.add(jButton4, gridBagConstraints);
+        jPanel2.add(searchBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -690,13 +865,16 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 20, 10, 20);
         contentPanel.add(jPanel2, gridBagConstraints);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         addBtn.setText("Add");
+        addBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        addBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        addBtn.setPreferredSize(new java.awt.Dimension(68, 37));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -706,48 +884,63 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel3.add(addBtn, gridBagConstraints);
 
         DeleteBtn.setText("Delete");
+        DeleteBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setPreferredSize(new java.awt.Dimension(68, 37));
         DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(DeleteBtn, gridBagConstraints);
 
-        updateBtn.setText("Update");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
-        jPanel3.add(updateBtn, gridBagConstraints);
-
         importBtn.setText("Import");
+        importBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        importBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        importBtn.setPreferredSize(new java.awt.Dimension(68, 37));
         importBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 100, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(importBtn, gridBagConstraints);
+
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        updateBtn.setText("Update");
+        updateBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        updateBtn.setMinimumSize(new java.awt.Dimension(68, 37));
+        updateBtn.setPreferredSize(new java.awt.Dimension(68, 37));
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        jPanel4.add(updateBtn, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jPanel3.add(jPanel4, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -755,7 +948,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 17, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 17, 20);
         contentPanel.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -771,7 +964,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         addDialog.setVisible(true);
-
+        searchDialog.setVisible(false);
         updateDialog.setVisible(false);
         importDialog.setVisible(false);
     }//GEN-LAST:event_addBtnActionPerformed
@@ -779,12 +972,23 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
         // TODO add your handling code here:
         addDialog.setVisible(false);
-
         updateDialog.setVisible(false);
         importDialog.setVisible(false);
+        searchDialog.setVisible(false);
+        //remove
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
+        
         int index = ingredientTable.getSelectedRow();
         String id = model.getValueAt(index, 0).toString();      //lấy id để remove trong system
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                storage.getList().remove(i);
+            }
+        }
+        //write xuong file
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
+
         model.removeRow(ingredientTable.getSelectedRow());
         JOptionPane.showMessageDialog(null, "Selected ingredient deleted successfully");
     }//GEN-LAST:event_DeleteBtnActionPerformed
@@ -793,7 +997,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         // TODO add your handling code here:
         
         addDialog.setVisible(false);
-
+        searchDialog.setVisible(false);
         updateDialog.setVisible(true);
         importDialog.setVisible(false);
     }//GEN-LAST:event_updateBtnActionPerformed
@@ -801,25 +1005,33 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     private void importBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importBtnActionPerformed
         // TODO add your handling code here:
         addDialog.setVisible(false);
-
+        searchDialog.setVisible(false);
         updateDialog.setVisible(false);
         importDialog.setVisible(true);
     }//GEN-LAST:event_importBtnActionPerformed
 
     private void addAddDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAddDialogBtnActionPerformed
         // TODO add your handling code here:
-        //add row
-        
+        // get infor
         String id = idAddDialogTextF.getText();
         String name = nameAddDialogTextF.getText();
         String quantity = quantityAddDialogTextF.getText();
         String unit = unitAddDialogTextF.getText();
         String price = priceAddDialogTextF.getText();
         String note = noteAddDialogTextF.getText();
-        
+
+        //add list
+        Ingredient new_ing = new Ingredient(id, name, new BigDecimal(quantity), unit, new BigDecimal(price), note);
+        new_ing.setCount_sta(0);
+        storage.getList().add(new_ing);
+        //add table
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
-        Object[] row = {id, name, quantity, unit, price, note};
-        model.addRow(row);
+        Object[] row = {new_ing.getId(), new_ing.getName(), new_ing.getQuantity(), new_ing.getUnit(), new_ing.getPrice(), new_ing.getNote(), 
+            new_ing.getCount_sta()};
+        model.addRow(row);    
+
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
 
     }//GEN-LAST:event_addAddDialogBtnActionPerformed
 
@@ -842,12 +1054,19 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) ingredientTable.getModel();
         int index = ingredientTable.getSelectedRow();
-        String id = model.getValueAt(index, 0).toString();  //lấy id để import trong system
-
         BigDecimal input_quantity = new BigDecimal(quantityImpDialogTextF.getText());     //chuyển string quantity vừa nhập thành bigdemical
         BigDecimal old_quantity = new BigDecimal(model.getValueAt(index, 2).toString());    //lấy quantity trong table
         BigDecimal new_quan = input_quantity.add(old_quantity); 
+        String id = model.getValueAt(index, 0).toString();  //lấy id để import trong system
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                storage.getList().get(i).setQuantity(new_quan);
+            }
+        }
+
         model.setValueAt(new_quan, ingredientTable.getSelectedRow(), 2);
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
         JOptionPane.showMessageDialog(null, "Selected ingredient imported successfully");
     }//GEN-LAST:event_submitImpDialogBtnActionPerformed
 
@@ -862,22 +1081,35 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         String new_price = priceUpdDialogTextF.getText();
         String new_note = noteUpdDialogTextF.getText();
         
-        if(new_name.length() > 0){
-            model.setValueAt(new_name, ingredientTable.getSelectedRow(), 1);
-        }
-        if(new_quantity.length() > 0){
-            model.setValueAt(new_quantity, ingredientTable.getSelectedRow(), 2);
-        }
-        if(new_unit.length() > 0){
-            model.setValueAt(new_unit, ingredientTable.getSelectedRow(), 3);
-        }
-        if(new_price.length() > 0){
-            model.setValueAt(new_price, ingredientTable.getSelectedRow(), 4);
-        }
-        if(new_note.length() > 0){
-            model.setValueAt(new_note, ingredientTable.getSelectedRow(), 5);
-        }
         
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getId().compareTo(id) == 0){
+                if(new_name.length() > 0){
+                    model.setValueAt(new_name, ingredientTable.getSelectedRow(), 1);
+                    storage.getList().get(i).setName(new_name);
+                }
+                if(new_quantity.length() > 0){
+                    model.setValueAt(new_quantity, ingredientTable.getSelectedRow(), 2);
+                    storage.getList().get(i).setQuantity(new BigDecimal(new_quantity));
+                }
+                if(new_unit.length() > 0){
+                    model.setValueAt(new_unit, ingredientTable.getSelectedRow(), 3);
+                    storage.getList().get(i).setUnit(new_unit);
+                }
+                if(new_price.length() > 0){
+                    model.setValueAt(new_price, ingredientTable.getSelectedRow(), 4);
+                    storage.getList().get(i).setPrice(new BigDecimal(new_price));
+                }
+                if(new_note.length() > 0){
+                    model.setValueAt(new_note, ingredientTable.getSelectedRow(), 5);
+                    storage.getList().get(i).setNote(new_note);
+                }
+            }
+        }
+        //lưu vào file
+        final String path = "Panya/src/main/resources/data/IngredientData/sample-IngredientFile.json";
+        Ingredient.writeIngredients(path, storage.getList());
+
         JOptionPane.showMessageDialog(null, "Selected ingredient updated successfully");
     }//GEN-LAST:event_updateUpdDialogBtnActionPerformed
 
@@ -889,6 +1121,35 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         priceAddDialogTextF.setText("");
         noteAddDialogTextF.setText("");
     }//GEN-LAST:event_clearUpdDialogBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        String user_search = searchTextF.getText();
+        boolean check = false;
+
+        for(int i = storage.getList().size() - 1; i >= 0; i--){
+            if(storage.getList().get(i).getName().compareTo(user_search) == 0){
+                idSearchDialogTextF.setText(storage.getList().get(i).getId());
+                nameSearchDialogTextF.setText(storage.getList().get(i).getName());
+                quantitySearchDialogTextF.setText(storage.getList().get(i).getQuantityString());
+                unitSearchDialogTextF.setText(storage.getList().get(i).getUnit());
+                priceSearchDialogTextF.setText(storage.getList().get(i).getPriceString());
+                noteSearchDialogTextF.setText(storage.getList().get(i).getNote());
+                check = true;
+                break;
+            }
+        }
+        if(check != true){
+            JOptionPane.showMessageDialog(null, "Can't search ingredient, please try again",
+                "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            addDialog.setVisible(false);
+            searchDialog.setVisible(true);
+            updateDialog.setVisible(false);
+            importDialog.setVisible(false);
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -930,17 +1191,24 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     javax.swing.JLabel headerDialogLabel;
     javax.swing.JLabel headerDialogLabel2;
     javax.swing.JLabel headerDialogLabel3;
+    javax.swing.JLabel headerDialogLabel4;
     javax.swing.JTextField idAddDialogTextF;
+    javax.swing.JTextField idSearchDialogTextF;
     javax.swing.JButton importBtn;
     javax.swing.JDialog importDialog;
     javax.swing.JTable ingredientTable;
-    javax.swing.JButton jButton4;
     javax.swing.JLabel jLabel10;
     javax.swing.JLabel jLabel11;
     javax.swing.JLabel jLabel12;
+    javax.swing.JLabel jLabel13;
     javax.swing.JLabel jLabel14;
     javax.swing.JLabel jLabel15;
     javax.swing.JLabel jLabel16;
+    javax.swing.JLabel jLabel17;
+    javax.swing.JLabel jLabel18;
+    javax.swing.JLabel jLabel19;
+    javax.swing.JLabel jLabel20;
+    javax.swing.JLabel jLabel21;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel5;
     javax.swing.JLabel jLabel6;
@@ -948,25 +1216,34 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
     javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel9;
     javax.swing.JPanel jPanel1;
+    javax.swing.JPanel jPanel10;
     javax.swing.JPanel jPanel11;
     javax.swing.JPanel jPanel2;
     javax.swing.JPanel jPanel3;
+    javax.swing.JPanel jPanel4;
     javax.swing.JPanel jPanel5;
     javax.swing.JPanel jPanel8;
     javax.swing.JPanel jPanel9;
     javax.swing.JScrollPane jScrollPane1;
-    javax.swing.JTextField jTextField1;
     javax.swing.JTextField nameAddDialogTextF;
+    javax.swing.JTextField nameSearchDialogTextF;
     javax.swing.JTextField nameUpdDialogTextF;
     javax.swing.JTextField noteAddDialogTextF;
+    javax.swing.JTextField noteSearchDialogTextF;
     javax.swing.JTextField noteUpdDialogTextF;
     javax.swing.JTextField priceAddDialogTextF;
+    javax.swing.JTextField priceSearchDialogTextF;
     javax.swing.JTextField priceUpdDialogTextF;
     javax.swing.JTextField quantityAddDialogTextF;
     javax.swing.JTextField quantityImpDialogTextF;
+    javax.swing.JTextField quantitySearchDialogTextF;
     javax.swing.JTextField quantityUpdDialogTextF;
+    javax.swing.JButton searchBtn;
+    javax.swing.JDialog searchDialog;
+    javax.swing.JTextField searchTextF;
     javax.swing.JButton submitImpDialogBtn;
     javax.swing.JTextField unitAddDialogTextF;
+    javax.swing.JTextField unitSearchDialogTextF;
     javax.swing.JTextField unitUpdDialogTextF;
     javax.swing.JButton updateBtn;
     javax.swing.JDialog updateDialog;

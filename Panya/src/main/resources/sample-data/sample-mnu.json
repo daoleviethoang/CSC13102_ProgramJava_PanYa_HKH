@@ -2,7 +2,7 @@
     {
         "menu": {
             "products": ["PYC-001", "PYC-002", "PYC-003"],
-            "sellOf": "0.1"
+            "sellOff": "0.1"
         }
     }
  ]

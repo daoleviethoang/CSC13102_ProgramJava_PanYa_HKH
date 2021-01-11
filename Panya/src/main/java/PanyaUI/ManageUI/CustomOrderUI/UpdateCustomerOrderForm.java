@@ -12,6 +12,11 @@ package PanyaUI.ManageUI.CustomOrderUI;
 public class UpdateCustomerOrderForm extends javax.swing.JPanel {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = -3003720038286123630L;
+
+    /**
      * Creates new form AddMenuForm
      */
     public UpdateCustomerOrderForm() {

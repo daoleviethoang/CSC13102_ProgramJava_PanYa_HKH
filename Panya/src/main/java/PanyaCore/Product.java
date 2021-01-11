@@ -1,6 +1,7 @@
 package PanyaCore;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -194,6 +195,31 @@ public class Product {
      */
     public static boolean saveProductList(String path, List<Product> products) {
         return JsonDataUtils.saveObjectList(path, products, "product", JSONObject::new);
+    }
+
+    public static List<Product> getBoughtProducts(List<Product> allProducts, List<Product> remainingProducts) {
+        if (allProducts == null || remainingProducts == null) {
+            return null;
+        }
+
+        var boughtProducts = new ArrayList<Product>();
+        for (var product : allProducts) {
+            var remainingIdx = remainingProducts.indexOf(product);
+            if (remainingIdx != -1){
+                var boughtProduct = new Product(product);
+                boughtProduct.quantity = Math.abs(product.quantity - remainingProducts.get(remainingIdx).quantity);
+
+                if (boughtProduct.quantity > 0) {
+                    boughtProducts.add(boughtProduct);
+                }
+            }
+        }
+        return boughtProducts;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((Product) obj).id);
     }
 
     // public static void main(String[] args) {

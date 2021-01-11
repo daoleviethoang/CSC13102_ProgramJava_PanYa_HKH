@@ -7,6 +7,7 @@
 package PanyaUI.RecipeUI;
 
 import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
@@ -83,12 +84,23 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         this.darkTextColor = Theme.textColorFromBackgroundColor(dark);
         this.lightTextColor = Theme.textColorFromBackgroundColor(light);
 
-        // this.bottomHeaderPanel.setBackground(lightColor);
-        this.contentHeaderLabel.setForeground(primaryTextColor);
-        this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
-
+        this.contentHeaderLabel.setForeground(darkTextColor);
+        this.contentHeaderPanel.setBackground(darkColor);
+        
+        this.imageLabel.setForeground(primaryTextColor);
+        this.imageLabel.setBackground(primaryColor);
+        this.jPanel4.setForeground(primaryTextColor);
+        this.jPanel4.setBackground(primaryColor);
+        this.editButton.setBackground(primaryColor);
+        this.editButton.setForeground(primaryTextColor);
+        this.removeButton.setBackground(primaryColor);
+        this.removeButton.setForeground(primaryTextColor);
+        this.saveButton.setBackground(primaryColor);
+        this.saveButton.setForeground(primaryTextColor);
+        this.addIngredientButton.setBackground(primaryColor);
+        this.addIngredientButton.setForeground(primaryTextColor);
+        this.removeIngredientButton.setBackground(primaryColor);
+        this.removeIngredientButton.setForeground(primaryTextColor);
     }
 
     /** This method is called from within the constructor to
@@ -249,7 +261,6 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         gridBagConstraints.weightx = 0.1;
         getContentPane().add(contentHeaderPanel, gridBagConstraints);
 
-        basicInfoPanel.setBackground(new java.awt.Color(33, 150, 243));
         basicInfoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         basicInfoPanel.setMinimumSize(new java.awt.Dimension(600, 500));
         basicInfoPanel.setPreferredSize(new java.awt.Dimension(600, 500));
@@ -289,6 +300,7 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         descriptionTextField.setEditable(false);
         descriptionTextField.setColumns(20);
         descriptionTextField.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        descriptionTextField.setLineWrap(true);
         descriptionTextField.setRows(5);
         jScrollPane2.setViewportView(descriptionTextField);
 

@@ -14,6 +14,11 @@ import PanyaUI.Theme;
  */
 public class TestMain extends javax.swing.JFrame {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5887843770685398355L;
+
     /** Creates new form TestMain */
     public TestMain() {
         initComponents();

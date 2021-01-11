@@ -12,6 +12,11 @@ package PanyaUI.ManageUI.HistoryUI;
 public class UpdateHistoryForm extends javax.swing.JPanel {
 
     /**
+     *
+     */
+    private static final long serialVersionUID = 6766842373086331798L;
+
+    /**
      * Creates new form AddMenuForm
      */
     public UpdateHistoryForm() {

@@ -2,13 +2,16 @@ package PanyaUI;
 
 import javax.swing.*;
 
+import PanyaUI.HomeUI.HomePanel;
+import PanyaUI.HomeUI.HomePanelBase;
 import PanyaUI.ManageUI.ManageWindow;
 import PanyaUI.RecipeUI.RecipeMainPanel;
-import PanyaUI.RecipeUI.RecipeMainPanelBase;
 import PanyaUI.StorageUI.StorageWindow;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +26,10 @@ import PanyaCore.Menu;
  * các chức năng chính của Pan-ya
  */
 public class ApplicationWindow extends ApplicationWindowBase {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4126150188811142520L;
     private static List<Menu> menu = new ArrayList<Menu>();
     private static List<Product> products = new ArrayList<Product>();
 
@@ -45,8 +52,12 @@ public class ApplicationWindow extends ApplicationWindowBase {
     // Danh sách các panel tương ứng với từng mục trong menu panel
     Map<String, PanyaContentPanel> panelDicts = new HashMap<>();
 
-
     final List<JLabel> menuListLabels = new ArrayList<JLabel>() {
+        /**
+         *
+         */
+        private static final long serialVersionUID = -6743000424386180884L;
+
         {
             add(homeLabel);
             add(storageLabel);
@@ -56,19 +67,16 @@ public class ApplicationWindow extends ApplicationWindowBase {
     };
 
     boolean randomColor = false;
-    String recipeFile  = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
-    String ingredientFile  = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
-    
+    String recipeFile = "Panya/src/main/resources/data/RecipeData/RecipeFile.json";
+    String ingredientFile = "Panya/src/main/resources/data/IngredientData/IngredientFile.json";
+
     private void initPanelDicts() {
         try {
-            this.panelDicts = new HashMap<>() {
-                {
-                    put("HOME", new OuterContentPanel());
-                    //put("MANAGE", new ManageWindow());
-                    put("RECIPE", new RecipeMainPanel(recipeFile));
-                    put("STORAGE", new StorageWindow());
-                }
-            };
+            this.panelDicts = new HashMap<>();
+            this.panelDicts.put("HOME", new HomePanel(this));
+            // this.panelDicts.put("MANAGE", new ManageWindow());
+            this.panelDicts.put("RECIPE", new RecipeMainPanel(recipeFile));
+            this.panelDicts.put("STORAGE", new StorageWindow());
         } catch (Exception e) {
             // TODO: handle exception
         }
@@ -84,20 +92,28 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.hightlightFont = new java.awt.Font("Noto Sans", 1, 17);
         this.unhilightFont = new java.awt.Font("Noto Sans", 0, 17);
     }
+
     public void loadAllData() {
-        final String pathMenuData = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+        
+        String pathMenuData = "Panya/src/main/resources/data/ManageData/MenuFile.json";
+        if (!new File(pathMenuData).exists()){
+            pathMenuData = "src/main/resources/data/ManageData/MenuFile.json";
+        }
         menu = Menu.readMenuList(pathMenuData);
         System.out.println("test nhe" + menu.get(0).getProducts().get(0).getName());
-        final String pathProductData = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+        String pathProductData = "Panya/src/main/resources/data/ManageData/ProductFile.json";
+        if (!new File(pathProductData).exists()){
+            pathProductData = "src/main/resources/data/ManageData/ProductFile.json";
+        }
         products = Product.readProductList(pathProductData);
         // Thêm đọc data khác ở đây
     }
-    public static List<Menu> getMenu()
-    {
+
+    public static List<Menu> getMenu() {
         return menu;
     }
-    public static List<Product> getProducts()
-    {
+
+    public static List<Product> getProducts() {
         return products;
     }
 
@@ -191,6 +207,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.menuListPanel.setBackground(lightColor);
         this.menuPanel.setBackground(lightColor);
         this.recipeLabel.setForeground(lightTextColor);
+        this.recipeLabel.setBackground(lightColor);
         this.storageLabel.setBackground(lightColor);
         this.storageLabel.setForeground(lightTextColor);
         this.titlePanel.setBackground(darkColor);
@@ -198,6 +215,7 @@ public class ApplicationWindow extends ApplicationWindowBase {
         this.topHeaderPanel.setBackground(darkColor);
         this.manageLabel.setBackground(lightColor);
         this.manageLabel.setForeground(lightTextColor);
+
         this.setHighlightLabel(this.homeLabel);
         this.unsetHighlightLabel(this.storageLabel);
         this.panelDicts.forEach((k, v) -> v.initTheme(primary, light, dark));
@@ -217,33 +235,26 @@ public class ApplicationWindow extends ApplicationWindowBase {
     }
 
     private void initAction() {
-        if(count == 0)
-        {
-            manageBackPanel = new ManageWindow();
-            panelDicts.put("MANAGE", (PanyaContentPanel)manageBackPanel);
+        if (count == 0) {
+            manageBackPanel = new ManageWindow(primaryColor, lightColor, darkColor);
+            panelDicts.put("MANAGE", (PanyaContentPanel) manageBackPanel);
         }
         menuListLabels.forEach(lbl -> lbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 highlightLabel(lbl);
                 String labelName = lbl.getText();
-                
-                if(labelName.compareTo("MANAGE") == 0)
-                {
-                    //Đánh dấu sự ngu dốt, 1 ngày 1 đêm mới fix được =]]] cay.
-                    if(count != 0)
-                    {
-                        panelDicts.replace("MANAGE", new ManageWindow());
+
+                if (labelName.compareTo("MANAGE") == 0) {
+                    // Đánh dấu sự ngu dốt, 1 ngày 1 đêm mới fix được =]]] cay.
+                    if (count != 0) {
+                        panelDicts.replace("MANAGE", new ManageWindow(primaryColor, lightColor, darkColor));
                         replaceOuterPanel(labelName);
-                    }
-                    else
-                    {
+                    } else {
                         replaceOuterPanel(lbl.getText());
                         count++;
                     }
-                }
-                else
-                {
+                } else {
                     replaceOuterPanel(labelName);
                 }
             }

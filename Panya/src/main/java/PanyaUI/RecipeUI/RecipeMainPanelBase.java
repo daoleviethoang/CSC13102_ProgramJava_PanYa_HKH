@@ -8,10 +8,9 @@ package PanyaUI.RecipeUI;
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
 import java.awt.Color;
-import java.awt.event.*;
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -73,8 +72,6 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.bottomHeaderPanel.setBackground(lightColor);
         this.contentHeaderLabel.setForeground(primaryTextColor);
         this.contentHeaderPanel.setBackground(primaryColor);
-        // this.contentPanel;
-        // this.outerContentPanel;
 
         this.publicLabel.setForeground(primaryTextColor);
         this.publicLabel.setBackground(primaryColor);
@@ -82,42 +79,12 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.privateLabel.setBackground(lightColor);
 
     }
-    void initAction() {
-        this.publicLabel.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                publicLabel.setForeground(primaryTextColor);
-                publicLabel.setBackground(primaryColor);
-                privateLabel.setForeground(lightTextColor);
-                privateLabel.setBackground(lightColor);
-                publicLabel.setVisible(true);
-                privatePanel.setVisible(false);
-            }
-        }); 
-        var frame = this;
 
-        this.privateLabel.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                var pass = JOptionPane.showInputDialog(frame, "Input your password");
-                if (true){
-                    // TODO: password validation
-                    publicLabel.setForeground(lightTextColor);
-                    publicLabel.setBackground(lightColor);
-                    privateLabel.setForeground(primaryTextColor);
-                    privateLabel.setBackground(primaryColor);
-                    privatePanel.setVisible(true);
-                    publicPanel.setVisible(false);
-                }
-            }
-        });
-    }
     /**
      * Creates new form OuterContentPanel
      */
     public RecipeMainPanelBase() {
         initComponents();
-        initAction();
     }
 
     /**
@@ -159,7 +126,9 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Main Recipe");
+        contentHeaderLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentHeaderLabel.setText("YOUR RECIPE 自分の公式");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -266,13 +235,10 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         recipeTable.setAutoCreateRowSorter(true);
         recipeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "#", "Name", "Note"
+                "ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
@@ -291,6 +257,8 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
             }
         });
         recipeTable.setToolTipText("Double click to a recipe to see the details");
+        recipeTable.setAutoscrolls(false);
+        recipeTable.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(recipeTable);
         if (recipeTable.getColumnModel().getColumnCount() > 0) {
             recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
@@ -357,20 +325,17 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         secretRecipeTable.setAutoCreateRowSorter(true);
         secretRecipeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "#", "Name", "Note"
+                "ID", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

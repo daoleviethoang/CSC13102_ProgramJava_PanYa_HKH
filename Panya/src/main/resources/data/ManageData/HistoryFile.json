@@ -33,14 +33,34 @@
     }},
     {"history": {
         "date": "2021-01-12",
-        "products": [{"product": {
-            "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
-            "note": "",
-            "quantity": 3,
-            "price": "20.0",
-            "sellOff": "0.2",
-            "name": "Wingko",
-            "id": "PYC-004"
-        }}]
+        "products": [
+            {"product": {
+                "image": "Panya\\src\\main\\resources\\images\\Wingko.jpg",
+                "note": "",
+                "quantity": 3,
+                "price": "20.0",
+                "sellOff": "0.2",
+                "name": "Wingko",
+                "id": "PYC-004"
+            }},
+            {"product": {
+                "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
+                "note": "",
+                "quantity": 1,
+                "price": "22.0",
+                "sellOff": "0.2",
+                "name": "Angel food cake",
+                "id": "PYC-005"
+            }},
+            {"product": {
+                "image": "Panya\\src\\main\\resources\\images\\Bánh Mì PewPew.jpg",
+                "note": "",
+                "quantity": 1,
+                "price": "22.0",
+                "sellOff": "0.2",
+                "name": "Bánh Mì PewPew",
+                "id": "PYC-008"
+            }}
+        ]
     }}
 ]

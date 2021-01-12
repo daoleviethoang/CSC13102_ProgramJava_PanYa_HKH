@@ -58,5 +58,15 @@
             "price": "20.0",
             "note": ""
         }
+    },
+    {
+        "ingredient":{
+            "id": "ING-007",
+            "name": "Milk",
+            "quantity": "50.0",
+            "unit": "Lits",
+            "price": "15.0",
+            "note": ""
+        }
     }
 ]

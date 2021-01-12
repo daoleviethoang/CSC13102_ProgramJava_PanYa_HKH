@@ -35,7 +35,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Angel food cake.jpg",
-            "quantity": 8,
+            "quantity": 7,
             "price": "22.0",
             "sellOff": "0.2",
             "name": "Angel food cake",
@@ -51,7 +51,7 @@
         }},
         {"product": {
             "image": "Panya\\src\\main\\resources\\images\\Bánh Mì PewPew.jpg",
-            "quantity": 8,
+            "quantity": 7,
             "price": "22.0",
             "sellOff": "0.2",
             "name": "Bánh Mì PewPew",
@@ -80,6 +80,15 @@
             "sellOff": "0.2",
             "name": "Halloween cake",
             "id": "PYC-011"
+        }},
+        {"product": {
+            "image": "D:\\CSC13102_ProgramJava_PanYa_HKH\\Panya\\src\\main\\resources\\images\\Hamburger.jpg",
+            "note": " ",
+            "quantity": 5,
+            "price": "35.0",
+            "sellOff": "0.0",
+            "name": "Hamburger",
+            "id": "PYC-012"
         }}
     ]
 }}]

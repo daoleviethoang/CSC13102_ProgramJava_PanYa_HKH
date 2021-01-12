@@ -1,8 +1,8 @@
 [
     {"recipe": {
         "note": "",
-        "visibility": true,
         "productId": [],
+        "visibility": true,
         "name": "banh-mi hihi",
         "description": "banh mi recipe made by mom",
         "ingredients": [{
@@ -16,8 +16,8 @@
     }},
     {"recipe": {
         "note": "",
-        "visibility": true,
         "productId": [],
+        "visibility": true,
         "name": "Vietnamese Ice coffee",
         "description": "Cà phê sữa đá pha theo phong cách Việt Nam gồm cà phê rang xay được pha phin hay pha sẵn với sữa đặc có đường (thông dụng là sữa Ông Thọ) theo tỷ lệ một phần nước cà phê,1 hoặc hai phần sữa tùy theo khẩu vị của người uống.Cà phê sữa này được uống chung với nhiều nước đá. Món cà phê sữa đá cùng với cà phê đen đá là hai loại thức uống từ cà phê phổ biến tại các quán cà phê cũng như ở toàn thể khắp đại gia đình Việt Nam.",
         "ingredients": [
@@ -37,5 +37,32 @@
             }
         ],
         "id": "REC-2"
+    }},
+    {"recipe": {
+        "note": "",
+        "productId": [],
+        "visibility": true,
+        "name": "Hamburger",
+        "description": "vỏ bánh: (khoảng 28 vỏ bánh Hamburger, nếu làm ít thì chia nguyên liệu ra)\n-Bột mì cái cân :1kg (bột bread flour, bột mỳ số 12 v.v..)\n-Men nở:12-20gr (nhiệt phòng nóng cho ít, lạnh cho nhiều)\n-Muối: 13gr\n-Phụ gia bánh mì: 5gr\n-Đường: 100gr (nếu thích vị ngọt đậm hơn thì tăng lên tối đa thành 150gr, tăng đường thì giảm nước)\n-Bơ nhạt: 100gr (nguyên liệu bơ tạo vị thơm cho bánh khá mạnh nên dùng bơ loại xịn chút, ở đây mình dùng bơ Anchor)\n-Trứng: 1 quả\n-Nước: khoảng 420gr (nhiệt độ phòng nóng quá thì cho nước lạnh, lạnh quá thì cho nước ấm)\nCách làm:\n-Cho bột, men,muối,phụ gia, đường vào âu trộn đều lên. Sau đó cho bơ mềm, trứng và nước vào trộn đều rồi đánh bằng máy hoặc đập bột bằng tay đến khi bột thật dai, thử bằng cách véo miếng bột kéo ra màng mỏng bột không rách ngay là được.\n-Cân chia bột thành các khối nhỏ 60gr (hoặc to nhỏ hơn tùy người làm), vê thật tròn rồi xếp lên khay nướng chống dính hoặc khay đã lót tấm chống dính.\n-Ủ bột ở chỗ kín, tốt nhất là cho vào tủ ủ, nếu không thì chụp nilon lên cho kín để ủ. Ủ đến khi bột to gấp khoảng 3-4 lần ban đầu, hoặc thử bột bằng cách dùng ngón tay ấn nhẹ lên mặt bột, nếu thấy bột hơi lõm hình ngón tay thì chuẩn bị nướng. Hôm nay mình làm thì ủ khoảng 90p là bột nở đạt để nướng.\n-Bật lò nướng khoảng 170-180 độ trước khi nướng khoảng 10p (nếu lò công nghiệp thì để nhiệt đáy khoảng 180 độ, nhiệt mặt 200 độ)\n-Dùng 1 quả trứng, đập ra bát, quấy 1-2 phút cho trứng thật tan, khi quét sẽ đều, không bị đọng lòng trắng. rồi dùng chổi quét 1 lớp trứng mỏng lên mặt bánh. Rắc 1 chút vừng trắng lên mặt bánh.\n-Cho khay bánh vào nướng, bánh chín trong khoảng 15-20p, bánh có mầu vàng đều hơi sẫm là chín.",
+        "ingredients": [],
+        "id": "REC-3"
+    }},
+    {"recipe": {
+        "note": "",
+        "productId": [],
+        "visibility": true,
+        "name": "Donut",
+        "description": "NGUYÊN LIỆU\nBột mì: 250 gram\nNước lọc: 125 ml\nMen nở: 3,5 gram\nBơ: 25 gram\nTrứng gà đánh tan: ½ quả\nMuối: 3 gramSữa bột: 8 gram\n\nDụng cụ cần chuẩn bị\nChảo\nPhới\nBát\nKhuôn làm bánh Donut\n\n\u2013 Bước 1: Bạn cho lần lượt lượng bột mì, nước lọc, men nở, trứng gà, muối, sữa bột đã chuẩn bị vào âu lớn. Sau đó dùng phới trộn đều cho các nguyên liệu quyện vào nhau.\n\n\u2013 Bước 2: Dùng tay nhồi bột thành khối dẻo mịn, không dính tay. Cho thêm bơ mềm vào giữa khối bột rồi tiếp tục nhồi thêm khoảng 10 \u2013 15 phút nữa.\n\n\u2013 Bước 3: Đựng bột trong một âu lớn, dùng màng bọc thực phẩm bọc kín miệng âu lại rồi để ở nhiệt độ phòng từ 1 \u2013 2 giờ đồng hồ. Sau thời gian này, bột sẽ nở gấp 2 hoặc 3 lần so với lượng bột ban đầu.\n\n\u2013 Bước 4: Đem bột ra đặt trên một mặt phẳng sạch, có rắc chút bột khô để chống dính. Dùng tay đập nhiều lần lên khối bột để loại bỏ hết bọt khí thừa.\n\n\u2013 Bước 5: Chia bột thành 2 hoặc 3 phần bằng nhau rồi dùng chày cán mỏng bột cho đến khi bề dày khối bột đạt khoảng 1.5 \u2013 2 cm thì dừng.\n\n\u2013 Bước 6: Dùng khuôn làm bánh Donut ấn lên những miếng bột dẹt để có được những khối bột hình bánh Donut. Nếu không có khuôn, bạn có thể tạo hình bằng cách dùng miệng bát con để cắt thành phần đường kính lớn, phần đường kính nhỏ bạn dùng dao sắc để khoét.\n\n\u2013 Bước 7: Đặt từng khối bột hình Donut lên miếng giấy nến để ở nhiệt độ phòng cho đến khi từng khối bột nở gấp đôi thì đem đi chiên.\n\n\u2013 Bước 8: Đổ dầu ngập nửa chảo chiên. Bật lửa đun sôi rồi thả những khối bột hình Donut vào. Trong quá trình chiên, bạn nhớ canh chừng và lật mặt bánh thường xuyên để tránh tình trạng cháy nhé.\n\n\u2013 Bước 9: Khi 2 mặt bánh vàng ruộm, bạn gắp bánh ra, cho vào rá để ráo dầu. Sau đó, có thể chế biến sốt chocolate hoặc dâu tây để rưới lên bánh. Vừa tăng thêm hương vị vừa giúp những chiếc bánh Donut thêm phần bắt mắt.",
+        "ingredients": [],
+        "id": "REC-4"
+    }},
+    {"recipe": {
+        "note": "",
+        "productId": [],
+        "visibility": false,
+        "name": "Cupcake",
+        "description": "Nguyên liệu (12 cupcakes cỡ đường kính 5cm, cao 3-4cm)\n\n1 quả trứng (50 gram không tính vỏ)\n80 gram sữa chua nguyên chất không đường (dùng sữa chua như Vinamilk thì tốt hơn là sữa chua tự làm)\n85 gram bơ nhạt \n1 teaspoon (5ml) vanilla extract\n85 gram bột mỳ thường/ bột mỳ đa dụng (all purpose flour/ plain flour)\n15 gram bột ngô (corn starch)\n65 gram đường kính trắng\n1/4 teaspoon bột nở (baking powder)\n1/4 teaspoon muối nở (baking soda)\n1/8 teaspoon muối \n* Lưu ý: Trứng, sữa và bơ nếu để trong tủ lạnh thì để ra ngoài cho hết lạnh trước khi làm bánh \n\nCách làm\n1. Vặn lò nướng 170 độ C. Lót 12 cup giấy vào khuôn.\n\n2. Trộn trứng, vanilla và 1/4 số sữa chua (20gram) đến khi vừa hòa quyện (hình 1)\n\n3. Rây bột mỳ, bột ngô, bột nở, muối nở, đường và muối vào âu trộn bột. Để máy ở tốc độ thấp, trộn đều trong khoảng 30 giây (hình 2).\n\n4. Cho bơ và phần sữa chua còn lại (60gram) vào âu bột, để máy ở tốc độ thấp trộn đến khi vừa hòa quyện. Chuyển máy lên tốc độ vừa, đánh thêm 1.5 phút nữa. Vét thành và đáy âu (hình 3-4-5).\n\n5. Chia hỗn hợp trứng và sữa chua ở (2) thành 2 phần, đổ vào âu (hình 6). Để máy ở tốc độ vừa, đánh cho hòa quyện sau mỗi lần thêm trứng (mỗi lần đánh khoảng 30 giây). Vét thành và đáy âu.\n\n6. Chia hỗn hợp bột vào các khuôn, chỉ đổ đầy tối đa là ¾ khuôn. Với lượng bột trong công thức, mình đổ được 12 cup giấy, mỗi cup 30gram bột.\n\n7. Nướng bánh ở chính giữa lò, nhiệt độ 170 độ C trong khoảng 25 \u2013 30 phút. Thử bánh chín bằng cách cắm một que tăm vào chính giữa bánh, nếu rút lên thấy tăm sạch và khô là bánh đã chín. Ngoài ra, khi ấn nhẹ lên giữa mặt bánh thì bánh sẽ phồng trở lại ngay, nếu có vết lõm tức là bánh chưa chín.\n\n* Lưu ý: Nhiệt độ & thời gian nướng có thể thay đổi tùy theo từng lò và kích thước khuôn sử dụng.  \n\n8. Bánh chín lấy ra khỏi lò, để bánh nguội trong khuôn trong khoảng 5 phút rồi lấy ra để nguội hẳn trên rack.\n\nVề kem trang trí bánh thì kem mình dùng cho bánh trong hình là kem bơ sữa tươi. Công thức là\n\n100gram bơ nhạt \n40ml sữa tươi không đường (nếu có đường thì bớt lượng đường trong công thức cho vừa miệng)\n25gram đường (bơ sữa để ở nhiệt độ phòng).\n\nCách làm rất đơn giản, đầu tiên là đánh bông bơ với đường rồi từ từ cho sữa, đánh đến hòa quyện. Sữa mỗi lần mình chỉ cho 1 thìa canh (1 tablespoon = 15ml), đánh cho quyện thành kem mịn nhuyễn rồi mới cho tiếp.",
+        "ingredients": [],
+        "id": "REC-5"
     }}
 ]

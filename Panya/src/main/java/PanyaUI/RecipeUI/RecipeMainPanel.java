@@ -53,13 +53,18 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         initComponents();
         initTable();
         initAction();
+        this.recipeTable.getTableHeader().setResizingAllowed(true);
     }
 
     void initTable() {
-        this.recipeTable.getColumnModel().getColumn(0).setMinWidth(35);
-        this.recipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
-        this.secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(35);
-        this.secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+
+        this.recipeTable.getColumnModel().getColumn(0).setMinWidth(80);
+        this.recipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.recipeTable.getColumnModel().getColumn(0).setMaxWidth(80);
+
+        this.secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(80);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(80);
 
         for (var recipe : recipes) {
             var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };

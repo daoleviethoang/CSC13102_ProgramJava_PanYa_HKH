@@ -44,7 +44,7 @@ public class CustomerOrderWindowBase extends javax.swing.JPanel implements Panya
         this.initTheme(PRIMARY, LIGHT, DARK);
     }
     
-        /**
+    /**
      * Set màu cho window theo phổ màu đưa vào. Tham số đưa vào gồm 3 loại màu:
      * chính, nhạt, đậm. Tham khảo tại <a href=
      * "https://material.io/resources/color">https://material.io/resources/color</a>

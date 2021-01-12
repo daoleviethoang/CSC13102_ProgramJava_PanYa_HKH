@@ -265,11 +265,11 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         recipeTable.setAutoscrolls(false);
         recipeTable.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(recipeTable);
-        if (recipeTable.getColumnModel().getColumnCount() > 0) {
-            recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
-            recipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
-            recipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
-        }
+        // if (recipeTable.getColumnModel().getColumnCount() > 0) {
+        //     recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
+        //     recipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        //     recipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
+        // }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
@@ -350,11 +350,11 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         });
         secretRecipeTable.setToolTipText("Double click to a recipe to see the details");
         jScrollPane2.setViewportView(secretRecipeTable);
-        if (secretRecipeTable.getColumnModel().getColumnCount() > 0) {
-            secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(25);
-            secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
-            secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
-        }
+        // if (secretRecipeTable.getColumnModel().getColumnCount() > 0) {
+        //     secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(25);
+        //     secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        //     secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
+        // }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;

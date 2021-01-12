@@ -78,6 +78,18 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.privateLabel.setForeground(lightTextColor);
         this.privateLabel.setBackground(lightColor);
 
+        this.clearButton.setBackground(primaryColor);
+        this.clearButton.setForeground(primaryTextColor);
+
+        this.secretClearButton.setBackground(primaryColor);
+        this.secretClearButton.setForeground(primaryTextColor);
+
+        this.addRecipeButton.setBackground(primaryColor);
+        this.addRecipeButton.setForeground(primaryTextColor);
+
+        this.addSecretRecipeButton.setBackground(primaryColor);
+        this.addSecretRecipeButton.setForeground(primaryTextColor);
+
     }
 
     /**
@@ -106,7 +118,6 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         publicPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         searchTextField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         recipeTable = new javax.swing.JTable();
@@ -114,7 +125,6 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         privatePanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         secretSearchTextField = new javax.swing.JTextField();
-        secretSearchButton = new javax.swing.JButton();
         secretClearButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         secretRecipeTable = new javax.swing.JTable();
@@ -128,7 +138,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
 
         contentHeaderLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
         contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("YOUR RECIPE 自分の公式");
+        contentHeaderLabel.setText("YOUR RECIPE");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -208,18 +218,13 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 16);
         jPanel2.add(searchTextField, gridBagConstraints);
 
-        searchButton.setText("Search");
+        clearButton.setText("Clear");
+        clearButton.setMaximumSize(new java.awt.Dimension(100, 40));
+        clearButton.setPreferredSize(new java.awt.Dimension(100, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel2.add(searchButton, gridBagConstraints);
-
-        clearButton.setText(" Clear ");
-        clearButton.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel2.add(clearButton, gridBagConstraints);
 
@@ -275,6 +280,9 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         publicPanel.add(jScrollPane1, gridBagConstraints);
 
         addRecipeButton.setText("Add new recipe");
+        addRecipeButton.setMaximumSize(new java.awt.Dimension(300, 40));
+        addRecipeButton.setMinimumSize(new java.awt.Dimension(300, 40));
+        addRecipeButton.setPreferredSize(new java.awt.Dimension(300, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
@@ -298,16 +306,10 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 16);
         jPanel3.add(secretSearchTextField, gridBagConstraints);
 
-        secretSearchButton.setText("Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel3.add(secretSearchButton, gridBagConstraints);
-
         secretClearButton.setText("Clear");
-        secretClearButton.setEnabled(false);
+        secretClearButton.setMaximumSize(new java.awt.Dimension(100, 40));
+        secretClearButton.setMinimumSize(new java.awt.Dimension(100, 40));
+        secretClearButton.setPreferredSize(new java.awt.Dimension(100, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
@@ -363,6 +365,9 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         privatePanel.add(jScrollPane2, gridBagConstraints);
 
         addSecretRecipeButton.setText("Add new Secret recipe");
+        addSecretRecipeButton.setMaximumSize(new java.awt.Dimension(300, 37));
+        addSecretRecipeButton.setMinimumSize(new java.awt.Dimension(300, 37));
+        addSecretRecipeButton.setPreferredSize(new java.awt.Dimension(300, 37));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
@@ -398,11 +403,9 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
     javax.swing.JLabel publicLabel;
     javax.swing.JPanel publicPanel;
     javax.swing.JTable recipeTable;
-    javax.swing.JButton searchButton;
     javax.swing.JTextField searchTextField;
     javax.swing.JButton secretClearButton;
     javax.swing.JTable secretRecipeTable;
-    javax.swing.JButton secretSearchButton;
     javax.swing.JTextField secretSearchTextField;
     // End of variables declaration//GEN-END:variables
 }

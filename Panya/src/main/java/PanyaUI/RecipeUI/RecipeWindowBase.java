@@ -405,14 +405,15 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 50));
 
         editButton.setText("Edit");
-        editButton.setMaximumSize(new java.awt.Dimension(95, 40));
+        editButton.setMaximumSize(new java.awt.Dimension(100, 40));
         editButton.setMinimumSize(new java.awt.Dimension(95, 40));
         editButton.setPreferredSize(new java.awt.Dimension(95, 40));
         jPanel1.add(editButton);
 
         saveButton.setText("Save");
-        saveButton.setMaximumSize(new java.awt.Dimension(95, 40));
+        saveButton.setMaximumSize(new java.awt.Dimension(100, 37));
         saveButton.setMinimumSize(new java.awt.Dimension(95, 40));
+        saveButton.setPreferredSize(new java.awt.Dimension(100, 37));
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButtonActionPerformed(evt);
@@ -421,9 +422,9 @@ public class RecipeWindowBase extends javax.swing.JFrame implements PanyaContent
         jPanel1.add(saveButton);
 
         removeButton.setText("Remove");
-        removeButton.setMaximumSize(new java.awt.Dimension(95, 40));
+        removeButton.setMaximumSize(new java.awt.Dimension(100, 40));
         removeButton.setMinimumSize(new java.awt.Dimension(95, 40));
-        removeButton.setPreferredSize(new java.awt.Dimension(95, 40));
+        removeButton.setPreferredSize(new java.awt.Dimension(100, 40));
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);

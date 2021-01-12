@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         var themeName = "green";
-        IntelliJTheme.install(Main.class.getResourceAsStream("theme/Light Owl.theme.json"));
+        IntelliJTheme.install(Main.class.getResourceAsStream("theme/Gray.theme.json"));
         SwingUtilities.invokeLater(() -> new PanyaUI.ApplicationWindow(themeName).setVisible(true));
     }
 }

@@ -336,6 +336,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="contentHeaderLabel">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;M&#x1ed9;t &#x1ee9;ng d&#x1ee5;ng qu&#x1ea3;n l&#xfd; ti&#x1ec7;m b&#xe1;nh gi&#xfa;p ch&#x1ee7; ti&#x1ec7;m b&#xe1;nh c&#xf3; th&#x1ec3; ki&#x1ec3;m k&#xea; h&#xe0;ng h&#xf3;a, nguy&#xea;n li&#x1ec7;u, c&#xf4;ng th&#x1ee9;c l&#xe0;m b&#xe1;nh, b&#xe1;n b&#xe1;nh trong c&#x1eed;a h&#xe0;ng c&#x1ee7;a m&#xec;nh.&lt;/html&gt;"/>
               </Properties>
             </Component>

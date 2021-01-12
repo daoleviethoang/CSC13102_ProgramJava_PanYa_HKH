@@ -19,8 +19,8 @@ public class Product {
     protected int quantity;
     protected String image;
 
-    public Product(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note, String image)
-            throws NullPointerException {
+    public Product(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff, String note,
+            String image) throws NullPointerException {
 
         this.id = Objects.requireNonNull(id);
         this.name = name;
@@ -41,6 +41,10 @@ public class Product {
         this.image = p.image;
     }
 
+    public Product(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -52,9 +56,11 @@ public class Product {
     public String getNote() {
         return note;
     }
-    public String getImage(){
+
+    public String getImage() {
         return image;
     }
+
     @JSONPropertyIgnore
     public BigDecimal getPrice() {
         return price;
@@ -102,9 +108,11 @@ public class Product {
     public void setSellOff(BigDecimal sellOff) throws NullPointerException {
         this.sellOff = Objects.requireNonNull(sellOff);
     }
-    public void setImage(String image) throws NullPointerException{
+
+    public void setImage(String image) throws NullPointerException {
         this.image = Objects.requireNonNull(image);
     }
+
     /**
      * Đọc từ file ra một <code>List<Product></code> định dạng <code>json</code> của
      * có dạng sau:
@@ -205,7 +213,7 @@ public class Product {
         var boughtProducts = new ArrayList<Product>();
         for (var product : allProducts) {
             var remainingIdx = remainingProducts.indexOf(product);
-            if (remainingIdx != -1){
+            if (remainingIdx != -1) {
                 var boughtProduct = new Product(product);
                 boughtProduct.quantity = Math.abs(product.quantity - remainingProducts.get(remainingIdx).quantity);
 
@@ -223,13 +231,15 @@ public class Product {
     }
 
     // public static void main(String[] args) {
-    //     System.out.println("Working Directory = " + System.getProperty("user.dir"));
+    // System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-    //     final String INPUT = "Panya/src/main/resources/data/ManageData/ProductFile.json";
-    //     var products = Product.readProductList(INPUT);
+    // final String INPUT =
+    // "Panya/src/main/resources/data/ManageData/ProductFile.json";
+    // var products = Product.readProductList(INPUT);
 
-    //     final String OUTPUT = "Panya/src/main/resources/data/ManageData/sample-ProductFile.json";
-    //     Product.saveProductList(OUTPUT, products);
+    // final String OUTPUT =
+    // "Panya/src/main/resources/data/ManageData/sample-ProductFile.json";
+    // Product.saveProductList(OUTPUT, products);
     // }
 
 }

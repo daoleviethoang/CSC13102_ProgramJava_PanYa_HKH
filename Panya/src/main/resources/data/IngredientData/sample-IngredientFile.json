@@ -10,6 +10,15 @@
     }},
     {"ingredient": {
         "note": "",
+        "unit": "can",
+        "quantity": "5",
+        "price": "20.0",
+        "count_sta": 0,
+        "name": "butter",
+        "id": "ING-002"
+    }},
+    {"ingredient": {
+        "note": "",
         "unit": "kilograms",
         "quantity": "20.0",
         "price": "20.0",

@@ -14,9 +14,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 /**
  *
  * @author dqh
@@ -112,6 +114,7 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         themeLabel = new JLabel();
         themeCombo = new JComboBox<>();
         contentPanel = new JPanel();
+        imagePanel = new JLabel();
 
         setMinimumSize(new Dimension(600, 600));
         setLayout(new GridBagLayout());
@@ -168,6 +171,14 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
         contentPanel.setMinimumSize(new Dimension(600, 400));
         contentPanel.setPreferredSize(new Dimension(600, 400));
         contentPanel.setLayout(new GridBagLayout());
+
+        imagePanel.setHorizontalAlignment(SwingConstants.CENTER);
+        imagePanel.setIcon(new ImageIcon(getClass().getResource("/images/Pan-Ya bakery-logos_black 400.png"))); // NOI18N
+        imagePanel.setMaximumSize(new Dimension(600, 400));
+        imagePanel.setMinimumSize(new Dimension(600, 400));
+        imagePanel.setPreferredSize(new Dimension(600, 400));
+        contentPanel.add(imagePanel, new GridBagConstraints());
+
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -188,6 +199,7 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
     JLabel contentHeaderLabel;
     JPanel contentHeaderPanel;
     JPanel contentPanel;
+    JLabel imagePanel;
     JComboBox<String> themeCombo;
     JLabel themeLabel;
     // End of variables declaration//GEN-END:variables

@@ -221,14 +221,12 @@
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="0">
-                        <Column editable="false" title="ID" type="java.lang.String"/>
+                        <Column editable="false" title="ID                  " type="java.lang.String"/>
                         <Column editable="false" title="Name" type="java.lang.String"/>
                         <Column editable="false" title="Note" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Double click to a recipe to see the details"/>
-                    <Property name="autoscrolls" type="boolean" value="false"/>
-                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="25" minWidth="25" prefWidth="25" resizable="true">
@@ -248,8 +246,12 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    <Property name="columnSelectionAllowed" type="boolean" value="false"/>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[105, 0]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[600, 300]"/>
                     </Property>
                   </Properties>
                 </Component>

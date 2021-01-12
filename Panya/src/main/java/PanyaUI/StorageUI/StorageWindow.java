@@ -805,7 +805,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        ingredientTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ingredientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -822,7 +821,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 return types [columnIndex];
             }
         });
-        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         ingredientTable.setMaximumSize(new java.awt.Dimension(2147483647, 600));
         ingredientTable.setPreferredSize(new java.awt.Dimension(600, 300));
         jScrollPane1.setViewportView(ingredientTable);

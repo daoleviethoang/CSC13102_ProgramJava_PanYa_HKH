@@ -196,6 +196,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
         contentHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 100));
 
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentHeaderLabel.setText("<html>Một ứng dụng quản lý tiệm bánh giúp chủ tiệm bánh có thể kiểm kê hàng hóa, nguyên liệu, công thức làm bánh, bán bánh trong cửa hàng của mình.</html>");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);

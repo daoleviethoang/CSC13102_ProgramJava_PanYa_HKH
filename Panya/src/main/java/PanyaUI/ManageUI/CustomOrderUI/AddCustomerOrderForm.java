@@ -40,15 +40,17 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
         priceItem = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        address = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         quantity = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         sellOff = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        note = new javax.swing.JTextField();
         id = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        address = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        note = new javax.swing.JTextArea();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -189,23 +191,6 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(8, 34, 0, 0);
         add(jLabel7, gridBagConstraints);
 
-        address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 301;
-        gridBagConstraints.ipady = -5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 12);
-        add(address, gridBagConstraints);
-
         addButton.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         addButton.setText("ADD");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -272,17 +257,6 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 56, 0, 0);
         add(jLabel10, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 301;
-        gridBagConstraints.ipady = -5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 12);
-        add(note, gridBagConstraints);
 
         id.setEditable(false);
         id.addActionListener(new java.awt.event.ActionListener() {
@@ -299,11 +273,35 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
         gridBagConstraints.ipady = 5;
         gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 12);
         add(id, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressActionPerformed
+        address.setColumns(1);
+        address.setLineWrap(true);
+        address.setRows(5);
+        jScrollPane1.setViewportView(address);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 12);
+        add(jScrollPane1, gridBagConstraints);
+
+        note.setColumns(20);
+        note.setRows(5);
+        jScrollPane2.setViewportView(note);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 12);
+        add(jScrollPane2, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
@@ -312,7 +310,7 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton addButton;
-    javax.swing.JTextField address;
+    javax.swing.JTextArea address;
     javax.swing.JTextField id;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel10;
@@ -324,9 +322,11 @@ public class AddCustomerOrderForm extends javax.swing.JPanel {
     javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;
     javax.swing.JLabel jLabel9;
+    javax.swing.JScrollPane jScrollPane1;
+    javax.swing.JScrollPane jScrollPane2;
     javax.swing.JTextField name;
     javax.swing.JTextField nameItem;
-    javax.swing.JTextField note;
+    javax.swing.JTextArea note;
     javax.swing.JTextField phone;
     javax.swing.JTextField price;
     javax.swing.JTextField priceItem;

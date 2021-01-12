@@ -67,7 +67,7 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         this.secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(80);
 
         for (var recipe : recipes) {
-            var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
+            var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getDescription() };
             if (recipe.getVisibility()) {
                 this.recipeModel.addRow(rowData);
             } else {

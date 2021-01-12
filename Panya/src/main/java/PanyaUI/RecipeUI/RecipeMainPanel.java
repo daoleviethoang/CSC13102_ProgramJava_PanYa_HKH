@@ -53,13 +53,18 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
         initComponents();
         initTable();
         initAction();
+        this.recipeTable.getTableHeader().setResizingAllowed(true);
     }
 
     void initTable() {
-        this.recipeTable.getColumnModel().getColumn(0).setMinWidth(35);
-        this.recipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
-        this.secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(35);
-        this.secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(35);
+
+        this.recipeTable.getColumnModel().getColumn(0).setMinWidth(80);
+        this.recipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.recipeTable.getColumnModel().getColumn(0).setMaxWidth(80);
+
+        this.secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(80);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(80);
 
         for (var recipe : recipes) {
             var rowData = new Object[] { recipe.getId(), recipe.getName(), recipe.getNote() };
@@ -143,81 +148,19 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 privatePanel.setVisible(false);
             }
         });
-        var frame = this;
+
+        this.secretClearButton.addActionListener(e -> {
+            this.secretSearchTextField.setText("");
+        });
+
+        this.clearButton.addActionListener(e -> {
+            this.searchTextField.setText("");
+        });
 
         this.privateLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                boolean op = false;
-                readPassword(passwordFile);
-
-                if (passwords.isEmpty()) {
-                    String user_password = JOptionPane.showInputDialog(frame, "Register your password",
-                            "Secret password", JOptionPane.QUESTION_MESSAGE);
-                    passwords.add(user_password); // add vào list password
-
-                    if (user_password != null) {
-                        passwords.add(user_password);
-                        try (var fout = new FileWriter(passwordFile)) {
-                            fout.write(passwords.get(0));
-                        } catch (Exception ex) {
-                            // TODO: handle exception
-                        }
-
-                        publicLabel.setForeground(lightTextColor);
-                        publicLabel.setBackground(lightColor);
-                        privateLabel.setForeground(primaryTextColor);
-                        privateLabel.setBackground(primaryColor);
-                        privatePanel.setVisible(true);
-                        publicPanel.setVisible(false);
-                    }
-
-                    op = true;
-                }
-
-                while (op == false) {
-                    JPanel panel = new JPanel();
-                    JLabel label = new JLabel("Enter a password:");
-                    JPasswordField p = new JPasswordField(10);
-                    panel.add(label);
-                    panel.add(p);
-                    String[] secretOptions = new String[] { "OK", "Cancel" };
-                    int option = JOptionPane.showOptionDialog(null, panel, "Secret password", JOptionPane.NO_OPTION,
-                            JOptionPane.PLAIN_MESSAGE, null, secretOptions, secretOptions[1]);
-                    boolean auth = false;
-                    if (option == 0) {
-                        // pressing OK button
-                        var user_password = new String(p.getPassword());
-                        if (user_password != null) {
-                            for (String pass : passwords) {
-                                if (user_password.compareTo(pass) == 0) {
-                                    auth = true;
-                                }
-                            }
-                        }
-                    }
-
-                    if (auth) {
-                        op = true;
-                        publicLabel.setForeground(lightTextColor);
-                        publicLabel.setBackground(lightColor);
-                        privateLabel.setForeground(primaryTextColor);
-                        privateLabel.setBackground(primaryColor);
-                        privatePanel.setVisible(true);
-                        publicPanel.setVisible(false);
-                    } else { // nếu sai thì cho chọn dk password hoặc nhập lại
-                        Object[] options = { "Yes, please", "No, thanks" };
-                        int n = JOptionPane.showOptionDialog(frame,
-                                "Your password is incorrect, do you want to input this password again\n",
-                                "Validation failed", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
-                                options, options[0]);
-                        if (n == 0) { // nhập lại
-                            op = false;
-                        } else { //
-                            return;
-                        }
-                    }
-                }
+                actionForSecretPanel();
             }
         });
 
@@ -286,6 +229,78 @@ public class RecipeMainPanel extends RecipeMainPanelBase {
                 secretRecipeTableFilter();
             }
         });
+    }
+
+    private void actionForSecretPanel() {
+        boolean op = false;
+        readPassword(passwordFile);
+
+        if (passwords.isEmpty()) {
+            String user_password = JOptionPane.showInputDialog(this, "Register your password", "Secret password",
+                    JOptionPane.QUESTION_MESSAGE);
+            passwords.add(user_password); // add vào list password
+
+            if (user_password != null) {
+                passwords.add(user_password);
+                try (var fout = new FileWriter(passwordFile)) {
+                    fout.write(passwords.get(0));
+                } catch (Exception ex) {
+                    // TODO: handle exception
+                }
+
+                publicLabel.setForeground(lightTextColor);
+                publicLabel.setBackground(lightColor);
+                privateLabel.setForeground(primaryTextColor);
+                privateLabel.setBackground(primaryColor);
+                privatePanel.setVisible(true);
+                publicPanel.setVisible(false);
+            }
+
+            op = true;
+        }
+
+        while (op == false) {
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel("Enter a password:");
+            JPasswordField p = new JPasswordField(10);
+            panel.add(label);
+            panel.add(p);
+            String[] secretOptions = new String[] { "OK", "Cancel" };
+            int option = JOptionPane.showOptionDialog(null, panel, "Secret password", JOptionPane.NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE, null, secretOptions, secretOptions[1]);
+            boolean auth = false;
+            if (option == 0) {
+                // pressing OK button
+                var user_password = new String(p.getPassword());
+                if (user_password != null) {
+                    for (String pass : passwords) {
+                        if (user_password.compareTo(pass) == 0) {
+                            auth = true;
+                        }
+                    }
+                }
+            }
+
+            if (auth) {
+                op = true;
+                publicLabel.setForeground(lightTextColor);
+                publicLabel.setBackground(lightColor);
+                privateLabel.setForeground(primaryTextColor);
+                privateLabel.setBackground(primaryColor);
+                privatePanel.setVisible(true);
+                publicPanel.setVisible(false);
+            } else { // nếu sai thì cho chọn dk password hoặc nhập lại
+                Object[] options = { "Yes, please", "No, thanks" };
+                int n = JOptionPane.showOptionDialog(this,
+                        "Your password is incorrect, do you want to input this password again\n", "Validation failed",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                if (n == 0) { // nhập lại
+                    op = false;
+                } else { //
+                    return;
+                }
+            }
+        }
     }
 
     /**

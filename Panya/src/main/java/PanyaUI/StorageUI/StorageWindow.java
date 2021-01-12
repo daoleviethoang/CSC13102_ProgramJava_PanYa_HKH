@@ -110,7 +110,20 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         this.contentHeaderPanel.setBackground(primaryColor);
         // this.contentPanel;
         // this.outerContentPanel;
+        this.addBtn.setBackground(primaryColor);
+        this.addBtn.setForeground(primaryTextColor);
 
+        this.updateBtn.setBackground(primaryColor);
+        this.updateBtn.setForeground(primaryTextColor);
+
+        this.DeleteBtn.setBackground(primaryColor);
+        this.DeleteBtn.setForeground(primaryTextColor);
+
+        this.importBtn.setBackground(primaryColor);
+        this.importBtn.setForeground(primaryTextColor);
+
+        this.searchBtn.setBackground(primaryColor);
+        this.searchBtn.setForeground(primaryTextColor);
     }
     
     /**
@@ -736,7 +749,7 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
 
         contentHeaderLabel.setForeground(java.awt.Color.white);
         contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("STORAGE ストレンジ");
+        contentHeaderLabel.setText("STORAGE");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
@@ -792,7 +805,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        ingredientTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         ingredientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -809,7 +821,6 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
                 return types [columnIndex];
             }
         });
-        ingredientTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         ingredientTable.setMaximumSize(new java.awt.Dimension(2147483647, 600));
         ingredientTable.setPreferredSize(new java.awt.Dimension(600, 300));
         jScrollPane1.setViewportView(ingredientTable);
@@ -848,6 +859,8 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel2.add(searchTextF, gridBagConstraints);
 
         searchBtn.setText("Search");
+        searchBtn.setMaximumSize(new java.awt.Dimension(100, 37));
+        searchBtn.setPreferredSize(new java.awt.Dimension(100, 37));
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
@@ -872,9 +885,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         addBtn.setText("Add");
-        addBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        addBtn.setMaximumSize(new java.awt.Dimension(100, 37));
         addBtn.setMinimumSize(new java.awt.Dimension(68, 37));
-        addBtn.setPreferredSize(new java.awt.Dimension(68, 37));
+        addBtn.setPreferredSize(new java.awt.Dimension(100, 37));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -888,9 +901,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.add(addBtn, gridBagConstraints);
 
         DeleteBtn.setText("Delete");
-        DeleteBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setMaximumSize(new java.awt.Dimension(100, 37));
         DeleteBtn.setMinimumSize(new java.awt.Dimension(68, 37));
-        DeleteBtn.setPreferredSize(new java.awt.Dimension(68, 37));
+        DeleteBtn.setPreferredSize(new java.awt.Dimension(100, 37));
         DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteBtnActionPerformed(evt);
@@ -904,9 +917,9 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         jPanel3.add(DeleteBtn, gridBagConstraints);
 
         importBtn.setText("Import");
-        importBtn.setMaximumSize(new java.awt.Dimension(68, 37));
+        importBtn.setMaximumSize(new java.awt.Dimension(100, 37));
         importBtn.setMinimumSize(new java.awt.Dimension(68, 37));
-        importBtn.setPreferredSize(new java.awt.Dimension(68, 37));
+        importBtn.setPreferredSize(new java.awt.Dimension(100, 37));
         importBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importBtnActionPerformed(evt);
@@ -919,12 +932,12 @@ public class StorageWindow extends javax.swing.JPanel implements PanyaContentPan
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel3.add(importBtn, gridBagConstraints);
 
+        jPanel4.setBackground(java.awt.Color.white);
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         updateBtn.setText("Update");
-        updateBtn.setMaximumSize(new java.awt.Dimension(68, 37));
-        updateBtn.setMinimumSize(new java.awt.Dimension(68, 37));
-        updateBtn.setPreferredSize(new java.awt.Dimension(68, 37));
+        updateBtn.setMaximumSize(new java.awt.Dimension(100, 37));
+        updateBtn.setPreferredSize(new java.awt.Dimension(100, 37));
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);

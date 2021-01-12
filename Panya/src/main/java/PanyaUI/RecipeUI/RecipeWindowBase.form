@@ -466,7 +466,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Edit"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[95, 40]"/>
+              <Dimension value="[100, 40]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[95, 40]"/>
@@ -480,10 +480,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Save"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[95, 40]"/>
+              <Dimension value="[100, 37]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[95, 40]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[100, 37]"/>
             </Property>
           </Properties>
           <Events>
@@ -494,13 +497,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[95, 40]"/>
+              <Dimension value="[100, 40]"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[95, 40]"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[95, 40]"/>
+              <Dimension value="[100, 40]"/>
             </Property>
           </Properties>
           <Events>

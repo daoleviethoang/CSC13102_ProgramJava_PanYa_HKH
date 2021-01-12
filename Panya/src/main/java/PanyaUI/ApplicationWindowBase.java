@@ -28,7 +28,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
@@ -65,16 +65,19 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         imagePanel.setMinimumSize(new java.awt.Dimension(300, 150));
         imagePanel.setPreferredSize(new java.awt.Dimension(300, 150));
 
-        imageLabel.setText("image");
+        imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Pan-Ya bakery-logos_black.png"))); // NOI18N
 
         javax.swing.GroupLayout imagePanelLayout = new javax.swing.GroupLayout(imagePanel);
         imagePanel.setLayout(imagePanelLayout);
         imagePanelLayout.setHorizontalGroup(
-                imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(imageLabel,
-                        javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE));
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
         imagePanelLayout.setVerticalGroup(
-                imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(imageLabel,
-                        javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE));
+            imagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -156,7 +159,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         topHeaderLabel.setFont(topHeaderLabel.getFont());
         topHeaderLabel.setForeground(java.awt.Color.white);
         topHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        topHeaderLabel.setText("Title");
+        topHeaderLabel.setText("<html>18CLC2-KTPM – LẬP TRÌNH ỨNG DỤNG JAVA - NHÓM 05 - SONEY</html>");
         topHeaderLabel.setMaximumSize(new java.awt.Dimension(32767, 32767));
         topHeaderLabel.setMinimumSize(new java.awt.Dimension(564, 50));
         topHeaderLabel.setPreferredSize(new java.awt.Dimension(564, 50));
@@ -169,8 +172,7 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         gridBagConstraints.weightx = 0.1;
         topHeaderPanel.add(topHeaderLabel, gridBagConstraints);
 
-        menuIconLabel2
-                .setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/twotone_menu_white_18dp.png"))); // NOI18N
+        menuIconLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/twotone_menu_white_18dp.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -194,16 +196,21 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
         contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
         contentHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 100));
 
-        contentHeaderLabel.setText("Function description");
+        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentHeaderLabel.setText("<html>Một ứng dụng quản lý tiệm bánh giúp chủ tiệm bánh có thể kiểm kê hàng hóa, nguyên liệu, công thức làm bánh, bán bánh trong cửa hàng của mình.</html>");
 
         javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
         contentHeaderPanelLayout.setHorizontalGroup(
-                contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE));
+            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentHeaderPanelLayout.createSequentialGroup()
+                .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
         contentHeaderPanelLayout.setVerticalGroup(
-                contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE));
+            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contentHeaderLabel)
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -219,10 +226,14 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
 
         javax.swing.GroupLayout bottomHeaderPanelLayout = new javax.swing.GroupLayout(bottomHeaderPanel);
         bottomHeaderPanel.setLayout(bottomHeaderPanelLayout);
-        bottomHeaderPanelLayout.setHorizontalGroup(bottomHeaderPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 600, Short.MAX_VALUE));
-        bottomHeaderPanelLayout.setVerticalGroup(bottomHeaderPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 50, Short.MAX_VALUE));
+        bottomHeaderPanelLayout.setHorizontalGroup(
+            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        bottomHeaderPanelLayout.setVerticalGroup(
+            bottomHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -239,10 +250,14 @@ public class ApplicationWindowBase extends javax.swing.JFrame {
 
         javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
         contentPanel.setLayout(contentPanelLayout);
-        contentPanelLayout.setHorizontalGroup(contentPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 600, Short.MAX_VALUE));
-        contentPanelLayout.setVerticalGroup(contentPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 450, Short.MAX_VALUE));
+        contentPanelLayout.setHorizontalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        contentPanelLayout.setVerticalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

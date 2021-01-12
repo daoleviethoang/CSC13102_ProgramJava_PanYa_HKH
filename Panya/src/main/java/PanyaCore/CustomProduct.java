@@ -9,18 +9,20 @@ import org.json.JSONPropertyIgnore;
 import org.json.JSONPropertyName;
 
 public class CustomProduct extends Product {
-    BigDecimal customPrice;
+    BigDecimal customPrice = BigDecimal.ZERO;
     String customerName;
     String customerPhoneNumber;
+    String customerAddress;
 
     // String id, String name, BigDecimal price, int quantity, BigDecimal sellOff,  String note, String image
     public CustomProduct(String id, String name, BigDecimal price, int quantity, BigDecimal sellOff, String note,
-            BigDecimal customPrice, String customerName, String customerPhoneNumber) throws NullPointerException {
+            BigDecimal customPrice, String customerName, String customerPhoneNumber, String customerAddress) throws NullPointerException {
 
         super(id, name, price, quantity, sellOff, note, null);
         this.customPrice = customPrice;
         this.customerName = customerName;
         this.customerPhoneNumber = customerPhoneNumber;
+        this.customerAddress = customerAddress;
     }
 
     public CustomProduct(CustomProduct c) {
@@ -28,14 +30,24 @@ public class CustomProduct extends Product {
         this.customPrice = c.customPrice;
         this.customerName = c.customerName;
         this.customerPhoneNumber = c.customerPhoneNumber;
+        this.customerAddress = c.customerAddress;
     }
 
-    public CustomProduct(BigDecimal customPrice, String customerName, String customerPhoneNumber, Product product)
+    public CustomProduct(String id) {
+        super(id);
+    }
+
+    public CustomProduct(BigDecimal customPrice, String customerName, String customerPhoneNumber, Product product, String customerAddress)
             throws NullPointerException {
         super(product);
         this.customPrice = customPrice;
         this.customerName = customerName;
         this.customerPhoneNumber = customerPhoneNumber;
+        this.customerAddress = customerAddress;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
     }
 
     @JSONPropertyIgnore
@@ -68,6 +80,28 @@ public class CustomProduct extends Product {
         this.customerPhoneNumber = customerPhoneNumber;
     }
 
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public static int getNextId(List<CustomProduct> customProducts) {
+        int lastId = 0;
+        for (var customProduct : customProducts) {
+            var id = Integer.parseInt(customProduct.id.replaceAll("[^0-9]", "")); 
+            lastId = id > lastId? id: lastId;
+        }
+        return lastId + 1;
+    }
+
+    public static String nextId(List<CustomProduct> customProducts) {
+        return "CUS-" + getNextId(customProducts);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((Product) obj).id);
+    }
+
     /**
      * Trả về một object đọc được từ {@link org.json.JSONObject}
      * 
@@ -94,11 +128,12 @@ public class CustomProduct extends Product {
         try {
             var productDetail = (JSONObject) cProductJson.get("customProduct");
             var customerName = productDetail.getString("customerName");
+            var customerAddress = productDetail.getString("customerAddress");
             var customerPhoneNumber = productDetail.getString("customerPhoneNumber");
             var customPrice = new BigDecimal(productDetail.getString("customPrice"));
             var product = Product.parseProductJSONObject(productDetail);
 
-            return new CustomProduct(customPrice, customerName, customerPhoneNumber, product);
+            return new CustomProduct(customPrice, customerName, customerPhoneNumber, product, customerAddress);
 
         } catch (NullPointerException | JSONException e) {
             e.printStackTrace();

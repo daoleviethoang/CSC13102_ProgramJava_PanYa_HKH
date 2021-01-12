@@ -9,6 +9,16 @@ import java.awt.Color;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 /**
  *
  * @author dqh
@@ -96,77 +106,84 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        contentHeaderPanel = new javax.swing.JPanel();
-        contentHeaderLabel = new javax.swing.JLabel();
-        bottomHeaderPanel = new javax.swing.JPanel();
-        themeLabel = new javax.swing.JLabel();
-        themeCombo = new javax.swing.JComboBox<>();
-        contentPanel = new javax.swing.JPanel();
+        contentHeaderPanel = new JPanel();
+        contentHeaderLabel = new JLabel();
+        bottomHeaderPanel = new JPanel();
+        themeLabel = new JLabel();
+        themeCombo = new JComboBox<>();
+        contentPanel = new JPanel();
+        imagePanel = new JLabel();
 
-        setMinimumSize(new java.awt.Dimension(600, 600));
-        setLayout(new java.awt.GridBagLayout());
+        setMinimumSize(new Dimension(600, 600));
+        setLayout(new GridBagLayout());
 
-        contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
-        contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
+        contentHeaderPanel.setBackground(new Color(33, 150, 243));
+        contentHeaderPanel.setMinimumSize(new Dimension(600, 100));
 
-        contentHeaderLabel.setText("Function description");
+        contentHeaderLabel.setText("<html>Một ứng dụng quản lý tiệm bánh giúp chủ tiệm bánh có thể kiểm kê hàng hóa, nguyên liệu, công thức làm bánh, bán bánh trong cửa hàng của mình.</html>");
 
-        javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
+        GroupLayout contentHeaderPanelLayout = new GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
-        contentHeaderPanelLayout.setHorizontalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        contentHeaderPanelLayout.setHorizontalGroup(contentHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(contentHeaderLabel, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
-        contentHeaderPanelLayout.setVerticalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        contentHeaderPanelLayout.setVerticalGroup(contentHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(contentHeaderLabel, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
         add(contentHeaderPanel, gridBagConstraints);
 
-        bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
-        bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
+        bottomHeaderPanel.setBackground(new Color(110, 198, 255));
+        bottomHeaderPanel.setMinimumSize(new Dimension(600, 50));
+        bottomHeaderPanel.setPreferredSize(new Dimension(600, 50));
+        bottomHeaderPanel.setLayout(new GridBagLayout());
 
         themeLabel.setText("Current theme");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 11, 0, 11);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new Insets(0, 11, 0, 11);
         bottomHeaderPanel.add(themeLabel, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 15);
+        gridBagConstraints.insets = new Insets(0, 15, 0, 15);
         bottomHeaderPanel.add(themeCombo, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         add(bottomHeaderPanel, gridBagConstraints);
 
-        contentPanel.setBackground(java.awt.Color.white);
-        contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
-        contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
-        contentPanel.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        contentPanel.setBackground(Color.white);
+        contentPanel.setMinimumSize(new Dimension(600, 400));
+        contentPanel.setPreferredSize(new Dimension(600, 400));
+        contentPanel.setLayout(new GridBagLayout());
+
+        imagePanel.setHorizontalAlignment(SwingConstants.CENTER);
+        imagePanel.setIcon(new ImageIcon(getClass().getResource("/images/Pan-Ya bakery-logos_black 400.png"))); // NOI18N
+        imagePanel.setMaximumSize(new Dimension(600, 400));
+        imagePanel.setMinimumSize(new Dimension(600, 400));
+        imagePanel.setPreferredSize(new Dimension(600, 400));
+        contentPanel.add(imagePanel, new GridBagConstraints());
+
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         add(contentPanel, gridBagConstraints);
@@ -178,11 +195,12 @@ public class HomePanelBase extends javax.swing.JPanel implements PanyaContentPan
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JPanel bottomHeaderPanel;
-    javax.swing.JLabel contentHeaderLabel;
-    javax.swing.JPanel contentHeaderPanel;
-    javax.swing.JPanel contentPanel;
-    javax.swing.JComboBox<String> themeCombo;
-    javax.swing.JLabel themeLabel;
+    JPanel bottomHeaderPanel;
+    JLabel contentHeaderLabel;
+    JPanel contentHeaderPanel;
+    JPanel contentPanel;
+    JLabel imagePanel;
+    JComboBox<String> themeCombo;
+    JLabel themeLabel;
     // End of variables declaration//GEN-END:variables
 }

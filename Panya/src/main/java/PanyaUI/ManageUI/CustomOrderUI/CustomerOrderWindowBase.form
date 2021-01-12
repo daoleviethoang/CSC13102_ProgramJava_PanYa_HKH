@@ -15,8 +15,8 @@
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
-    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,38,0,0,2,88"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="0"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,88,0,0,2,88"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
@@ -89,7 +89,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="400" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="450" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -101,18 +101,19 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="productTable">
               <Properties>
+                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
-                    <Column editable="true" title="No" type="java.lang.Object"/>
-                    <Column editable="true" title="Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Phone" type="java.lang.Object"/>
-                    <Column editable="true" title="Address" type="java.lang.Object"/>
-                    <Column editable="true" title="Name Cake" type="java.lang.Object"/>
-                    <Column editable="true" title="Quantity" type="java.lang.Object"/>
-                    <Column editable="true" title="Sell Off" type="java.lang.Object"/>
-                    <Column editable="true" title="Price" type="java.lang.Object"/>
+                  <Table columnCount="8" rowCount="0">
+                    <Column editable="false" title="No" type="java.lang.Integer"/>
+                    <Column editable="false" title="Name" type="java.lang.String"/>
+                    <Column editable="false" title="Phone" type="java.lang.String"/>
+                    <Column editable="false" title="Address" type="java.lang.String"/>
+                    <Column editable="false" title="Name Cake" type="java.lang.String"/>
+                    <Column editable="false" title="Quantity" type="java.lang.Integer"/>
+                    <Column editable="false" title="Sell Off" type="java.lang.String"/>
+                    <Column editable="false" title="Price" type="java.lang.String"/>
                   </Table>
                 </Property>
               </Properties>
@@ -145,7 +146,7 @@
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="deleteButon" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                  <Component id="updataButon" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="updateButon" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace pref="78" max="32767" attributes="0"/>
                   <Component id="searchPanel" pref="160" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -161,7 +162,7 @@
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="deleteButon" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="addButon" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="updataButon" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="updateButon" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -204,7 +205,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="updataButon">
+        <Component class="javax.swing.JButton" name="updateButon">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="99" red="0" type="rgb"/>

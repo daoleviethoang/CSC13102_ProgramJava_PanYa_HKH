@@ -7,10 +7,25 @@ package PanyaUI.RecipeUI;
 
 import PanyaUI.PanyaContentPanel;
 import PanyaUI.Theme;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -78,6 +93,18 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         this.privateLabel.setForeground(lightTextColor);
         this.privateLabel.setBackground(lightColor);
 
+        this.clearButton.setBackground(primaryColor);
+        this.clearButton.setForeground(primaryTextColor);
+
+        this.secretClearButton.setBackground(primaryColor);
+        this.secretClearButton.setForeground(primaryTextColor);
+
+        this.addRecipeButton.setBackground(primaryColor);
+        this.addRecipeButton.setForeground(primaryTextColor);
+
+        this.addSecretRecipeButton.setBackground(primaryColor);
+        this.addSecretRecipeButton.setForeground(primaryTextColor);
+
     }
 
     /**
@@ -95,154 +122,145 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
+        GridBagConstraints gridBagConstraints;
 
-        contentHeaderPanel = new javax.swing.JPanel();
-        contentHeaderLabel = new javax.swing.JLabel();
-        bottomHeaderPanel = new javax.swing.JPanel();
-        publicLabel = new javax.swing.JLabel();
-        privateLabel = new javax.swing.JLabel();
-        contentPanel = new javax.swing.JPanel();
-        publicPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        searchTextField = new javax.swing.JTextField();
-        searchButton = new javax.swing.JButton();
-        clearButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        recipeTable = new javax.swing.JTable();
-        addRecipeButton = new javax.swing.JButton();
-        privatePanel = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        secretSearchTextField = new javax.swing.JTextField();
-        secretSearchButton = new javax.swing.JButton();
-        secretClearButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        secretRecipeTable = new javax.swing.JTable();
-        addSecretRecipeButton = new javax.swing.JButton();
+        contentHeaderPanel = new JPanel();
+        contentHeaderLabel = new JLabel();
+        bottomHeaderPanel = new JPanel();
+        publicLabel = new JLabel();
+        privateLabel = new JLabel();
+        contentPanel = new JPanel();
+        publicPanel = new JPanel();
+        jPanel2 = new JPanel();
+        searchTextField = new JTextField();
+        clearButton = new JButton();
+        jScrollPane1 = new JScrollPane();
+        recipeTable = new JTable();
+        addRecipeButton = new JButton();
+        privatePanel = new JPanel();
+        jPanel3 = new JPanel();
+        secretSearchTextField = new JTextField();
+        secretClearButton = new JButton();
+        jScrollPane2 = new JScrollPane();
+        secretRecipeTable = new JTable();
+        addSecretRecipeButton = new JButton();
 
-        setMinimumSize(new java.awt.Dimension(600, 600));
-        setLayout(new java.awt.GridBagLayout());
+        setMinimumSize(new Dimension(600, 600));
+        setLayout(new GridBagLayout());
 
-        contentHeaderPanel.setBackground(new java.awt.Color(33, 150, 243));
-        contentHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 100));
+        contentHeaderPanel.setBackground(new Color(33, 150, 243));
+        contentHeaderPanel.setMinimumSize(new Dimension(600, 100));
 
-        contentHeaderLabel.setFont(new java.awt.Font("Noto Sans", 0, 17)); // NOI18N
-        contentHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentHeaderLabel.setText("YOUR RECIPE 自分の公式");
+        contentHeaderLabel.setFont(new Font("Noto Sans", 0, 17)); // NOI18N
+        contentHeaderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        contentHeaderLabel.setText("YOUR RECIPE");
 
-        javax.swing.GroupLayout contentHeaderPanelLayout = new javax.swing.GroupLayout(contentHeaderPanel);
+        GroupLayout contentHeaderPanelLayout = new GroupLayout(contentHeaderPanel);
         contentHeaderPanel.setLayout(contentHeaderPanelLayout);
-        contentHeaderPanelLayout.setHorizontalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        contentHeaderPanelLayout.setHorizontalGroup(contentHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(contentHeaderLabel, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
-        contentHeaderPanelLayout.setVerticalGroup(
-            contentHeaderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        contentHeaderPanelLayout.setVerticalGroup(contentHeaderPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(contentHeaderLabel, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 0.1;
         add(contentHeaderPanel, gridBagConstraints);
 
-        bottomHeaderPanel.setBackground(new java.awt.Color(110, 198, 255));
-        bottomHeaderPanel.setMinimumSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setPreferredSize(new java.awt.Dimension(600, 50));
-        bottomHeaderPanel.setLayout(new java.awt.GridBagLayout());
+        bottomHeaderPanel.setBackground(new Color(110, 198, 255));
+        bottomHeaderPanel.setMinimumSize(new Dimension(600, 50));
+        bottomHeaderPanel.setPreferredSize(new Dimension(600, 50));
+        bottomHeaderPanel.setLayout(new GridBagLayout());
 
-        publicLabel.setBackground(new java.awt.Color(33, 150, 243));
-        publicLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        publicLabel.setBackground(new Color(33, 150, 243));
+        publicLabel.setHorizontalAlignment(SwingConstants.CENTER);
         publicLabel.setText("Public");
-        publicLabel.setMaximumSize(new java.awt.Dimension(300, 50));
-        publicLabel.setMinimumSize(new java.awt.Dimension(300, 50));
+        publicLabel.setMaximumSize(new Dimension(300, 50));
+        publicLabel.setMinimumSize(new Dimension(300, 50));
         publicLabel.setOpaque(true);
-        publicLabel.setPreferredSize(new java.awt.Dimension(300, 50));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        publicLabel.setPreferredSize(new Dimension(300, 50));
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         bottomHeaderPanel.add(publicLabel, gridBagConstraints);
 
-        privateLabel.setBackground(new java.awt.Color(110, 198, 255));
-        privateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        privateLabel.setBackground(new Color(110, 198, 255));
+        privateLabel.setHorizontalAlignment(SwingConstants.CENTER);
         privateLabel.setText("Private");
-        privateLabel.setMaximumSize(new java.awt.Dimension(300, 50));
-        privateLabel.setMinimumSize(new java.awt.Dimension(300, 50));
+        privateLabel.setMaximumSize(new Dimension(300, 50));
+        privateLabel.setMinimumSize(new Dimension(300, 50));
         privateLabel.setOpaque(true);
-        privateLabel.setPreferredSize(new java.awt.Dimension(300, 50));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        privateLabel.setPreferredSize(new Dimension(300, 50));
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         bottomHeaderPanel.add(privateLabel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         add(bottomHeaderPanel, gridBagConstraints);
 
-        contentPanel.setBackground(java.awt.Color.white);
-        contentPanel.setMinimumSize(new java.awt.Dimension(600, 400));
-        contentPanel.setPreferredSize(new java.awt.Dimension(600, 400));
-        contentPanel.setLayout(new java.awt.CardLayout());
+        contentPanel.setBackground(Color.white);
+        contentPanel.setMinimumSize(new Dimension(600, 400));
+        contentPanel.setPreferredSize(new Dimension(600, 400));
+        contentPanel.setLayout(new CardLayout());
 
-        publicPanel.setLayout(new java.awt.GridBagLayout());
+        publicPanel.setLayout(new GridBagLayout());
 
-        jPanel2.setLayout(new java.awt.GridBagLayout());
+        jPanel2.setLayout(new GridBagLayout());
 
-        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        searchTextField.setMinimumSize(new java.awt.Dimension(450, 39));
-        searchTextField.setPreferredSize(new java.awt.Dimension(450, 39));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        searchTextField.setFont(new Font("Segoe UI", 0, 18)); // NOI18N
+        searchTextField.setMinimumSize(new Dimension(450, 39));
+        searchTextField.setPreferredSize(new Dimension(450, 39));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 16);
+        gridBagConstraints.insets = new Insets(0, 20, 0, 16);
         jPanel2.add(searchTextField, gridBagConstraints);
 
-        searchButton.setText("Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        clearButton.setText("Clear");
+        clearButton.setMaximumSize(new Dimension(100, 40));
+        clearButton.setPreferredSize(new Dimension(100, 40));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel2.add(searchButton, gridBagConstraints);
-
-        clearButton.setText(" Clear ");
-        clearButton.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel2.add(clearButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 10, 0);
+        gridBagConstraints.insets = new Insets(25, 0, 10, 0);
         publicPanel.add(jPanel2, gridBagConstraints);
 
         recipeTable.setAutoCreateRowSorter(true);
-        recipeTable.setModel(new javax.swing.table.DefaultTableModel(
+        recipeTable.setModel(new DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Note"
+                "ID                  ", "Name", "Note"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -257,73 +275,71 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
             }
         });
         recipeTable.setToolTipText("Double click to a recipe to see the details");
-        recipeTable.setAutoscrolls(false);
-        recipeTable.setCellSelectionEnabled(true);
+        recipeTable.setColumnSelectionAllowed(false);
+        recipeTable.setMinimumSize(new Dimension(105, 0));
+        recipeTable.setPreferredSize(new Dimension(600, 300));
         jScrollPane1.setViewportView(recipeTable);
-        if (recipeTable.getColumnModel().getColumnCount() > 0) {
-            recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
-            recipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
-            recipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
-        }
+        // if (recipeTable.getColumnModel().getColumnCount() > 0) {
+        //     recipeTable.getColumnModel().getColumn(0).setMinWidth(25);
+        //     recipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        //     recipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
+        // }
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 20, 0, 20);
         publicPanel.add(jScrollPane1, gridBagConstraints);
 
         addRecipeButton.setText("Add new recipe");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        addRecipeButton.setMaximumSize(new Dimension(300, 40));
+        addRecipeButton.setMinimumSize(new Dimension(300, 40));
+        addRecipeButton.setPreferredSize(new Dimension(300, 40));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         publicPanel.add(addRecipeButton, gridBagConstraints);
 
         contentPanel.add(publicPanel, "card2");
 
-        privatePanel.setLayout(new java.awt.GridBagLayout());
+        privatePanel.setLayout(new GridBagLayout());
 
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        jPanel3.setLayout(new GridBagLayout());
 
-        secretSearchTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        secretSearchTextField.setMinimumSize(new java.awt.Dimension(450, 39));
-        secretSearchTextField.setPreferredSize(new java.awt.Dimension(450, 39));
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        secretSearchTextField.setFont(new Font("Segoe UI", 0, 18)); // NOI18N
+        secretSearchTextField.setMinimumSize(new Dimension(450, 39));
+        secretSearchTextField.setPreferredSize(new Dimension(450, 39));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 16);
+        gridBagConstraints.insets = new Insets(0, 20, 0, 16);
         jPanel3.add(secretSearchTextField, gridBagConstraints);
 
-        secretSearchButton.setText("Search");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        jPanel3.add(secretSearchButton, gridBagConstraints);
-
         secretClearButton.setText("Clear");
-        secretClearButton.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        secretClearButton.setMaximumSize(new Dimension(100, 40));
+        secretClearButton.setMinimumSize(new Dimension(100, 40));
+        secretClearButton.setPreferredSize(new Dimension(100, 40));
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 20);
         jPanel3.add(secretClearButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 10, 0);
+        gridBagConstraints.insets = new Insets(25, 0, 10, 0);
         privatePanel.add(jPanel3, gridBagConstraints);
 
         secretRecipeTable.setAutoCreateRowSorter(true);
-        secretRecipeTable.setModel(new javax.swing.table.DefaultTableModel(
+        secretRecipeTable.setModel(new DefaultTableModel(
             new Object [][] {
 
             },
@@ -332,7 +348,7 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
@@ -348,33 +364,36 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
         });
         secretRecipeTable.setToolTipText("Double click to a recipe to see the details");
         jScrollPane2.setViewportView(secretRecipeTable);
-        if (secretRecipeTable.getColumnModel().getColumnCount() > 0) {
-            secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(25);
-            secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
-            secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
-        }
+        // if (secretRecipeTable.getColumnModel().getColumnCount() > 0) {
+        //     secretRecipeTable.getColumnModel().getColumn(0).setMinWidth(25);
+        //     secretRecipeTable.getColumnModel().getColumn(0).setPreferredWidth(25);
+        //     secretRecipeTable.getColumnModel().getColumn(0).setMaxWidth(25);
+        // }
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        gridBagConstraints.insets = new Insets(0, 20, 0, 20);
         privatePanel.add(jScrollPane2, gridBagConstraints);
 
         addSecretRecipeButton.setText("Add new Secret recipe");
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        addSecretRecipeButton.setMaximumSize(new Dimension(300, 37));
+        addSecretRecipeButton.setMinimumSize(new Dimension(300, 37));
+        addSecretRecipeButton.setPreferredSize(new Dimension(300, 37));
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+        gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         privatePanel.add(addSecretRecipeButton, gridBagConstraints);
 
         contentPanel.add(privatePanel, "card3");
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         add(contentPanel, gridBagConstraints);
@@ -382,27 +401,25 @@ public class RecipeMainPanelBase extends javax.swing.JPanel implements PanyaCont
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton addRecipeButton;
-    javax.swing.JButton addSecretRecipeButton;
-    javax.swing.JPanel bottomHeaderPanel;
-    javax.swing.JButton clearButton;
-    javax.swing.JLabel contentHeaderLabel;
-    javax.swing.JPanel contentHeaderPanel;
-    javax.swing.JPanel contentPanel;
-    javax.swing.JPanel jPanel2;
-    javax.swing.JPanel jPanel3;
-    javax.swing.JScrollPane jScrollPane1;
-    javax.swing.JScrollPane jScrollPane2;
-    javax.swing.JLabel privateLabel;
-    javax.swing.JPanel privatePanel;
-    javax.swing.JLabel publicLabel;
-    javax.swing.JPanel publicPanel;
-    javax.swing.JTable recipeTable;
-    javax.swing.JButton searchButton;
-    javax.swing.JTextField searchTextField;
-    javax.swing.JButton secretClearButton;
-    javax.swing.JTable secretRecipeTable;
-    javax.swing.JButton secretSearchButton;
-    javax.swing.JTextField secretSearchTextField;
+    JButton addRecipeButton;
+    JButton addSecretRecipeButton;
+    JPanel bottomHeaderPanel;
+    JButton clearButton;
+    JLabel contentHeaderLabel;
+    JPanel contentHeaderPanel;
+    JPanel contentPanel;
+    JPanel jPanel2;
+    JPanel jPanel3;
+    JScrollPane jScrollPane1;
+    JScrollPane jScrollPane2;
+    JLabel privateLabel;
+    JPanel privatePanel;
+    JLabel publicLabel;
+    JPanel publicPanel;
+    JTable recipeTable;
+    JTextField searchTextField;
+    JButton secretClearButton;
+    JTable secretRecipeTable;
+    JTextField secretSearchTextField;
     // End of variables declaration//GEN-END:variables
 }

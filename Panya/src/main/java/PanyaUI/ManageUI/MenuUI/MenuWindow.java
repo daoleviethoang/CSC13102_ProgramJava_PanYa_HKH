@@ -997,28 +997,68 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     }
     private void saleOffButonActionPerformed(java.awt.event.ActionEvent evt)
     {
-        Double nSale = menuData.get(0).getSellOff().doubleValue();
-        java.awt.Component[] spParent = itemPanel.getComponents();
-        int i = 0;
-        for (java.awt.Component spPanel : spParent) {
-            if (spPanel instanceof javax.swing.JPanel) {
-                java.awt.Component[] childrens = ((javax.swing.JPanel) spPanel).getComponents();
-                double nPrice = menuData.get(0).getProducts().get(i).getPrice().doubleValue();
-                menuData.get(0).getProducts().get(i).setPrice(new BigDecimal(""+(nPrice - nPrice*nSale)));
-                System.out.println(nPrice - nPrice*nSale);
-                for (java.awt.Component spChild : childrens) {
-                    if (spChild instanceof javax.swing.JLabel) {
-                        String text = ((javax.swing.JLabel) spChild).getText();
-                        if (text.contains("Price:") == true) {
-                            String[] txt = text.split(": ");
-                            ((javax.swing.JLabel) spChild).setText("Price: " + (Double.parseDouble(txt[1]) - (Double.parseDouble(txt[1]) * nSale)));
+        JFrame frame = new JFrame("SALE OFF");
+        javax.swing.JPanel panel = new javax.swing.JPanel();
+        java.awt.LayoutManager layout = new java.awt.FlowLayout();  
+        panel.setLayout(layout);       
+        javax.swing.JButton button = new javax.swing.JButton("Click Me!");
+        final javax.swing.JLabel label = new javax.swing.JLabel();
+        button.addActionListener(new java.awt.event.ActionListener() {
+           @Override
+           public void actionPerformed(java.awt.event.ActionEvent e) { 
+              String result = (String)JOptionPane.showInputDialog(
+                 frame,
+                 "Enter Value Of Sale", 
+                 "Input Sale",            
+                 JOptionPane.PLAIN_MESSAGE,
+                 null,            
+                 null, 
+                 ""
+              );
+              if(result != null && result.length() > 0){
+                 label.setText("You input: " + result);
+                 //System.out.println(label.getText());
+                 nSale = Double.parseDouble(result);
+                //  nSale = Double.parseDouble(label.getText());
+                frame.setVisible(false);
 
+
+                java.awt.Component[] spParent = itemPanel.getComponents();
+                int i = 0;
+                for (java.awt.Component spPanel : spParent) {
+                    if (spPanel instanceof javax.swing.JPanel) {
+                        java.awt.Component[] childrens = ((javax.swing.JPanel) spPanel).getComponents();
+                        double nPrice = menuData.get(0).getProducts().get(i).getPrice().doubleValue();
+                        menuData.get(0).getProducts().get(i).setPrice(new BigDecimal(""+(nPrice - nPrice*nSale)));
+                        //System.out.println(nPrice - nPrice*nSale);
+                        for (java.awt.Component spChild : childrens) {
+                            if (spChild instanceof javax.swing.JLabel) {
+                                String text = ((javax.swing.JLabel) spChild).getText();
+                                if (text.contains("Price:") == true) {
+                                    String[] txt = text.split(": ");
+                                    ((javax.swing.JLabel) spChild).setText("Price: " + (Double.parseDouble(txt[1]) - (Double.parseDouble(txt[1]) * nSale)));
+        
+                                }
+                            }
                         }
+                        i++;
                     }
                 }
-                i++;
-            }
-        }
+
+                return;
+              }else {
+                 label.setText("None input");
+              }
+           }
+        });
+        panel.add(button);
+        panel.add(label);
+        frame.getContentPane().add(panel, java.awt.BorderLayout.CENTER);    
+        frame.setSize(560, 200);      
+        frame.setLocationRelativeTo(null);  
+        frame.setVisible(true);
+        //Double nSale = menuData.get(0).getSellOff().doubleValue();
+
     }
     private void updataButonActionPerformed(java.awt.event.ActionEvent evt) {
         supportUpdata();
@@ -1367,7 +1407,7 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
                             {
                                 if(text.contains(iSearch) == true)
                                 {
-                                    
+
                                 }
                                 else{
                                     lFlag.add(j);
@@ -1932,5 +1972,6 @@ public class MenuWindow extends javax.swing.JPanel implements PanyaContentPanel 
     private javax.swing.JTextField tname;
     private javax.swing.JTextField tprice;
     private javax.swing.JSpinner tquantity;
+    private Double nSale = 0.0;
 
 }
